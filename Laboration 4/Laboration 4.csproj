@@ -46,20 +46,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckoutView.cs" />
-    <Compile Include="Contol.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Backend\Contol.cs" />
+    <Compile Include="Backend\Types\Book.cs" />
+    <Compile Include="Backend\Types\DVD.cs" />
+    <Compile Include="Frontend\InventoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frontend\InventoryControl.Designer.cs">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Frontend\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryView.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="MainForm.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Backend\Inventory.cs" />
+    <Compile Include="Backend\Types\Game.cs" />
+    <Compile Include="Backend\Product.cs" />
+    <Compile Include="Frontend\CheckoutControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frontend\CheckoutControl.Designer.cs">
+      <DependentUpon>CheckoutControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Backend\Type.cs" />
+    <Compile Include="Backend\Sale.cs" />
+    <Compile Include="Backend\Selling.cs" />
+    <Compile Include="Frontend\StatisticsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frontend\StatisticsControl.Designer.cs">
+      <DependentUpon>StatisticsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frontend\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Frontend\InventoryControl.resx">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\CheckoutControl.resx">
+      <DependentUpon>CheckoutControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -69,6 +104,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Frontend\StatisticsControl.resx">
+      <DependentUpon>StatisticsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

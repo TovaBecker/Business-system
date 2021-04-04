@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Laboration_4
 {
-    public class Item
+    internal class Game : Product
     {
-        public int ItemNumber
+        public int Platform
         {
             get => default;
             set

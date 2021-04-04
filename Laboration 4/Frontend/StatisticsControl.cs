@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Laboration_4
 {
-    public partial class Form1 : Form
+    public partial class StatisticsControl : UserControl
     {
-        public Form1()
+        public StatisticsControl()
         {
             InitializeComponent();
         }

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Laboration_4
 {
-    public class Inventory
+    public enum Type
     {
+        Book,
+        Game,
+        DVD
     }
 }
