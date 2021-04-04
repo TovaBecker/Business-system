@@ -32,7 +32,9 @@
             this.CheckoutTab = new System.Windows.Forms.TabPage();
             this.InventoryTab = new System.Windows.Forms.TabPage();
             this.StatisticsTab = new System.Windows.Forms.TabPage();
+            this.manageInventoryControl1 = new Laboration_4.ManageInventoryControl();
             this.MainTab.SuspendLayout();
+            this.InventoryTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTab
@@ -59,6 +61,7 @@
             // 
             // InventoryTab
             // 
+            this.InventoryTab.Controls.Add(this.manageInventoryControl1);
             this.InventoryTab.Location = new System.Drawing.Point(4, 22);
             this.InventoryTab.Name = "InventoryTab";
             this.InventoryTab.Padding = new System.Windows.Forms.Padding(3);
@@ -76,6 +79,14 @@
             this.StatisticsTab.Text = "Statistik";
             this.StatisticsTab.UseVisualStyleBackColor = true;
             // 
+            // manageInventoryControl1
+            // 
+            this.manageInventoryControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.manageInventoryControl1.Location = new System.Drawing.Point(3, 3);
+            this.manageInventoryControl1.Name = "manageInventoryControl1";
+            this.manageInventoryControl1.Size = new System.Drawing.Size(786, 418);
+            this.manageInventoryControl1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,6 +97,7 @@
             this.Text = "Affärssystemet Mia";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTab.ResumeLayout(false);
+            this.InventoryTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -96,6 +108,7 @@
         private System.Windows.Forms.TabPage CheckoutTab;
         private System.Windows.Forms.TabPage StatisticsTab;
         private System.Windows.Forms.TabPage InventoryTab;
+        private ManageInventoryControl manageInventoryControl1;
     }
 }
 

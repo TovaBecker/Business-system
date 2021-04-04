@@ -33,5 +33,10 @@ namespace Laboration_4
         private void MainForm_Load(object sender, EventArgs e)
         {
         }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
