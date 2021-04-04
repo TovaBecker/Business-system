@@ -58,27 +58,36 @@
     <Compile Include="Backend\Inventory.cs" />
     <Compile Include="Backend\Types\Game.cs" />
     <Compile Include="Backend\Product.cs" />
-    <Compile Include="Frontend\CheckoutControl.cs">
+    <Compile Include="Frontend\ManageCheckoutControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frontend\CheckoutControl.Designer.cs">
-      <DependentUpon>CheckoutControl.cs</DependentUpon>
+    <Compile Include="Frontend\ManageCheckoutControl.Designer.cs">
+      <DependentUpon>ManageCheckoutControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\ManageInventoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frontend\ManageInventoryControl.Designer.cs">
+      <DependentUpon>ManageInventoryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Backend\Type.cs" />
     <Compile Include="Backend\Sale.cs" />
     <Compile Include="Backend\Selling.cs" />
-    <Compile Include="Frontend\StatisticsControl.cs">
+    <Compile Include="Frontend\ManageStatisticsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frontend\StatisticsControl.Designer.cs">
-      <DependentUpon>StatisticsControl.cs</DependentUpon>
+    <Compile Include="Frontend\ManageStatisticsControl.Designer.cs">
+      <DependentUpon>ManageStatisticsControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Frontend\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\CheckoutControl.resx">
-      <DependentUpon>CheckoutControl.cs</DependentUpon>
+    <EmbeddedResource Include="Frontend\ManageCheckoutControl.resx">
+      <DependentUpon>ManageCheckoutControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\ManageInventoryControl.resx">
+      <DependentUpon>ManageInventoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,8 +98,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Frontend\StatisticsControl.resx">
-      <DependentUpon>StatisticsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Frontend\ManageStatisticsControl.resx">
+      <DependentUpon>ManageStatisticsControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">

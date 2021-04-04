@@ -30,8 +30,8 @@
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.CheckoutTab = new System.Windows.Forms.TabPage();
-            this.StatisticsTab = new System.Windows.Forms.TabPage();
             this.InventoryTab = new System.Windows.Forms.TabPage();
+            this.StatisticsTab = new System.Windows.Forms.TabPage();
             this.MainTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,15 +57,6 @@
             this.CheckoutTab.Text = "Kassa";
             this.CheckoutTab.UseVisualStyleBackColor = true;
             // 
-            // StatisticsTab
-            // 
-            this.StatisticsTab.Location = new System.Drawing.Point(4, 22);
-            this.StatisticsTab.Name = "StatisticsTab";
-            this.StatisticsTab.Size = new System.Drawing.Size(792, 424);
-            this.StatisticsTab.TabIndex = 2;
-            this.StatisticsTab.Text = "Statistik";
-            this.StatisticsTab.UseVisualStyleBackColor = true;
-            // 
             // InventoryTab
             // 
             this.InventoryTab.Location = new System.Drawing.Point(4, 22);
@@ -75,6 +66,15 @@
             this.InventoryTab.TabIndex = 1;
             this.InventoryTab.Text = "Lager";
             this.InventoryTab.UseVisualStyleBackColor = true;
+            // 
+            // StatisticsTab
+            // 
+            this.StatisticsTab.Location = new System.Drawing.Point(4, 22);
+            this.StatisticsTab.Name = "StatisticsTab";
+            this.StatisticsTab.Size = new System.Drawing.Size(792, 424);
+            this.StatisticsTab.TabIndex = 2;
+            this.StatisticsTab.Text = "Statistik";
+            this.StatisticsTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
