@@ -58,13 +58,14 @@ namespace Laboration_4
             this.data2Label = new System.Windows.Forms.Label();
             this.data3Label = new System.Windows.Forms.Label();
             this.data4Label = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.inventoryDataGridView = new System.Windows.Forms.DataGridView();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.InventoryListSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inventoryGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.mailSplitContainer)).BeginInit();
             this.mailSplitContainer.Panel1.SuspendLayout();
             this.mailSplitContainer.Panel2.SuspendLayout();
@@ -75,8 +76,9 @@ namespace Laboration_4
             this.menuSplitContainer.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.infoTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mailSplitContainer
@@ -92,7 +94,8 @@ namespace Laboration_4
             // 
             // mailSplitContainer.Panel2
             // 
-            this.mailSplitContainer.Panel2.Controls.Add(this.dataGridView1);
+            this.mailSplitContainer.Panel2.Controls.Add(this.inventoryDataGridView);
+            this.mailSplitContainer.Panel2.Controls.Add(this.inventoryGridView);
             this.mailSplitContainer.Size = new System.Drawing.Size(620, 386);
             this.mailSplitContainer.SplitterDistance = 120;
             this.mailSplitContainer.TabIndex = 0;
@@ -111,7 +114,7 @@ namespace Laboration_4
             // 
             this.menuSplitContainer.Panel2.Controls.Add(this.infoTableLayoutPanel);
             this.menuSplitContainer.Size = new System.Drawing.Size(620, 120);
-            this.menuSplitContainer.SplitterDistance = 61;
+            this.menuSplitContainer.SplitterDistance = 60;
             this.menuSplitContainer.TabIndex = 0;
             // 
             // typeGroupBox
@@ -123,7 +126,7 @@ namespace Laboration_4
             this.typeGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.typeGroupBox.Location = new System.Drawing.Point(0, 0);
             this.typeGroupBox.Name = "typeGroupBox";
-            this.typeGroupBox.Size = new System.Drawing.Size(61, 120);
+            this.typeGroupBox.Size = new System.Drawing.Size(60, 120);
             this.typeGroupBox.TabIndex = 0;
             this.typeGroupBox.TabStop = false;
             this.typeGroupBox.Text = "Typ";
@@ -135,7 +138,6 @@ namespace Laboration_4
             this.radioButtonDVD.Name = "radioButtonDVD";
             this.radioButtonDVD.Size = new System.Drawing.Size(48, 17);
             this.radioButtonDVD.TabIndex = 3;
-            this.radioButtonDVD.TabStop = true;
             this.radioButtonDVD.Text = "DVD";
             this.radioButtonDVD.UseVisualStyleBackColor = true;
             // 
@@ -146,7 +148,6 @@ namespace Laboration_4
             this.radioButtonGame.Name = "radioButtonGame";
             this.radioButtonGame.Size = new System.Drawing.Size(46, 17);
             this.radioButtonGame.TabIndex = 2;
-            this.radioButtonGame.TabStop = true;
             this.radioButtonGame.Text = "Spel";
             this.radioButtonGame.UseVisualStyleBackColor = true;
             // 
@@ -157,13 +158,13 @@ namespace Laboration_4
             this.radioButtonBook.Name = "radioButtonBook";
             this.radioButtonBook.Size = new System.Drawing.Size(44, 17);
             this.radioButtonBook.TabIndex = 1;
-            this.radioButtonBook.TabStop = true;
             this.radioButtonBook.Text = "Bok";
             this.radioButtonBook.UseVisualStyleBackColor = true;
             // 
             // radioButtonAll
             // 
             this.radioButtonAll.AutoSize = true;
+            this.radioButtonAll.Checked = true;
             this.radioButtonAll.Location = new System.Drawing.Point(6, 19);
             this.radioButtonAll.Name = "radioButtonAll";
             this.radioButtonAll.Size = new System.Drawing.Size(42, 17);
@@ -175,11 +176,11 @@ namespace Laboration_4
             // infoTableLayoutPanel
             // 
             this.infoTableLayoutPanel.ColumnCount = 5;
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.infoTableLayoutPanel.Controls.Add(this.itemNrLabel, 0, 0);
             this.infoTableLayoutPanel.Controls.Add(this.namLabel, 0, 1);
             this.infoTableLayoutPanel.Controls.Add(this.priceLabel, 0, 2);
@@ -208,122 +209,125 @@ namespace Laboration_4
             this.infoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.infoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.infoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.infoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.infoTableLayoutPanel.Size = new System.Drawing.Size(555, 117);
+            this.infoTableLayoutPanel.Size = new System.Drawing.Size(556, 117);
             this.infoTableLayoutPanel.TabIndex = 0;
             // 
             // itemNrLabel
             // 
             this.itemNrLabel.AutoSize = true;
-            this.itemNrLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.itemNrLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.itemNrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemNrLabel.Location = new System.Drawing.Point(3, 12);
+            this.itemNrLabel.Location = new System.Drawing.Point(3, 0);
             this.itemNrLabel.Name = "itemNrLabel";
-            this.itemNrLabel.Size = new System.Drawing.Size(105, 17);
+            this.itemNrLabel.Size = new System.Drawing.Size(99, 29);
             this.itemNrLabel.TabIndex = 0;
             this.itemNrLabel.Text = "Varunummer";
             // 
             // namLabel
             // 
             this.namLabel.AutoSize = true;
-            this.namLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.namLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.namLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.namLabel.Location = new System.Drawing.Point(3, 41);
+            this.namLabel.Location = new System.Drawing.Point(3, 29);
             this.namLabel.Name = "namLabel";
-            this.namLabel.Size = new System.Drawing.Size(105, 17);
+            this.namLabel.Size = new System.Drawing.Size(49, 29);
             this.namLabel.TabIndex = 1;
             this.namLabel.Text = "Namn";
             // 
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
-            this.priceLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.priceLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceLabel.Location = new System.Drawing.Point(3, 70);
+            this.priceLabel.Location = new System.Drawing.Point(3, 58);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(105, 17);
+            this.priceLabel.Size = new System.Drawing.Size(36, 29);
             this.priceLabel.TabIndex = 2;
             this.priceLabel.Text = "Pris";
             // 
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.quantityLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(3, 100);
+            this.quantityLabel.Location = new System.Drawing.Point(3, 87);
             this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(105, 17);
+            this.quantityLabel.Size = new System.Drawing.Size(45, 30);
             this.quantityLabel.TabIndex = 3;
             this.quantityLabel.Text = "Antal";
             // 
             // itemNrTextBox
             // 
-            this.itemNrTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.itemNrTextBox.Location = new System.Drawing.Point(114, 6);
+            this.itemNrTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemNrTextBox.Location = new System.Drawing.Point(113, 3);
             this.itemNrTextBox.Name = "itemNrTextBox";
-            this.itemNrTextBox.Size = new System.Drawing.Size(105, 20);
+            this.itemNrTextBox.Size = new System.Drawing.Size(119, 20);
             this.itemNrTextBox.TabIndex = 4;
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.nameTextBox.Location = new System.Drawing.Point(114, 35);
+            this.nameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nameTextBox.Location = new System.Drawing.Point(113, 32);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(105, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(119, 20);
             this.nameTextBox.TabIndex = 5;
             // 
             // pricTextBox
             // 
-            this.pricTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pricTextBox.Location = new System.Drawing.Point(114, 64);
+            this.pricTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pricTextBox.Location = new System.Drawing.Point(113, 61);
             this.pricTextBox.Name = "pricTextBox";
-            this.pricTextBox.Size = new System.Drawing.Size(105, 20);
+            this.pricTextBox.Size = new System.Drawing.Size(119, 20);
             this.pricTextBox.TabIndex = 6;
             // 
             // quantityTextBox
             // 
-            this.quantityTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.quantityTextBox.Location = new System.Drawing.Point(114, 94);
+            this.quantityTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.quantityTextBox.Location = new System.Drawing.Point(113, 90);
             this.quantityTextBox.Name = "quantityTextBox";
-            this.quantityTextBox.Size = new System.Drawing.Size(105, 20);
+            this.quantityTextBox.Size = new System.Drawing.Size(119, 20);
             this.quantityTextBox.TabIndex = 7;
             // 
             // data1TextBox
             // 
-            this.data1TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.data1TextBox.Location = new System.Drawing.Point(336, 6);
+            this.data1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.data1TextBox.Location = new System.Drawing.Point(348, 3);
             this.data1TextBox.Name = "data1TextBox";
-            this.data1TextBox.Size = new System.Drawing.Size(105, 20);
+            this.data1TextBox.Size = new System.Drawing.Size(119, 20);
             this.data1TextBox.TabIndex = 8;
+            this.data1TextBox.Visible = false;
             // 
             // data2TextBox
             // 
-            this.data2TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.data2TextBox.Location = new System.Drawing.Point(336, 35);
+            this.data2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.data2TextBox.Location = new System.Drawing.Point(348, 32);
             this.data2TextBox.Name = "data2TextBox";
-            this.data2TextBox.Size = new System.Drawing.Size(105, 20);
+            this.data2TextBox.Size = new System.Drawing.Size(119, 20);
             this.data2TextBox.TabIndex = 9;
+            this.data2TextBox.Visible = false;
             // 
             // data3TextBox
             // 
-            this.data3TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.data3TextBox.Location = new System.Drawing.Point(336, 64);
+            this.data3TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.data3TextBox.Location = new System.Drawing.Point(348, 61);
             this.data3TextBox.Name = "data3TextBox";
-            this.data3TextBox.Size = new System.Drawing.Size(105, 20);
+            this.data3TextBox.Size = new System.Drawing.Size(119, 20);
             this.data3TextBox.TabIndex = 10;
+            this.data3TextBox.Visible = false;
             // 
             // data4TextBox
             // 
-            this.data4TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.data4TextBox.Location = new System.Drawing.Point(336, 94);
+            this.data4TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.data4TextBox.Location = new System.Drawing.Point(348, 90);
             this.data4TextBox.Name = "data4TextBox";
-            this.data4TextBox.Size = new System.Drawing.Size(105, 20);
+            this.data4TextBox.Size = new System.Drawing.Size(119, 20);
             this.data4TextBox.TabIndex = 11;
+            this.data4TextBox.Visible = false;
             // 
             // buttonAdd
             // 
             this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonAdd.Location = new System.Drawing.Point(477, 3);
+            this.buttonAdd.Location = new System.Drawing.Point(478, 3);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 12;
@@ -333,7 +337,7 @@ namespace Laboration_4
             // buttonRemove
             // 
             this.buttonRemove.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonRemove.Location = new System.Drawing.Point(477, 32);
+            this.buttonRemove.Location = new System.Drawing.Point(478, 32);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(75, 23);
             this.buttonRemove.TabIndex = 13;
@@ -343,7 +347,7 @@ namespace Laboration_4
             // buttonUpdate
             // 
             this.buttonUpdate.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonUpdate.Location = new System.Drawing.Point(477, 61);
+            this.buttonUpdate.Location = new System.Drawing.Point(478, 61);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
             this.buttonUpdate.TabIndex = 14;
@@ -353,7 +357,7 @@ namespace Laboration_4
             // buttonSearch
             // 
             this.buttonSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSearch.Location = new System.Drawing.Point(477, 90);
+            this.buttonSearch.Location = new System.Drawing.Point(478, 90);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 24);
             this.buttonSearch.TabIndex = 15;
@@ -363,93 +367,121 @@ namespace Laboration_4
             // data1Label
             // 
             this.data1Label.AutoSize = true;
-            this.data1Label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.data1Label.Dock = System.Windows.Forms.DockStyle.Left;
             this.data1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data1Label.Location = new System.Drawing.Point(225, 12);
+            this.data1Label.Location = new System.Drawing.Point(238, 0);
             this.data1Label.Name = "data1Label";
-            this.data1Label.Size = new System.Drawing.Size(105, 17);
+            this.data1Label.Size = new System.Drawing.Size(0, 29);
             this.data1Label.TabIndex = 16;
             // 
             // data2Label
             // 
             this.data2Label.AutoSize = true;
-            this.data2Label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.data2Label.Dock = System.Windows.Forms.DockStyle.Left;
             this.data2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data2Label.Location = new System.Drawing.Point(225, 41);
+            this.data2Label.Location = new System.Drawing.Point(238, 29);
             this.data2Label.Name = "data2Label";
-            this.data2Label.Size = new System.Drawing.Size(105, 17);
+            this.data2Label.Size = new System.Drawing.Size(0, 29);
             this.data2Label.TabIndex = 17;
             // 
             // data3Label
             // 
             this.data3Label.AutoSize = true;
-            this.data3Label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.data3Label.Dock = System.Windows.Forms.DockStyle.Left;
             this.data3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data3Label.Location = new System.Drawing.Point(225, 70);
+            this.data3Label.Location = new System.Drawing.Point(238, 58);
             this.data3Label.Name = "data3Label";
-            this.data3Label.Size = new System.Drawing.Size(105, 17);
+            this.data3Label.Size = new System.Drawing.Size(0, 29);
             this.data3Label.TabIndex = 18;
             // 
             // data4Label
             // 
             this.data4Label.AutoSize = true;
-            this.data4Label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.data4Label.Dock = System.Windows.Forms.DockStyle.Left;
             this.data4Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data4Label.Location = new System.Drawing.Point(225, 100);
+            this.data4Label.Location = new System.Drawing.Point(238, 87);
             this.data4Label.Name = "data4Label";
-            this.data4Label.Size = new System.Drawing.Size(105, 17);
+            this.data4Label.Size = new System.Drawing.Size(0, 30);
             this.data4Label.TabIndex = 19;
             // 
-            // dataGridView1
+            // inventoryDataGridView
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.inventoryDataGridView.AllowUserToAddRows = false;
+            this.inventoryDataGridView.AllowUserToDeleteRows = false;
+            this.inventoryDataGridView.AllowUserToOrderColumns = true;
+            this.inventoryDataGridView.AutoGenerateColumns = false;
+            this.inventoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.typeDataGridViewTextBoxColumn,
             this.itemNumberDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
-            this.typeDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.productBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(620, 262);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // itemNumberDataGridViewTextBoxColumn
-            // 
-            this.itemNumberDataGridViewTextBoxColumn.DataPropertyName = "ItemNumber";
-            this.itemNumberDataGridViewTextBoxColumn.HeaderText = "ItemNumber";
-            this.itemNumberDataGridViewTextBoxColumn.Name = "itemNumberDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.inventoryDataGridView.DataSource = this.InventoryListSource;
+            this.inventoryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.inventoryDataGridView.MultiSelect = false;
+            this.inventoryDataGridView.Name = "inventoryDataGridView";
+            this.inventoryDataGridView.ReadOnly = true;
+            this.inventoryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.inventoryDataGridView.ShowCellErrors = false;
+            this.inventoryDataGridView.ShowCellToolTips = false;
+            this.inventoryDataGridView.ShowEditingIcon = false;
+            this.inventoryDataGridView.ShowRowErrors = false;
+            this.inventoryDataGridView.Size = new System.Drawing.Size(620, 262);
+            this.inventoryDataGridView.TabIndex = 1;
             // 
             // typeDataGridViewTextBoxColumn
             // 
             this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Typ";
             this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // itemNumberDataGridViewTextBoxColumn
+            // 
+            this.itemNumberDataGridViewTextBoxColumn.DataPropertyName = "ItemNumber";
+            this.itemNumberDataGridViewTextBoxColumn.HeaderText = "Varunummer";
+            this.itemNumberDataGridViewTextBoxColumn.Name = "itemNumberDataGridViewTextBoxColumn";
+            this.itemNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Namn";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Pris";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
             this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Antal";
             this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // productBindingSource
+            // InventoryListSource
             // 
-            this.productBindingSource.DataSource = typeof(Laboration_4.Product);
+            this.InventoryListSource.DataSource = typeof(Laboration_4.Product);
+            // 
+            // inventoryGridView
+            // 
+            this.inventoryGridView.AllowUserToAddRows = false;
+            this.inventoryGridView.AllowUserToDeleteRows = false;
+            this.inventoryGridView.AllowUserToOrderColumns = true;
+            this.inventoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryGridView.Location = new System.Drawing.Point(0, 0);
+            this.inventoryGridView.Name = "inventoryGridView";
+            this.inventoryGridView.ReadOnly = true;
+            this.inventoryGridView.Size = new System.Drawing.Size(620, 262);
+            this.inventoryGridView.TabIndex = 0;
             // 
             // ManageInventoryControl
             // 
@@ -470,8 +502,9 @@ namespace Laboration_4
             this.typeGroupBox.PerformLayout();
             this.infoTableLayoutPanel.ResumeLayout(false);
             this.infoTableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -506,12 +539,13 @@ namespace Laboration_4
         private System.Windows.Forms.RadioButton radioButtonGame;
         private System.Windows.Forms.RadioButton radioButtonBook;
         private System.Windows.Forms.RadioButton radioButtonAll;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView inventoryGridView;
+        private System.Windows.Forms.DataGridView inventoryDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.BindingSource InventoryListSource;
     }
 }

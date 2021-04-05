@@ -7,8 +7,8 @@ namespace Laboration_4
 {
     public enum Type
     {
-        Book,
-        Game,
+        Bok,
+        Spel,
         DVD
     }
 }

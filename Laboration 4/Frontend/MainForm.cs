@@ -12,15 +12,9 @@ namespace Laboration_4
 {
     public partial class MainForm : Form
     {
-        BindingList<Product> InventoryList;
-        BindingSource InventoryListSource;
-
         public MainForm()
         {
             InitializeComponent();
-            InventoryList = new BindingList<Product>();
-            InventoryListSource = new BindingSource();
-            InventoryListSource.DataSource = InventoryList;
 
         }
 

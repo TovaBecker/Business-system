@@ -7,6 +7,13 @@ namespace Laboration_4
 {
     internal class Product
     {
+        public Type Type
+        {
+            get => default;
+            set
+            {//TODO
+            }
+        }
 
         public int ItemNumber
         {
@@ -31,15 +38,6 @@ namespace Laboration_4
             {//TODO
             }
         }
-
-        public Type Type
-        {
-            get => default;
-            set
-            {//TODO
-            }
-        }
-
         public int Quantity
         {
             get => default;
@@ -47,5 +45,6 @@ namespace Laboration_4
             {//TODO
             }
         }
+       
     }
 }
