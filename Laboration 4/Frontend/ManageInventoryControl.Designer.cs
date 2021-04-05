@@ -44,7 +44,7 @@ namespace Laboration_4
             this.quantityLabel = new System.Windows.Forms.Label();
             this.itemNrTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.pricTextBox = new System.Windows.Forms.TextBox();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
             this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.data1TextBox = new System.Windows.Forms.TextBox();
             this.data2TextBox = new System.Windows.Forms.TextBox();
@@ -53,19 +53,20 @@ namespace Laboration_4
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.data1Label = new System.Windows.Forms.Label();
             this.data2Label = new System.Windows.Forms.Label();
             this.data3Label = new System.Windows.Forms.Label();
             this.data4Label = new System.Windows.Forms.Label();
             this.inventoryDataGridView = new System.Windows.Forms.DataGridView();
+            this.inventoryGridView = new System.Windows.Forms.DataGridView();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InventoryListSource = new System.Windows.Forms.BindingSource(this.components);
-            this.inventoryGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.mailSplitContainer)).BeginInit();
             this.mailSplitContainer.Panel1.SuspendLayout();
             this.mailSplitContainer.Panel2.SuspendLayout();
@@ -77,8 +78,8 @@ namespace Laboration_4
             this.typeGroupBox.SuspendLayout();
             this.infoTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mailSplitContainer
@@ -108,6 +109,7 @@ namespace Laboration_4
             // 
             // menuSplitContainer.Panel1
             // 
+            this.menuSplitContainer.Panel1.Controls.Add(this.buttonSearch);
             this.menuSplitContainer.Panel1.Controls.Add(this.typeGroupBox);
             // 
             // menuSplitContainer.Panel2
@@ -123,10 +125,10 @@ namespace Laboration_4
             this.typeGroupBox.Controls.Add(this.radioButtonGame);
             this.typeGroupBox.Controls.Add(this.radioButtonBook);
             this.typeGroupBox.Controls.Add(this.radioButtonAll);
-            this.typeGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.typeGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.typeGroupBox.Location = new System.Drawing.Point(0, 0);
             this.typeGroupBox.Name = "typeGroupBox";
-            this.typeGroupBox.Size = new System.Drawing.Size(60, 120);
+            this.typeGroupBox.Size = new System.Drawing.Size(60, 98);
             this.typeGroupBox.TabIndex = 0;
             this.typeGroupBox.TabStop = false;
             this.typeGroupBox.Text = "Typ";
@@ -134,7 +136,7 @@ namespace Laboration_4
             // radioButtonDVD
             // 
             this.radioButtonDVD.AutoSize = true;
-            this.radioButtonDVD.Location = new System.Drawing.Point(6, 88);
+            this.radioButtonDVD.Location = new System.Drawing.Point(6, 69);
             this.radioButtonDVD.Name = "radioButtonDVD";
             this.radioButtonDVD.Size = new System.Drawing.Size(48, 17);
             this.radioButtonDVD.TabIndex = 3;
@@ -144,7 +146,7 @@ namespace Laboration_4
             // radioButtonGame
             // 
             this.radioButtonGame.AutoSize = true;
-            this.radioButtonGame.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonGame.Location = new System.Drawing.Point(6, 51);
             this.radioButtonGame.Name = "radioButtonGame";
             this.radioButtonGame.Size = new System.Drawing.Size(46, 17);
             this.radioButtonGame.TabIndex = 2;
@@ -154,7 +156,7 @@ namespace Laboration_4
             // radioButtonBook
             // 
             this.radioButtonBook.AutoSize = true;
-            this.radioButtonBook.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonBook.Location = new System.Drawing.Point(6, 33);
             this.radioButtonBook.Name = "radioButtonBook";
             this.radioButtonBook.Size = new System.Drawing.Size(44, 17);
             this.radioButtonBook.TabIndex = 1;
@@ -165,7 +167,7 @@ namespace Laboration_4
             // 
             this.radioButtonAll.AutoSize = true;
             this.radioButtonAll.Checked = true;
-            this.radioButtonAll.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonAll.Location = new System.Drawing.Point(6, 15);
             this.radioButtonAll.Name = "radioButtonAll";
             this.radioButtonAll.Size = new System.Drawing.Size(42, 17);
             this.radioButtonAll.TabIndex = 0;
@@ -187,7 +189,7 @@ namespace Laboration_4
             this.infoTableLayoutPanel.Controls.Add(this.quantityLabel, 0, 3);
             this.infoTableLayoutPanel.Controls.Add(this.itemNrTextBox, 1, 0);
             this.infoTableLayoutPanel.Controls.Add(this.nameTextBox, 1, 1);
-            this.infoTableLayoutPanel.Controls.Add(this.pricTextBox, 1, 2);
+            this.infoTableLayoutPanel.Controls.Add(this.priceTextBox, 1, 2);
             this.infoTableLayoutPanel.Controls.Add(this.quantityTextBox, 1, 3);
             this.infoTableLayoutPanel.Controls.Add(this.data1TextBox, 3, 0);
             this.infoTableLayoutPanel.Controls.Add(this.data2TextBox, 3, 1);
@@ -196,11 +198,11 @@ namespace Laboration_4
             this.infoTableLayoutPanel.Controls.Add(this.buttonAdd, 4, 0);
             this.infoTableLayoutPanel.Controls.Add(this.buttonRemove, 4, 1);
             this.infoTableLayoutPanel.Controls.Add(this.buttonUpdate, 4, 2);
-            this.infoTableLayoutPanel.Controls.Add(this.buttonSearch, 4, 3);
             this.infoTableLayoutPanel.Controls.Add(this.data1Label, 2, 0);
             this.infoTableLayoutPanel.Controls.Add(this.data2Label, 2, 1);
             this.infoTableLayoutPanel.Controls.Add(this.data3Label, 2, 2);
             this.infoTableLayoutPanel.Controls.Add(this.data4Label, 2, 3);
+            this.infoTableLayoutPanel.Controls.Add(this.buttonClear, 4, 3);
             this.infoTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.infoTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.infoTableLayoutPanel.Name = "infoTableLayoutPanel";
@@ -272,13 +274,13 @@ namespace Laboration_4
             this.nameTextBox.Size = new System.Drawing.Size(119, 20);
             this.nameTextBox.TabIndex = 5;
             // 
-            // pricTextBox
+            // priceTextBox
             // 
-            this.pricTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pricTextBox.Location = new System.Drawing.Point(113, 61);
-            this.pricTextBox.Name = "pricTextBox";
-            this.pricTextBox.Size = new System.Drawing.Size(119, 20);
-            this.pricTextBox.TabIndex = 6;
+            this.priceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceTextBox.Location = new System.Drawing.Point(113, 61);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(119, 20);
+            this.priceTextBox.TabIndex = 6;
             // 
             // quantityTextBox
             // 
@@ -333,6 +335,7 @@ namespace Laboration_4
             this.buttonAdd.TabIndex = 12;
             this.buttonAdd.Text = "Lägg till";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonRemove
             // 
@@ -353,16 +356,6 @@ namespace Laboration_4
             this.buttonUpdate.TabIndex = 14;
             this.buttonUpdate.Text = "Uppdatera";
             this.buttonUpdate.UseVisualStyleBackColor = true;
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSearch.Location = new System.Drawing.Point(478, 90);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 24);
-            this.buttonSearch.TabIndex = 15;
-            this.buttonSearch.Text = "Sök";
-            this.buttonSearch.UseVisualStyleBackColor = true;
             // 
             // data1Label
             // 
@@ -430,6 +423,41 @@ namespace Laboration_4
             this.inventoryDataGridView.ShowRowErrors = false;
             this.inventoryDataGridView.Size = new System.Drawing.Size(620, 262);
             this.inventoryDataGridView.TabIndex = 1;
+            this.inventoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellContentClick);
+            this.inventoryDataGridView.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
+            // 
+            // inventoryGridView
+            // 
+            this.inventoryGridView.AllowUserToAddRows = false;
+            this.inventoryGridView.AllowUserToDeleteRows = false;
+            this.inventoryGridView.AllowUserToOrderColumns = true;
+            this.inventoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryGridView.Location = new System.Drawing.Point(0, 0);
+            this.inventoryGridView.Name = "inventoryGridView";
+            this.inventoryGridView.ReadOnly = true;
+            this.inventoryGridView.Size = new System.Drawing.Size(620, 262);
+            this.inventoryGridView.TabIndex = 0;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSearch.Location = new System.Drawing.Point(0, 98);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(60, 22);
+            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.Text = "Sök";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonClear.Location = new System.Drawing.Point(478, 90);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 24);
+            this.buttonClear.TabIndex = 20;
+            this.buttonClear.Text = "Rensa";
+            this.buttonClear.UseVisualStyleBackColor = true;
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -470,19 +498,6 @@ namespace Laboration_4
             // 
             this.InventoryListSource.DataSource = typeof(Laboration_4.Product);
             // 
-            // inventoryGridView
-            // 
-            this.inventoryGridView.AllowUserToAddRows = false;
-            this.inventoryGridView.AllowUserToDeleteRows = false;
-            this.inventoryGridView.AllowUserToOrderColumns = true;
-            this.inventoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inventoryGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inventoryGridView.Location = new System.Drawing.Point(0, 0);
-            this.inventoryGridView.Name = "inventoryGridView";
-            this.inventoryGridView.ReadOnly = true;
-            this.inventoryGridView.Size = new System.Drawing.Size(620, 262);
-            this.inventoryGridView.TabIndex = 0;
-            // 
             // ManageInventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,8 +518,8 @@ namespace Laboration_4
             this.infoTableLayoutPanel.ResumeLayout(false);
             this.infoTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,7 +536,7 @@ namespace Laboration_4
         private System.Windows.Forms.Label quantityLabel;
         private System.Windows.Forms.TextBox itemNrTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox pricTextBox;
+        private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.TextBox quantityTextBox;
         private System.Windows.Forms.TextBox data1TextBox;
         private System.Windows.Forms.TextBox data2TextBox;
@@ -530,7 +545,6 @@ namespace Laboration_4
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonUpdate;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Label data1Label;
         private System.Windows.Forms.Label data2Label;
         private System.Windows.Forms.Label data3Label;
@@ -547,5 +561,7 @@ namespace Laboration_4
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource InventoryListSource;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
