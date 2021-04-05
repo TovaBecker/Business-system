@@ -59,14 +59,16 @@ namespace Laboration_4
             this.data3Label = new System.Windows.Forms.Label();
             this.data4Label = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.inventoryDataGridView = new System.Windows.Forms.DataGridView();
+            this.inventoryDataGrid = new System.Windows.Forms.DataGridView();
             this.inventoryGridView = new System.Windows.Forms.DataGridView();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.InventoryListSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -77,9 +79,11 @@ namespace Laboration_4
             this.menuSplitContainer.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.infoTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -95,7 +99,7 @@ namespace Laboration_4
             // 
             // mainSplitContainer.Panel2
             // 
-            this.mainSplitContainer.Panel2.Controls.Add(this.inventoryDataGridView);
+            this.mainSplitContainer.Panel2.Controls.Add(this.inventoryDataGrid);
             this.mainSplitContainer.Panel2.Controls.Add(this.inventoryGridView);
             this.mainSplitContainer.Size = new System.Drawing.Size(620, 386);
             this.mainSplitContainer.SplitterDistance = 120;
@@ -223,6 +227,7 @@ namespace Laboration_4
             this.infoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.infoTableLayoutPanel.Size = new System.Drawing.Size(556, 117);
             this.infoTableLayoutPanel.TabIndex = 0;
+            this.infoTableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.infoTableLayoutPanel_Paint);
             // 
             // itemNrLabel
             // 
@@ -374,8 +379,10 @@ namespace Laboration_4
             this.data1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.data1Label.Location = new System.Drawing.Point(238, 0);
             this.data1Label.Name = "data1Label";
-            this.data1Label.Size = new System.Drawing.Size(0, 29);
+            this.data1Label.Size = new System.Drawing.Size(51, 29);
             this.data1Label.TabIndex = 16;
+            this.data1Label.Text = "Data1";
+            this.data1Label.Visible = false;
             // 
             // data2Label
             // 
@@ -384,8 +391,10 @@ namespace Laboration_4
             this.data2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.data2Label.Location = new System.Drawing.Point(238, 29);
             this.data2Label.Name = "data2Label";
-            this.data2Label.Size = new System.Drawing.Size(0, 29);
+            this.data2Label.Size = new System.Drawing.Size(51, 29);
             this.data2Label.TabIndex = 17;
+            this.data2Label.Text = "Data2";
+            this.data2Label.Visible = false;
             // 
             // data3Label
             // 
@@ -394,8 +403,10 @@ namespace Laboration_4
             this.data3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.data3Label.Location = new System.Drawing.Point(238, 58);
             this.data3Label.Name = "data3Label";
-            this.data3Label.Size = new System.Drawing.Size(0, 29);
+            this.data3Label.Size = new System.Drawing.Size(51, 29);
             this.data3Label.TabIndex = 18;
+            this.data3Label.Text = "Data3";
+            this.data3Label.Visible = false;
             // 
             // data4Label
             // 
@@ -404,8 +415,10 @@ namespace Laboration_4
             this.data4Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.data4Label.Location = new System.Drawing.Point(238, 87);
             this.data4Label.Name = "data4Label";
-            this.data4Label.Size = new System.Drawing.Size(0, 30);
+            this.data4Label.Size = new System.Drawing.Size(51, 30);
             this.data4Label.TabIndex = 19;
+            this.data4Label.Text = "Data4";
+            this.data4Label.Visible = false;
             // 
             // buttonClear
             // 
@@ -417,34 +430,34 @@ namespace Laboration_4
             this.buttonClear.Text = "Rensa";
             this.buttonClear.UseVisualStyleBackColor = true;
             // 
-            // inventoryDataGridView
+            // inventoryDataGrid
             // 
-            this.inventoryDataGridView.AllowUserToAddRows = false;
-            this.inventoryDataGridView.AllowUserToDeleteRows = false;
-            this.inventoryDataGridView.AllowUserToOrderColumns = true;
-            this.inventoryDataGridView.AutoGenerateColumns = false;
-            this.inventoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inventoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.typeDataGridViewTextBoxColumn,
-            this.itemNumberDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.quantityDataGridViewTextBoxColumn});
-            this.inventoryDataGridView.DataSource = this.InventoryListSource;
-            this.inventoryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inventoryDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.inventoryDataGridView.MultiSelect = false;
-            this.inventoryDataGridView.Name = "inventoryDataGridView";
-            this.inventoryDataGridView.ReadOnly = true;
-            this.inventoryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.inventoryDataGridView.ShowCellErrors = false;
-            this.inventoryDataGridView.ShowCellToolTips = false;
-            this.inventoryDataGridView.ShowEditingIcon = false;
-            this.inventoryDataGridView.ShowRowErrors = false;
-            this.inventoryDataGridView.Size = new System.Drawing.Size(620, 262);
-            this.inventoryDataGridView.TabIndex = 1;
-            this.inventoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellContentClick);
-            this.inventoryDataGridView.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
+            this.inventoryDataGrid.AllowUserToAddRows = false;
+            this.inventoryDataGrid.AllowUserToDeleteRows = false;
+            this.inventoryDataGrid.AllowUserToOrderColumns = true;
+            this.inventoryDataGrid.AutoGenerateColumns = false;
+            this.inventoryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.inventoryDataGrid.DataSource = this.bindingSource2;
+            this.inventoryDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.inventoryDataGrid.MultiSelect = false;
+            this.inventoryDataGrid.Name = "inventoryDataGrid";
+            this.inventoryDataGrid.ReadOnly = true;
+            this.inventoryDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.inventoryDataGrid.ShowCellErrors = false;
+            this.inventoryDataGrid.ShowCellToolTips = false;
+            this.inventoryDataGrid.ShowEditingIcon = false;
+            this.inventoryDataGrid.ShowRowErrors = false;
+            this.inventoryDataGrid.Size = new System.Drawing.Size(620, 262);
+            this.inventoryDataGrid.TabIndex = 1;
+            this.inventoryDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellContentClick);
+            this.inventoryDataGrid.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
             // 
             // inventoryGridView
             // 
@@ -459,44 +472,52 @@ namespace Laboration_4
             this.inventoryGridView.Size = new System.Drawing.Size(620, 262);
             this.inventoryGridView.TabIndex = 0;
             // 
-            // typeDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn1
             // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Typ";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Type";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // itemNumberDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn2
             // 
-            this.itemNumberDataGridViewTextBoxColumn.DataPropertyName = "ItemNumber";
-            this.itemNumberDataGridViewTextBoxColumn.HeaderText = "Varunummer";
-            this.itemNumberDataGridViewTextBoxColumn.Name = "itemNumberDataGridViewTextBoxColumn";
-            this.itemNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ItemNumber";
+            this.dataGridViewTextBoxColumn2.HeaderText = "ItemNumber";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn3
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Namn";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // priceDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn4
             // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Pris";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Price";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Price";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
-            // quantityDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn5
             // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Antal";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Quantity";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Quantity";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Laboration_4.Product);
             // 
             // InventoryListSource
             // 
             this.InventoryListSource.DataSource = typeof(Laboration_4.Product);
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(Laboration_4.Product);
             // 
             // ManageInventoryControl
             // 
@@ -517,9 +538,11 @@ namespace Laboration_4
             this.typeGroupBox.PerformLayout();
             this.infoTableLayoutPanel.ResumeLayout(false);
             this.infoTableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -554,14 +577,22 @@ namespace Laboration_4
         private System.Windows.Forms.RadioButton radioButtonBook;
         private System.Windows.Forms.RadioButton radioButtonAll;
         private System.Windows.Forms.DataGridView inventoryGridView;
-        private System.Windows.Forms.DataGridView inventoryDataGridView;
+        private System.Windows.Forms.DataGridView inventoryDataGrid;
+        private System.Windows.Forms.BindingSource InventoryListSource;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource InventoryListSource;
-        private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.BindingSource bindingSource2;
     }
 }

@@ -57,7 +57,7 @@
             this.CheckoutTab.Location = new System.Drawing.Point(4, 22);
             this.CheckoutTab.Name = "CheckoutTab";
             this.CheckoutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CheckoutTab.Size = new System.Drawing.Size(792, 396);
+            this.CheckoutTab.Size = new System.Drawing.Size(792, 395);
             this.CheckoutTab.TabIndex = 0;
             this.CheckoutTab.Text = "Kassa";
             this.CheckoutTab.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             this.manageCheckoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manageCheckoutControl1.Location = new System.Drawing.Point(3, 3);
             this.manageCheckoutControl1.Name = "manageCheckoutControl1";
-            this.manageCheckoutControl1.Size = new System.Drawing.Size(786, 390);
+            this.manageCheckoutControl1.Size = new System.Drawing.Size(786, 389);
             this.manageCheckoutControl1.TabIndex = 0;
             // 
             // InventoryTab

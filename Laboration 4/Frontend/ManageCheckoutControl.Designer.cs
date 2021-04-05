@@ -98,7 +98,6 @@ namespace Laboration_4
             this.MenuSplitContainer.Size = new System.Drawing.Size(620, 118);
             this.MenuSplitContainer.SplitterDistance = 112;
             this.MenuSplitContainer.TabIndex = 0;
-            this.MenuSplitContainer.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.MenuSplitContainer_SplitterMoved);
             // 
             // itemNumberSearchLabel
             // 
@@ -169,7 +168,6 @@ namespace Laboration_4
             this.cartLabel.Size = new System.Drawing.Size(74, 17);
             this.cartLabel.TabIndex = 1;
             this.cartLabel.Text = "Varukorg";
-            this.cartLabel.Click += new System.EventHandler(this.cartLabel_Click);
             // 
             // inventoryDataGridView
             // 
@@ -189,7 +187,6 @@ namespace Laboration_4
             this.inventoryDataGridView.ShowRowErrors = false;
             this.inventoryDataGridView.Size = new System.Drawing.Size(620, 264);
             this.inventoryDataGridView.TabIndex = 2;
-            this.inventoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellContentClick);
             // 
             // buttonAdd
             // 

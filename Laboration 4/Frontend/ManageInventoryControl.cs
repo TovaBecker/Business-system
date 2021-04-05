@@ -12,45 +12,55 @@ namespace Laboration_4
 {
     public partial class ManageInventoryControl : UserControl
     {
-        
+        BindingSource ProductBindingSource;
+
+        internal Product NewProduct { get; private set; }
 
         public ManageInventoryControl()
         {
             InitializeComponent();
         }
-        public ManageInventoryControl(BindingSource inventoryListSource)
+
+        public ManageInventoryControl(BindingSource productBindingSource)
         {
             InitializeComponent();
-            this.InventoryListSource = inventoryListSource;
-            inventoryDataGridView.DataSource = InventoryListSource;
+
+            this.ProductBindingSource = productBindingSource;
+            inventoryDataGrid.DataSource = ProductBindingSource;
 
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var product = new Product();
-            product.ItemNumber = int.Parse(itemNrTextBox.Text);
-            product.Name = nameTextBox.Text;
-            product.Price = int.Parse(priceTextBox.Text);
-            product.Quantity = int.Parse(quantityTextBox.Text);
+            NewProduct = new Product();
+            NewProduct.ItemNumber = int.Parse(itemNrTextBox.Text);
+            NewProduct.Name = nameTextBox.Text;
+            NewProduct.Price = int.Parse(priceTextBox.Text);
+            NewProduct.Quantity = int.Parse(quantityTextBox.Text);
+            ProductBindingSource.Add(NewProduct);
 
         }
 
         private void inventoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var product = (Product) inventoryDataGridView.Rows[e.RowIndex].DataBoundItem;
+            var product = (Product) inventoryDataGrid.Rows[e.RowIndex].DataBoundItem;
         }
 
         private void inventoryDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if( 1 < inventoryDataGridView.SelectedRows.Count)
+            if( 1 < inventoryDataGrid.SelectedRows.Count)
             {
-                var product = (Product)inventoryDataGridView.SelectedRows[0].DataBoundItem;
+                var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
                 itemNrTextBox.Text = $"{product.ItemNumber}";
                 nameTextBox.Text = product.Name;
                 priceTextBox.Text = $"{product.Price}";
                 quantityTextBox.Text = $"{product.Quantity}";
             }
+        }
+
+        private void infoTableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

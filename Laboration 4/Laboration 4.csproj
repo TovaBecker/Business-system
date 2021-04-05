@@ -102,6 +102,10 @@
       <DependentUpon>ManageStatisticsControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
+    <None Include="Properties\DataSources\Book.datasource" />
+    <None Include="Properties\DataSources\DVD.datasource" />
+    <None Include="Properties\DataSources\Game.datasource" />
+    <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,8 +119,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

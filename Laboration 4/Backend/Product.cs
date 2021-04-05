@@ -28,10 +28,10 @@ namespace Laboration_4
             _name = name;
             _price = price;
             _quantity = quantity;
-    }
+        }
         public Type Type
         {
-            get => default;
+            get => _type;
             set
             {//TODO
                 _type = value;
@@ -40,7 +40,7 @@ namespace Laboration_4
 
         public int ItemNumber
         {
-            get => default;
+            get => _itemNumber;
             set
             {//TODO
                 if (0 < value)
@@ -57,7 +57,7 @@ namespace Laboration_4
 
         public string Name
         {
-            get => default;
+            get => _name;
             set
             {//TODO
                 _name = value;
@@ -66,7 +66,7 @@ namespace Laboration_4
 
         public double Price
         {
-            get => default;
+            get => _price;
             set
             {
                 //validate price
@@ -78,7 +78,7 @@ namespace Laboration_4
         }
         public int Quantity
         {
-            get => default;
+            get => _quantity;
             set
             {//TODO
 

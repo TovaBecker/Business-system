@@ -14,18 +14,15 @@ namespace Laboration_4
     {
         //Data sourses for the progam
         BindingList<Product> InventoryList;
-        BindingSource InventoryListSource;
+        BindingSource productBindingSource;
 
         public MainForm()
         {
             InitializeComponent();
             InventoryList = new BindingList<Product>()
-            {
-            new Product (){ ItemNumber = 0001, Name ="Commentarii de Bello Gallico et Civili", Price = 449, Quantity =2, Type = Type.Bok},
-            new Product (){ ItemNumber = 0002, Name ="How to Read a Book", Price = 149, Quantity =5, Type = Type.Bok}
-            };
-            InventoryListSource = new BindingSource();
-            InventoryListSource.DataSource = InventoryList;
+            InventoryList.Add(new Product() { Type = Type.Bok, ItemNumber = 1, Name = "Commentarii de Bello Gallico et Civili", Price = 449, Quantity = 2 });
+            productBindingSource = new BindingSource();
+            productBindingSource.DataSource = InventoryList;
         }
 
         private void inventoryControlMainView_Load(object sender, EventArgs e)
@@ -36,8 +33,8 @@ namespace Laboration_4
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //ManageCheckoutControl checkout = new ManageCheckoutControl(InventoryListSource);
-            ManageInventoryControl inventory = new ManageInventoryControl(InventoryListSource);
+            ManageCheckoutControl checkout = new ManageCheckoutControl(productBindingSource);
+            ManageInventoryControl inventory = new ManageInventoryControl(productBindingSource);
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
