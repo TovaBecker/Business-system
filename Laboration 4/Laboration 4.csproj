@@ -46,9 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Contol.cs" />
-    <Compile Include="Backend\Types\Book.cs" />
-    <Compile Include="Backend\Types\DVD.cs" />
+    <Compile Include="Backend\Control.cs" />
     <Compile Include="Frontend\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +54,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Backend\Inventory.cs" />
-    <Compile Include="Backend\Types\Game.cs" />
     <Compile Include="Backend\Product.cs" />
     <Compile Include="Frontend\ManageCheckoutControl.cs">
       <SubType>UserControl</SubType>
@@ -119,6 +116,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

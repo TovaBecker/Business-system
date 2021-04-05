@@ -10,11 +10,10 @@ using System.Windows.Forms;
 
 namespace Laboration_4
 {
-    public partial class StatisticsControl : UserControl
+    public partial class ManageStatisticsControl : UserControl
     {
-        public StatisticsControl()
+        public ManageStatisticsControl()
         {
-            InitializeComponent();
         }
     }
 }

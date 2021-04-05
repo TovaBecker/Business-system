@@ -1,7 +1,7 @@
 ﻿
 namespace Laboration_4
 {
-    partial class StatisticsControl
+    partial class ManageStatisticsControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -21,7 +21,17 @@ namespace Laboration_4
         {
 
         }
-        public Product(Type type, int itemNumber, string name, double price, int quantity)
+
+        public Product(string type, string itemNumber, string name, string price, string quantity)
+        {
+            _type = GetType(type);
+            _itemNumber = Convert.ToInt32(itemNumber);
+            _name = name;
+            _price = price == "" ? 0 : Convert.ToDouble(price);
+            _quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
+        }
+
+    public Product(Type type, int itemNumber, string name, double price, int quantity)
         {
             _type = type;
             _itemNumber = itemNumber;
@@ -90,11 +100,70 @@ namespace Laboration_4
             }
         }
 
+        public int Author
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public int Genre
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public int Format
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public int Language
+        {
+            get => default;
+            set
+            {
+            }
+        }
+        public int Playtime
+        {
+            get => default;
+            set
+            {
+            }
+        }
+        public int Platform
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private int SetItemID()
         {//TODO
             itemNumberID++;
 
             return itemNumberID;
+        }
+
+        private Type GetType(string type)
+        {
+            if (type == "Bok")
+                return Type.Bok;
+            if (type == "DVD")
+                return Type.DVD;
+            if (type == "Spel")
+                return Type.Spel;
+
+            throw new Exception("Type does not exists");
+
         }
        
     }

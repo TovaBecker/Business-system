@@ -36,12 +36,12 @@ namespace Laboration_4
             this.returnRadioButton = new System.Windows.Forms.RadioButton();
             this.radioButtonBuy = new System.Windows.Forms.RadioButton();
             this.checkutLabel = new System.Windows.Forms.Label();
-            this.buttonBuy = new System.Windows.Forms.Button();
+            this.basketDataGridView = new System.Windows.Forms.DataGridView();
+            this.buttonRemoveCheckout = new System.Windows.Forms.Button();
+            this.buttonAddCheckout = new System.Windows.Forms.Button();
+            this.buttonBuyCheckout = new System.Windows.Forms.Button();
             this.cartLabel = new System.Windows.Forms.Label();
             this.inventoryDataGridView = new System.Windows.Forms.DataGridView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonRemove = new System.Windows.Forms.Button();
-            this.basketDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -50,8 +50,8 @@ namespace Laboration_4
             this.MenuSplitContainer.Panel1.SuspendLayout();
             this.MenuSplitContainer.Panel2.SuspendLayout();
             this.MenuSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -91,9 +91,9 @@ namespace Laboration_4
             // MenuSplitContainer.Panel2
             // 
             this.MenuSplitContainer.Panel2.Controls.Add(this.basketDataGridView);
-            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonRemove);
-            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonAdd);
-            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonBuy);
+            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonRemoveCheckout);
+            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonAddCheckout);
+            this.MenuSplitContainer.Panel2.Controls.Add(this.buttonBuyCheckout);
             this.MenuSplitContainer.Panel2.Controls.Add(this.cartLabel);
             this.MenuSplitContainer.Size = new System.Drawing.Size(620, 118);
             this.MenuSplitContainer.SplitterDistance = 112;
@@ -149,15 +149,56 @@ namespace Laboration_4
             this.checkutLabel.TabIndex = 0;
             this.checkutLabel.Text = "Kassa";
             // 
-            // buttonBuy
+            // basketDataGridView
             // 
-            this.buttonBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBuy.Location = new System.Drawing.Point(424, 90);
-            this.buttonBuy.Name = "buttonBuy";
-            this.buttonBuy.Size = new System.Drawing.Size(75, 23);
-            this.buttonBuy.TabIndex = 14;
-            this.buttonBuy.Text = "Köp";
-            this.buttonBuy.UseVisualStyleBackColor = true;
+            this.basketDataGridView.AllowUserToAddRows = false;
+            this.basketDataGridView.AllowUserToDeleteRows = false;
+            this.basketDataGridView.AllowUserToOrderColumns = true;
+            this.basketDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.basketDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.basketDataGridView.Location = new System.Drawing.Point(6, 25);
+            this.basketDataGridView.MultiSelect = false;
+            this.basketDataGridView.Name = "basketDataGridView";
+            this.basketDataGridView.ReadOnly = true;
+            this.basketDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.basketDataGridView.ShowCellErrors = false;
+            this.basketDataGridView.ShowCellToolTips = false;
+            this.basketDataGridView.ShowEditingIcon = false;
+            this.basketDataGridView.ShowRowErrors = false;
+            this.basketDataGridView.Size = new System.Drawing.Size(412, 88);
+            this.basketDataGridView.TabIndex = 18;
+            // 
+            // buttonRemoveCheckout
+            // 
+            this.buttonRemoveCheckout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRemoveCheckout.Location = new System.Drawing.Point(424, 57);
+            this.buttonRemoveCheckout.Name = "buttonRemoveCheckout";
+            this.buttonRemoveCheckout.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveCheckout.TabIndex = 17;
+            this.buttonRemoveCheckout.Text = "Ta bort";
+            this.buttonRemoveCheckout.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddCheckout
+            // 
+            this.buttonAddCheckout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddCheckout.Location = new System.Drawing.Point(424, 25);
+            this.buttonAddCheckout.Name = "buttonAddCheckout";
+            this.buttonAddCheckout.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddCheckout.TabIndex = 16;
+            this.buttonAddCheckout.Text = "Lägg till";
+            this.buttonAddCheckout.UseVisualStyleBackColor = true;
+            // 
+            // buttonBuyCheckout
+            // 
+            this.buttonBuyCheckout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBuyCheckout.Location = new System.Drawing.Point(424, 90);
+            this.buttonBuyCheckout.Name = "buttonBuyCheckout";
+            this.buttonBuyCheckout.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuyCheckout.TabIndex = 14;
+            this.buttonBuyCheckout.Text = "Köp";
+            this.buttonBuyCheckout.UseVisualStyleBackColor = true;
             // 
             // cartLabel
             // 
@@ -188,47 +229,6 @@ namespace Laboration_4
             this.inventoryDataGridView.Size = new System.Drawing.Size(620, 264);
             this.inventoryDataGridView.TabIndex = 2;
             // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.Location = new System.Drawing.Point(424, 25);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 16;
-            this.buttonAdd.Text = "Lägg till";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            // 
-            // buttonRemove
-            // 
-            this.buttonRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemove.Location = new System.Drawing.Point(424, 56);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(75, 23);
-            this.buttonRemove.TabIndex = 17;
-            this.buttonRemove.Text = "Ta bort";
-            this.buttonRemove.UseVisualStyleBackColor = true;
-            // 
-            // basketDataGridView
-            // 
-            this.basketDataGridView.AllowUserToAddRows = false;
-            this.basketDataGridView.AllowUserToDeleteRows = false;
-            this.basketDataGridView.AllowUserToOrderColumns = true;
-            this.basketDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.basketDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.basketDataGridView.Location = new System.Drawing.Point(6, 25);
-            this.basketDataGridView.MultiSelect = false;
-            this.basketDataGridView.Name = "basketDataGridView";
-            this.basketDataGridView.ReadOnly = true;
-            this.basketDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.basketDataGridView.ShowCellErrors = false;
-            this.basketDataGridView.ShowCellToolTips = false;
-            this.basketDataGridView.ShowEditingIcon = false;
-            this.basketDataGridView.ShowRowErrors = false;
-            this.basketDataGridView.Size = new System.Drawing.Size(412, 88);
-            this.basketDataGridView.TabIndex = 18;
-            // 
             // ManageCheckoutControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,8 +246,8 @@ namespace Laboration_4
             this.MenuSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuSplitContainer)).EndInit();
             this.MenuSplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,10 +262,10 @@ namespace Laboration_4
         private System.Windows.Forms.RadioButton radioButtonBuy;
         private System.Windows.Forms.Label checkutLabel;
         private System.Windows.Forms.Label cartLabel;
-        private System.Windows.Forms.Button buttonBuy;
+        private System.Windows.Forms.Button buttonBuyCheckout;
         private System.Windows.Forms.DataGridView inventoryDataGridView;
-        private System.Windows.Forms.Button buttonRemove;
-        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonRemoveCheckout;
+        private System.Windows.Forms.Button buttonAddCheckout;
         private System.Windows.Forms.DataGridView basketDataGridView;
     }
 }

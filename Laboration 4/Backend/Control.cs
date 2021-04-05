@@ -6,13 +6,25 @@ using System.Windows.Forms;
 
 namespace Laboration_4
 {
-    public class Contol
+    public class Control
     {
+        private Inventory _inventory;
+
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+        }
+
+        public Control()
+        {
+            _inventory = new Inventory();
+        }
+
+        public Control(Inventory inventory)
+        {
+            _inventory = inventory;
         }
 
 
@@ -43,6 +55,10 @@ namespace Laboration_4
         public void RemoveProduct()
         {
             //TODO
+        }
+        public BindingSource LoadInventory()
+        {
+            return _inventory.InventoryLoad();
         }
 
     }

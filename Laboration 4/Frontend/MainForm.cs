@@ -12,17 +12,11 @@ namespace Laboration_4
 {
     public partial class MainForm : Form
     {
-        //Data sourses for the progam
-        BindingList<Product> InventoryList;
-        BindingSource productBindingSource;
+        
 
         public MainForm()
         {
             InitializeComponent();
-            InventoryList = new BindingList<Product>()
-            InventoryList.Add(new Product() { Type = Type.Bok, ItemNumber = 1, Name = "Commentarii de Bello Gallico et Civili", Price = 449, Quantity = 2 });
-            productBindingSource = new BindingSource();
-            productBindingSource.DataSource = InventoryList;
         }
 
         private void inventoryControlMainView_Load(object sender, EventArgs e)
@@ -33,8 +27,17 @@ namespace Laboration_4
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ManageCheckoutControl checkout = new ManageCheckoutControl(productBindingSource);
-            ManageInventoryControl inventory = new ManageInventoryControl(productBindingSource);
+            ManageInventoryControl inventory = new ManageInventoryControl();
+            inventory.Dock = DockStyle.Fill;
+            InventoryTab.Controls.Add(inventory);
+
+            ManageCheckoutControl checkout = new ManageCheckoutControl();
+            checkout.Dock = DockStyle.Fill;
+            CheckoutTab.Controls.Add(checkout);
+
+            ManageStatisticsControl statistics = new ManageStatisticsControl();
+            statistics.Dock = DockStyle.Fill;
+            StatisticsTab.Controls.Add(statistics);
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)

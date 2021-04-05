@@ -12,32 +12,17 @@ namespace Laboration_4
 {
     public partial class ManageInventoryControl : UserControl
     {
-        BindingSource ProductBindingSource;
+        Control _control = new Control();
+        BindingSource inventoryBindingSource;
 
         internal Product NewProduct { get; private set; }
 
         public ManageInventoryControl()
         {
             InitializeComponent();
-        }
 
-        public ManageInventoryControl(BindingSource productBindingSource)
-        {
-            InitializeComponent();
-
-            this.ProductBindingSource = productBindingSource;
-            inventoryDataGrid.DataSource = ProductBindingSource;
-
-        }
-
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            NewProduct = new Product();
-            NewProduct.ItemNumber = int.Parse(itemNrTextBox.Text);
-            NewProduct.Name = nameTextBox.Text;
-            NewProduct.Price = int.Parse(priceTextBox.Text);
-            NewProduct.Quantity = int.Parse(quantityTextBox.Text);
-            ProductBindingSource.Add(NewProduct);
+            this.inventoryBindingSource = _control.LoadInventory();
+            inventoryDataGrid.DataSource = inventoryBindingSource;
 
         }
 
@@ -61,6 +46,11 @@ namespace Laboration_4
         private void infoTableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void buttonAddInventory_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
