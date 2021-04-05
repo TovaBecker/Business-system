@@ -30,8 +30,9 @@ namespace Laboration_4
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mailSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.menuSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.typeGroupBox = new System.Windows.Forms.GroupBox();
             this.radioButtonDVD = new System.Windows.Forms.RadioButton();
             this.radioButtonGame = new System.Windows.Forms.RadioButton();
@@ -57,20 +58,19 @@ namespace Laboration_4
             this.data2Label = new System.Windows.Forms.Label();
             this.data3Label = new System.Windows.Forms.Label();
             this.data4Label = new System.Windows.Forms.Label();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.inventoryDataGridView = new System.Windows.Forms.DataGridView();
             this.inventoryGridView = new System.Windows.Forms.DataGridView();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.buttonClear = new System.Windows.Forms.Button();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InventoryListSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.mailSplitContainer)).BeginInit();
-            this.mailSplitContainer.Panel1.SuspendLayout();
-            this.mailSplitContainer.Panel2.SuspendLayout();
-            this.mailSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
+            this.mainSplitContainer.Panel1.SuspendLayout();
+            this.mainSplitContainer.Panel2.SuspendLayout();
+            this.mainSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuSplitContainer)).BeginInit();
             this.menuSplitContainer.Panel1.SuspendLayout();
             this.menuSplitContainer.Panel2.SuspendLayout();
@@ -82,24 +82,24 @@ namespace Laboration_4
             ((System.ComponentModel.ISupportInitialize)(this.InventoryListSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // mailSplitContainer
+            // mainSplitContainer
             // 
-            this.mailSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mailSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.mailSplitContainer.Name = "mailSplitContainer";
-            this.mailSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.mainSplitContainer.Name = "mainSplitContainer";
+            this.mainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // mailSplitContainer.Panel1
+            // mainSplitContainer.Panel1
             // 
-            this.mailSplitContainer.Panel1.Controls.Add(this.menuSplitContainer);
+            this.mainSplitContainer.Panel1.Controls.Add(this.menuSplitContainer);
             // 
-            // mailSplitContainer.Panel2
+            // mainSplitContainer.Panel2
             // 
-            this.mailSplitContainer.Panel2.Controls.Add(this.inventoryDataGridView);
-            this.mailSplitContainer.Panel2.Controls.Add(this.inventoryGridView);
-            this.mailSplitContainer.Size = new System.Drawing.Size(620, 386);
-            this.mailSplitContainer.SplitterDistance = 120;
-            this.mailSplitContainer.TabIndex = 0;
+            this.mainSplitContainer.Panel2.Controls.Add(this.inventoryDataGridView);
+            this.mainSplitContainer.Panel2.Controls.Add(this.inventoryGridView);
+            this.mainSplitContainer.Size = new System.Drawing.Size(620, 386);
+            this.mainSplitContainer.SplitterDistance = 120;
+            this.mainSplitContainer.TabIndex = 0;
             // 
             // menuSplitContainer
             // 
@@ -118,6 +118,16 @@ namespace Laboration_4
             this.menuSplitContainer.Size = new System.Drawing.Size(620, 120);
             this.menuSplitContainer.SplitterDistance = 60;
             this.menuSplitContainer.TabIndex = 0;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSearch.Location = new System.Drawing.Point(0, 98);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(60, 22);
+            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.Text = "Sök";
+            this.buttonSearch.UseVisualStyleBackColor = true;
             // 
             // typeGroupBox
             // 
@@ -397,6 +407,16 @@ namespace Laboration_4
             this.data4Label.Size = new System.Drawing.Size(0, 30);
             this.data4Label.TabIndex = 19;
             // 
+            // buttonClear
+            // 
+            this.buttonClear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonClear.Location = new System.Drawing.Point(478, 90);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 24);
+            this.buttonClear.TabIndex = 20;
+            this.buttonClear.Text = "Rensa";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            // 
             // inventoryDataGridView
             // 
             this.inventoryDataGridView.AllowUserToAddRows = false;
@@ -438,26 +458,6 @@ namespace Laboration_4
             this.inventoryGridView.ReadOnly = true;
             this.inventoryGridView.Size = new System.Drawing.Size(620, 262);
             this.inventoryGridView.TabIndex = 0;
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSearch.Location = new System.Drawing.Point(0, 98);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(60, 22);
-            this.buttonSearch.TabIndex = 16;
-            this.buttonSearch.Text = "Sök";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            // 
-            // buttonClear
-            // 
-            this.buttonClear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonClear.Location = new System.Drawing.Point(478, 90);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(75, 24);
-            this.buttonClear.TabIndex = 20;
-            this.buttonClear.Text = "Rensa";
-            this.buttonClear.UseVisualStyleBackColor = true;
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -502,13 +502,13 @@ namespace Laboration_4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.mailSplitContainer);
+            this.Controls.Add(this.mainSplitContainer);
             this.Name = "ManageInventoryControl";
             this.Size = new System.Drawing.Size(620, 386);
-            this.mailSplitContainer.Panel1.ResumeLayout(false);
-            this.mailSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mailSplitContainer)).EndInit();
-            this.mailSplitContainer.ResumeLayout(false);
+            this.mainSplitContainer.Panel1.ResumeLayout(false);
+            this.mainSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
+            this.mainSplitContainer.ResumeLayout(false);
             this.menuSplitContainer.Panel1.ResumeLayout(false);
             this.menuSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.menuSplitContainer)).EndInit();
@@ -526,7 +526,7 @@ namespace Laboration_4
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer mailSplitContainer;
+        private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.SplitContainer menuSplitContainer;
         private System.Windows.Forms.TableLayoutPanel infoTableLayoutPanel;
         private System.Windows.Forms.GroupBox typeGroupBox;

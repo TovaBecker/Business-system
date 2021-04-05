@@ -10,11 +10,36 @@ using System.Windows.Forms;
 
 namespace Laboration_4
 {
-    public partial class InventoryControl : UserControl
+    public partial class ManageCheckoutControl : UserControl
     {
-        public InventoryControl(BindingSource inventoryListSource)
+        public ManageCheckoutControl()
         {
             InitializeComponent();
+        }
+
+        public ManageCheckoutControl(BindingSource inventoryListSource)
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cartLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inventoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void MenuSplitContainer_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }

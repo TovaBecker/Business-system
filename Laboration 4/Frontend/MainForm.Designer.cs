@@ -30,10 +30,12 @@
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.CheckoutTab = new System.Windows.Forms.TabPage();
+            this.manageCheckoutControl1 = new Laboration_4.ManageCheckoutControl();
             this.InventoryTab = new System.Windows.Forms.TabPage();
+            this.manageInventoryControl = new Laboration_4.ManageInventoryControl();
             this.StatisticsTab = new System.Windows.Forms.TabPage();
-            this.manageInventoryControl1 = new Laboration_4.ManageInventoryControl();
             this.MainTab.SuspendLayout();
+            this.CheckoutTab.SuspendLayout();
             this.InventoryTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,57 +48,68 @@
             this.MainTab.Location = new System.Drawing.Point(0, 0);
             this.MainTab.Name = "MainTab";
             this.MainTab.SelectedIndex = 0;
-            this.MainTab.Size = new System.Drawing.Size(800, 450);
+            this.MainTab.Size = new System.Drawing.Size(800, 421);
             this.MainTab.TabIndex = 0;
             // 
             // CheckoutTab
             // 
+            this.CheckoutTab.Controls.Add(this.manageCheckoutControl1);
             this.CheckoutTab.Location = new System.Drawing.Point(4, 22);
             this.CheckoutTab.Name = "CheckoutTab";
             this.CheckoutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CheckoutTab.Size = new System.Drawing.Size(792, 424);
+            this.CheckoutTab.Size = new System.Drawing.Size(792, 396);
             this.CheckoutTab.TabIndex = 0;
             this.CheckoutTab.Text = "Kassa";
             this.CheckoutTab.UseVisualStyleBackColor = true;
             // 
+            // manageCheckoutControl1
+            // 
+            this.manageCheckoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.manageCheckoutControl1.Location = new System.Drawing.Point(3, 3);
+            this.manageCheckoutControl1.Name = "manageCheckoutControl1";
+            this.manageCheckoutControl1.Size = new System.Drawing.Size(786, 390);
+            this.manageCheckoutControl1.TabIndex = 0;
+            // 
             // InventoryTab
             // 
-            this.InventoryTab.Controls.Add(this.manageInventoryControl1);
+            this.InventoryTab.Controls.Add(this.manageInventoryControl);
             this.InventoryTab.Location = new System.Drawing.Point(4, 22);
             this.InventoryTab.Name = "InventoryTab";
             this.InventoryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InventoryTab.Size = new System.Drawing.Size(792, 424);
+            this.InventoryTab.Size = new System.Drawing.Size(792, 395);
             this.InventoryTab.TabIndex = 1;
             this.InventoryTab.Text = "Lager";
             this.InventoryTab.UseVisualStyleBackColor = true;
+            // 
+            // manageInventoryControl
+            // 
+            this.manageInventoryControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.manageInventoryControl.Location = new System.Drawing.Point(3, 3);
+            this.manageInventoryControl.Name = "manageInventoryControl";
+            this.manageInventoryControl.Size = new System.Drawing.Size(786, 389);
+            this.manageInventoryControl.TabIndex = 0;
             // 
             // StatisticsTab
             // 
             this.StatisticsTab.Location = new System.Drawing.Point(4, 22);
             this.StatisticsTab.Name = "StatisticsTab";
-            this.StatisticsTab.Size = new System.Drawing.Size(792, 424);
+            this.StatisticsTab.Size = new System.Drawing.Size(792, 396);
             this.StatisticsTab.TabIndex = 2;
             this.StatisticsTab.Text = "Statistik";
             this.StatisticsTab.UseVisualStyleBackColor = true;
-            // 
-            // manageInventoryControl1
-            // 
-            this.manageInventoryControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.manageInventoryControl1.Location = new System.Drawing.Point(3, 3);
-            this.manageInventoryControl1.Name = "manageInventoryControl1";
-            this.manageInventoryControl1.Size = new System.Drawing.Size(786, 418);
-            this.manageInventoryControl1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 421);
             this.Controls.Add(this.MainTab);
+            this.MinimumSize = new System.Drawing.Size(620, 460);
             this.Name = "MainForm";
             this.Text = "Affärssystemet Mia";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTab.ResumeLayout(false);
+            this.CheckoutTab.ResumeLayout(false);
             this.InventoryTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -106,9 +119,10 @@
 
         private System.Windows.Forms.TabControl MainTab;
         private System.Windows.Forms.TabPage CheckoutTab;
-        private System.Windows.Forms.TabPage StatisticsTab;
         private System.Windows.Forms.TabPage InventoryTab;
-        private ManageInventoryControl manageInventoryControl1;
+        private System.Windows.Forms.TabPage StatisticsTab;
+        private ManageInventoryControl manageInventoryControl;
+        private ManageCheckoutControl manageCheckoutControl1;
     }
 }
 
