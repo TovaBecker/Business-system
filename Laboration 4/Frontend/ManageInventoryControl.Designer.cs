@@ -272,6 +272,7 @@ namespace Laboration_4
             this.buttonAddInventory.TabIndex = 12;
             this.buttonAddInventory.Text = "Lägg till";
             this.buttonAddInventory.UseVisualStyleBackColor = true;
+            this.buttonAddInventory.Click += new System.EventHandler(this.buttonAddInventory_Click);
             // 
             // buttonRemoveInventory
             // 
@@ -282,6 +283,7 @@ namespace Laboration_4
             this.buttonRemoveInventory.TabIndex = 13;
             this.buttonRemoveInventory.Text = "Ta bort";
             this.buttonRemoveInventory.UseVisualStyleBackColor = true;
+            this.buttonRemoveInventory.Click += new System.EventHandler(this.buttonRemoveInventory_Click);
             // 
             // buttonUpdateInventory
             // 
@@ -292,6 +294,7 @@ namespace Laboration_4
             this.buttonUpdateInventory.TabIndex = 14;
             this.buttonUpdateInventory.Text = "Uppdatera";
             this.buttonUpdateInventory.UseVisualStyleBackColor = true;
+            this.buttonUpdateInventory.Click += new System.EventHandler(this.buttonUpdateInventory_Click);
             // 
             // data1Label
             // 
@@ -350,6 +353,7 @@ namespace Laboration_4
             this.buttonClearInventory.TabIndex = 20;
             this.buttonClearInventory.Text = "Rensa";
             this.buttonClearInventory.UseVisualStyleBackColor = true;
+            this.buttonClearInventory.Click += new System.EventHandler(this.buttonClearInventory_Click);
             // 
             // typeComboBox
             // 

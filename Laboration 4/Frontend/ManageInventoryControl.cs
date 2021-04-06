@@ -38,6 +38,79 @@ namespace Laboration_4
             ManageInventory_ShowData();
         }
 
+        private void buttonAddInventory_Click(object sender, EventArgs e)
+        {
+            //Show data for the type of product
+            switch (typeComboBox.SelectedItem)
+            {
+                case "Bok":
+                    Product NewBookProduct = new Product(
+                        "Bok",
+                        itemNrTextBox.Text,
+                        nameTextBox.Text,
+                        priceTextBox.Text,
+                        quantityTextBox.Text,
+                        data1TextBox.Text,
+                        data2TextBox.Text,
+                        data3TextBox.Text,
+                        data4TextBox.Text,
+                        "",
+                        ""
+                        );
+                    inventoryBindingSource.Add(NewBookProduct);
+
+                    break;
+                case "Spel":
+                    Product NewGameProduct = new Product(
+                        "Spel",
+                        itemNrTextBox.Text,
+                        nameTextBox.Text,
+                        priceTextBox.Text,
+                        quantityTextBox.Text,
+                        "",
+                        data2TextBox.Text,
+                        data3TextBox.Text,
+                        data4TextBox.Text,
+                        data1TextBox.Text,
+                        ""
+                        );
+                    inventoryBindingSource.Add(NewGameProduct);
+                    break;
+                case "DVD":
+                    Product NewDVDProduct = new Product(
+                        "Spel",
+                        itemNrTextBox.Text,
+                        nameTextBox.Text,
+                        priceTextBox.Text,
+                        quantityTextBox.Text,
+                        "",
+                        data2TextBox.Text,
+                        data3TextBox.Text,
+                        data4TextBox.Text,
+                        "",
+                        data1TextBox.Text
+                        );
+                    inventoryBindingSource.Add(NewDVDProduct);
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void buttonUpdateInventory_Click(object sender, EventArgs e)
+        {//TO Do
+
+        }
+        private void buttonClearInventory_Click(object sender, EventArgs e)
+        {//TO Do
+
+        }
+        private void buttonRemoveInventory_Click(object sender, EventArgs e)
+        {//TO Do
+
+        }
+
         private void ManageInventory_ShowData()
         {
             var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
@@ -142,5 +215,7 @@ namespace Laboration_4
                     break;
             }
         }
+
+        
     }
 }
