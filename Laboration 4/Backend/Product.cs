@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Laboration_4
 {
     internal class Product
     {
-        //declare an instance variable that holds the ItemNumber 
+        //Declare an instance variables 
         private Type _type;
         private int _itemNumber;
         private string _name;
@@ -23,45 +24,48 @@ namespace Laboration_4
         //Declare private static value
         static int itemNumberID = 1;
 
-        public Product()
-        {
+        //Declare an instance variabl for inventory 
+        private Inventory _inventory;
 
+        public Product(Inventory inventory)
+        {
+            _inventory = inventory;
         }
 
         public Product(string type, string itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
-            _type = GetType(type);
-            _itemNumber = Convert.ToInt32(itemNumber);
-            _name = name;
-            _price = price == "" ? 0 : Convert.ToDouble(price);
-            _quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
-            _author = author;
-            _genre = genre;
-            _format = format;
-            _language = language;
-            _platform = platform;
-            _playtime = playtime == "" ? 0 : Convert.ToInt32(playtime);
+            Type = GetType(type);
+            ItemNumber = Convert.ToInt32(itemNumber);
+            Name = name;
+            Price = price == "" ? 0 : Convert.ToDouble(price);
+            Quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
+            Author = author;
+            Genre = genre;
+            Format = format;
+            Language = language;
+            Platform = platform;
+            Playtime = playtime == "" ? 0 : Convert.ToInt32(playtime);
         }
 
     public Product(Type type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
         {
-            _type = type;
-            _itemNumber = itemNumber;
-            _name = name;
-            _price = price;
-            _quantity = quantity;
-            _author = author;
-            _genre = genre;
-            _format = format;
-            _language = language;
-            _platform = platform;
-            _playtime = playtime;
+            Type = type;
+            ItemNumber = itemNumber;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+            Author = author;
+            Genre = genre;
+            Format = format;
+            Language = language;
+            Platform = platform;
+            Playtime = playtime;
         }
         public Type Type
         {
             get => _type;
             set
-            {//TODO
+            {
                 _type = value;
             }
         }
@@ -71,15 +75,22 @@ namespace Laboration_4
             get => _itemNumber;
             set
             {//TODO
-                if (0 < value)
-                {
-                    _itemNumber = value;
-                }
-                else
-                {
-                    _itemNumber = SetItemID();
-                }
-                
+                //if (0 < value)
+                //{
+                //    if (null == _inventory.ProductSearch(value))
+                //    {
+                //        _itemNumber = value;
+                //    }
+                //    else
+                //    {
+                //        SetItemID();
+                //    }
+                //}
+                //else
+                //{
+                //    SetItemID();
+                //}
+                SetItemID();
             }
         }
 
@@ -175,11 +186,29 @@ namespace Laboration_4
             }
         }
 
-        private int SetItemID()
+       
+        private void SetItemID()
         {//TODO
-            itemNumberID++;
+         //Declare an bool instance variabl
+            bool idSet = false;
 
-            return itemNumberID;
+            ////Find first free ID
+            //while (idSet == false)
+            //{
+            //    if (null == _inventory.ProductSearch(itemNumberID))
+            //    {
+            //        itemNumberID++;
+            //        idSet = true;
+            //    }
+            //    else
+            //    {
+            //        itemNumberID++;
+            //    }            
+            //}
+
+            //Sett item number
+            _itemNumber = itemNumberID;
+            itemNumberID++;
         }
 
         private Type GetType(string type)

@@ -9,6 +9,7 @@ namespace Laboration_4
     public class Control
     {
         private Inventory _inventory;
+        private Product _product;
 
         static void Main()
         {
@@ -25,6 +26,7 @@ namespace Laboration_4
         public Control(Inventory inventory)
         {
             _inventory = inventory;
+            _product = new Product(_inventory);
         }
 
 
@@ -42,9 +44,9 @@ namespace Laboration_4
             //TODO
         }
 
-        public void Search()
+        internal Product Search(int itemNumber)
         {
-            //TODO
+            return _inventory.ProductSearch(itemNumber);
         }
 
         public void NewProduct()

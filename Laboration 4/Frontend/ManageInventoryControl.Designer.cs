@@ -29,9 +29,8 @@ namespace Laboration_4
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.inventoryDataGrid = new System.Windows.Forms.DataGridView();
-            this.inventoryGridView = new System.Windows.Forms.DataGridView();
             this.infoTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.typeLabel = new System.Windows.Forms.Label();
@@ -55,13 +54,18 @@ namespace Laboration_4
             this.data3Label = new System.Windows.Forms.Label();
             this.data4Label = new System.Windows.Forms.Label();
             this.buttonClearInventory = new System.Windows.Forms.Button();
+            this.typeComboBox = new System.Windows.Forms.ComboBox();
+            this.inventoryDataGrid = new System.Windows.Forms.DataGridView();
+            this.inventoryGridView = new System.Windows.Forms.DataGridView();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
             this.mainSplitContainer.SuspendLayout();
+            this.infoTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).BeginInit();
-            this.infoTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -82,40 +86,6 @@ namespace Laboration_4
             this.mainSplitContainer.Size = new System.Drawing.Size(620, 386);
             this.mainSplitContainer.SplitterDistance = 136;
             this.mainSplitContainer.TabIndex = 0;
-            // 
-            // inventoryDataGrid
-            // 
-            this.inventoryDataGrid.AllowUserToAddRows = false;
-            this.inventoryDataGrid.AllowUserToDeleteRows = false;
-            this.inventoryDataGrid.AllowUserToOrderColumns = true;
-            this.inventoryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inventoryDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inventoryDataGrid.Location = new System.Drawing.Point(0, 0);
-            this.inventoryDataGrid.MultiSelect = false;
-            this.inventoryDataGrid.Name = "inventoryDataGrid";
-            this.inventoryDataGrid.ReadOnly = true;
-            this.inventoryDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.inventoryDataGrid.ShowCellErrors = false;
-            this.inventoryDataGrid.ShowCellToolTips = false;
-            this.inventoryDataGrid.ShowEditingIcon = false;
-            this.inventoryDataGrid.ShowRowErrors = false;
-            this.inventoryDataGrid.Size = new System.Drawing.Size(620, 246);
-            this.inventoryDataGrid.TabIndex = 1;
-            this.inventoryDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellContentClick);
-            this.inventoryDataGrid.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
-            // 
-            // inventoryGridView
-            // 
-            this.inventoryGridView.AllowUserToAddRows = false;
-            this.inventoryGridView.AllowUserToDeleteRows = false;
-            this.inventoryGridView.AllowUserToOrderColumns = true;
-            this.inventoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inventoryGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inventoryGridView.Location = new System.Drawing.Point(0, 0);
-            this.inventoryGridView.Name = "inventoryGridView";
-            this.inventoryGridView.ReadOnly = true;
-            this.inventoryGridView.Size = new System.Drawing.Size(620, 246);
-            this.inventoryGridView.TabIndex = 0;
             // 
             // infoTableLayoutPanel
             // 
@@ -147,6 +117,7 @@ namespace Laboration_4
             this.infoTableLayoutPanel.Controls.Add(this.data3Label, 2, 2);
             this.infoTableLayoutPanel.Controls.Add(this.data4Label, 2, 3);
             this.infoTableLayoutPanel.Controls.Add(this.buttonClearInventory, 4, 3);
+            this.infoTableLayoutPanel.Controls.Add(this.typeComboBox, 1, 4);
             this.infoTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.infoTableLayoutPanel.Name = "infoTableLayoutPanel";
@@ -380,6 +351,59 @@ namespace Laboration_4
             this.buttonClearInventory.Text = "Rensa";
             this.buttonClearInventory.UseVisualStyleBackColor = true;
             // 
+            // typeComboBox
+            // 
+            this.typeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.typeComboBox.FormattingEnabled = true;
+            this.typeComboBox.Items.AddRange(new object[] {
+            "",
+            "Bok",
+            "Spel",
+            "DVD",
+            "Annan"});
+            this.typeComboBox.Location = new System.Drawing.Point(113, 111);
+            this.typeComboBox.Name = "typeComboBox";
+            this.typeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.typeComboBox.TabIndex = 26;
+            this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
+            // 
+            // inventoryDataGrid
+            // 
+            this.inventoryDataGrid.AllowUserToAddRows = false;
+            this.inventoryDataGrid.AllowUserToDeleteRows = false;
+            this.inventoryDataGrid.AllowUserToOrderColumns = true;
+            this.inventoryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.inventoryDataGrid.MultiSelect = false;
+            this.inventoryDataGrid.Name = "inventoryDataGrid";
+            this.inventoryDataGrid.ReadOnly = true;
+            this.inventoryDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.inventoryDataGrid.ShowCellErrors = false;
+            this.inventoryDataGrid.ShowCellToolTips = false;
+            this.inventoryDataGrid.ShowEditingIcon = false;
+            this.inventoryDataGrid.ShowRowErrors = false;
+            this.inventoryDataGrid.Size = new System.Drawing.Size(620, 246);
+            this.inventoryDataGrid.TabIndex = 1;
+            this.inventoryDataGrid.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
+            // 
+            // inventoryGridView
+            // 
+            this.inventoryGridView.AllowUserToAddRows = false;
+            this.inventoryGridView.AllowUserToDeleteRows = false;
+            this.inventoryGridView.AllowUserToOrderColumns = true;
+            this.inventoryGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inventoryGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inventoryGridView.Location = new System.Drawing.Point(0, 0);
+            this.inventoryGridView.Name = "inventoryGridView";
+            this.inventoryGridView.ReadOnly = true;
+            this.inventoryGridView.Size = new System.Drawing.Size(620, 246);
+            this.inventoryGridView.TabIndex = 0;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Laboration_4.Product);
+            // 
             // ManageInventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,10 +415,11 @@ namespace Laboration_4
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
             this.mainSplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
             this.infoTableLayoutPanel.ResumeLayout(false);
             this.infoTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,12 +429,6 @@ namespace Laboration_4
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.DataGridView inventoryGridView;
         private System.Windows.Forms.DataGridView inventoryDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.TableLayoutPanel infoTableLayoutPanel;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Label typeLabel;
@@ -433,5 +452,7 @@ namespace Laboration_4
         private System.Windows.Forms.Label data3Label;
         private System.Windows.Forms.Label data4Label;
         private System.Windows.Forms.Button buttonClearInventory;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ComboBox typeComboBox;
     }
 }

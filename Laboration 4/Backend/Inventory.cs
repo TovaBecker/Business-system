@@ -63,9 +63,42 @@ namespace Laboration_4
             //TODO
         }
 
-        public void ProductDelete()
+        public bool ProductDelete(int itemNumber)
         {
-            //TODO
+            Product item = ProductSearch(itemNumber);
+
+                if(item != null)
+            {
+                if( 0 < item.Quantity)
+                {
+                    //Print do you relly want to do this
+                    //TO DO
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                //Print error
+                //TO DO
+            }
+            return false;
+
+        }
+
+        internal Product ProductSearch(int itemNumber)
+        {
+            foreach (var item in _inventoryList)
+            {
+                if (item.ItemNumber == itemNumber)
+                {
+                    return item;
+                }
+
+            }
+            return null;
         }
     }
 }
