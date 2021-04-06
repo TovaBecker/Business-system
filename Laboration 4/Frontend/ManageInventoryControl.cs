@@ -43,14 +43,5 @@ namespace Laboration_4
             }
         }
 
-        private void infoTableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void buttonAddInventory_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

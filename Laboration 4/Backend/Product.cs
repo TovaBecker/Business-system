@@ -13,6 +13,12 @@ namespace Laboration_4
         private string _name;
         private double _price;
         private int _quantity;
+        private string _author;
+        private string _genre;
+        private string _format;
+        private string _language;
+        private string _platform;
+        private int _playtime;
 
         //Declare private static value
         static int itemNumberID = 1;
@@ -22,22 +28,34 @@ namespace Laboration_4
 
         }
 
-        public Product(string type, string itemNumber, string name, string price, string quantity)
+        public Product(string type, string itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
             _type = GetType(type);
             _itemNumber = Convert.ToInt32(itemNumber);
             _name = name;
             _price = price == "" ? 0 : Convert.ToDouble(price);
             _quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
+            _author = author;
+            _genre = genre;
+            _format = format;
+            _language = language;
+            _platform = platform;
+            _playtime = playtime == "" ? 0 : Convert.ToInt32(playtime);
         }
 
-    public Product(Type type, int itemNumber, string name, double price, int quantity)
+    public Product(Type type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
         {
             _type = type;
             _itemNumber = itemNumber;
             _name = name;
             _price = price;
             _quantity = quantity;
+            _author = author;
+            _genre = genre;
+            _format = format;
+            _language = language;
+            _platform = platform;
+            _playtime = playtime;
         }
         public Type Type
         {
@@ -69,7 +87,7 @@ namespace Laboration_4
         {
             get => _name;
             set
-            {//TODO
+            {
                 _name = value;
             }
         }
@@ -90,8 +108,7 @@ namespace Laboration_4
         {
             get => _quantity;
             set
-            {//TODO
-
+            {
                 //validate quantity
                 if (value >= 0)
                     _quantity = value;
@@ -100,49 +117,61 @@ namespace Laboration_4
             }
         }
 
-        public int Author
+        public string Author
         {
-            get => default;
+            get => _author;
             set
             {
+                _author = value; 
+    }
+}
+
+        public string Genre
+        {
+            get => _genre;
+            set
+            {
+                _genre = value;
             }
         }
 
-        public int Genre
+        public string Format
         {
-            get => default;
+            get => _format;
             set
             {
+                _format = value;
             }
         }
 
-        public int Format
+        public string Language
         {
-            get => default;
+            get => _language;
             set
             {
+                _language = value;
             }
         }
-
-        public int Language
+       
+        public string Platform
         {
-            get => default;
+            get => _platform;
             set
             {
+                _platform = value;
+                
             }
         }
         public int Playtime
         {
-            get => default;
+            get => _playtime;
             set
             {
-            }
-        }
-        public int Platform
-        {
-            get => default;
-            set
-            {
+                //validate plytime
+                if (value >= 0)
+                    _playtime = value;
+                else
+                    _playtime = 0;
             }
         }
 
@@ -157,10 +186,12 @@ namespace Laboration_4
         {
             if (type == "Bok")
                 return Type.Bok;
-            if (type == "DVD")
+            else if (type == "DVD")
                 return Type.DVD;
-            if (type == "Spel")
+            else if (type == "Spel")
                 return Type.Spel;
+            else
+                return Type.Annan;
 
             throw new Exception("Type does not exists");
 

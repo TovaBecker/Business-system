@@ -9,7 +9,8 @@ namespace Laboration_4
     {
         Bok,
         Spel,
-        DVD
+        DVD,
+        Annan
     }
 
 

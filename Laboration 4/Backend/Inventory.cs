@@ -16,23 +16,26 @@ namespace Laboration_4
 
         public Inventory()
         {
+            //Create binding list and binding source for inventory
             _inventoryList = new BindingList<Product>();
-            _inventoryList.Add(new Product() { Type = Type.Bok, ItemNumber = 1, Name = "Commentarii de Bello Gallico et Civili", Price = 449, Quantity = 2 });
             _inventoryBindingSource = new BindingSource(_inventoryList, null);
 
         }
         public BindingSource InventoryLoad()
         {
+            //Start upp reding from CVS file
             using (var reader = new StreamReader(@"..\..\Database\inventory.csv"))
             {
+                //Get rows and split into data from CVS file
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
 
-                    if(values.Length == 11)
+                    //Create new prodokts and add produkts to inventoryList
+                    if (values.Length == 11)
                     {
-                        Product NewProduct = new Product(values[0], values[1], values[2], values[3], values[4]);
+                        Product NewProduct = new Product(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]);
 
                         _inventoryList.Add(NewProduct);
                     }
@@ -48,9 +51,9 @@ namespace Laboration_4
             //TODO
         }
 
-        public void ProductAdd(Type type, int itemNumber, string name, double price, int quantity)
+        public void ProductAdd(Type type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
         {
-            Product NewProduct = new Product(type, itemNumber, name, price, quantity);
+            Product NewProduct = new Product(type, itemNumber, name, price, quantity, author, genre, format, language, platform, playtime);
 
             _inventoryList.Add(NewProduct);
         }
