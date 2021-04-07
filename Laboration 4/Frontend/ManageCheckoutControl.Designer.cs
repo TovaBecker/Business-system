@@ -29,6 +29,7 @@ namespace Laboration_4
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MenuSplitContainer = new System.Windows.Forms.SplitContainer();
             this.itemNumberSearchLabel = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@ namespace Laboration_4
             this.buttonBuyCheckout = new System.Windows.Forms.Button();
             this.cartLabel = new System.Windows.Forms.Label();
             this.checkoutDataGrid = new System.Windows.Forms.DataGridView();
+            this.itemNumberErrorProviderAdd = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -52,6 +54,7 @@ namespace Laboration_4
             this.MenuSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkoutDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProviderAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -113,7 +116,7 @@ namespace Laboration_4
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemNumberSearchextBox.Location = new System.Drawing.Point(7, 95);
             this.itemNumberSearchextBox.Name = "itemNumberSearchextBox";
-            this.itemNumberSearchextBox.Size = new System.Drawing.Size(98, 20);
+            this.itemNumberSearchextBox.Size = new System.Drawing.Size(87, 20);
             this.itemNumberSearchextBox.TabIndex = 3;
             this.itemNumberSearchextBox.TextChanged += new System.EventHandler(this.itemNumberSearchextBox_TextChanged);
             // 
@@ -235,6 +238,10 @@ namespace Laboration_4
             this.checkoutDataGrid.TabIndex = 2;
             this.checkoutDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.checkoutDataGrid_CellClick);
             // 
+            // itemNumberErrorProviderAdd
+            // 
+            this.itemNumberErrorProviderAdd.ContainerControl = this;
+            // 
             // ManageCheckoutControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +261,7 @@ namespace Laboration_4
             this.MenuSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkoutDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProviderAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,5 +281,6 @@ namespace Laboration_4
         private System.Windows.Forms.Button buttonRemoveCheckout;
         private System.Windows.Forms.Button buttonAddCheckout;
         private System.Windows.Forms.DataGridView basketDataGridView;
+        private System.Windows.Forms.ErrorProvider itemNumberErrorProviderAdd;
     }
 }

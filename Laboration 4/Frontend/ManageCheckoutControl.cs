@@ -97,7 +97,8 @@ namespace Laboration_4
             }
             catch (FormatException)
             {
-                //Error
+                // Set the error if price is not a int
+                itemNumberErrorProviderAdd.SetError(this.itemNumberSearchextBox, "Varunummer är endast siffror.");
             }
         }
 
