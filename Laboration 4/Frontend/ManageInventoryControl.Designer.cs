@@ -136,9 +136,10 @@ namespace Laboration_4
             this.buttonSearch.Location = new System.Drawing.Point(542, 111);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 22);
-            this.buttonSearch.TabIndex = 25;
+            this.buttonSearch.TabIndex = 6;
             this.buttonSearch.Text = "Sök";
             this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // typeLabel
             // 
@@ -201,7 +202,8 @@ namespace Laboration_4
             this.itemNrTextBox.Location = new System.Drawing.Point(113, 3);
             this.itemNrTextBox.Name = "itemNrTextBox";
             this.itemNrTextBox.Size = new System.Drawing.Size(151, 20);
-            this.itemNrTextBox.TabIndex = 4;
+            this.itemNrTextBox.TabIndex = 1;
+            this.itemNrTextBox.TextChanged += new System.EventHandler(this.itemNrTextBox_TextChanged);
             // 
             // nameTextBox
             // 
@@ -209,7 +211,8 @@ namespace Laboration_4
             this.nameTextBox.Location = new System.Drawing.Point(113, 30);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(151, 20);
-            this.nameTextBox.TabIndex = 5;
+            this.nameTextBox.TabIndex = 2;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // priceTextBox
             // 
@@ -217,7 +220,8 @@ namespace Laboration_4
             this.priceTextBox.Location = new System.Drawing.Point(113, 57);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(151, 20);
-            this.priceTextBox.TabIndex = 6;
+            this.priceTextBox.TabIndex = 3;
+            this.priceTextBox.TextChanged += new System.EventHandler(this.priceTextBox_TextChanged);
             // 
             // quantityTextBox
             // 
@@ -225,7 +229,8 @@ namespace Laboration_4
             this.quantityTextBox.Location = new System.Drawing.Point(113, 84);
             this.quantityTextBox.Name = "quantityTextBox";
             this.quantityTextBox.Size = new System.Drawing.Size(151, 20);
-            this.quantityTextBox.TabIndex = 7;
+            this.quantityTextBox.TabIndex = 4;
+            this.quantityTextBox.TextChanged += new System.EventHandler(this.quantityTextBox_TextChanged);
             // 
             // data1TextBox
             // 
@@ -233,8 +238,9 @@ namespace Laboration_4
             this.data1TextBox.Location = new System.Drawing.Point(380, 3);
             this.data1TextBox.Name = "data1TextBox";
             this.data1TextBox.Size = new System.Drawing.Size(151, 20);
-            this.data1TextBox.TabIndex = 8;
+            this.data1TextBox.TabIndex = 11;
             this.data1TextBox.Visible = false;
+            this.data1TextBox.TextChanged += new System.EventHandler(this.data1TextBox_TextChanged);
             // 
             // data2TextBox
             // 
@@ -242,8 +248,9 @@ namespace Laboration_4
             this.data2TextBox.Location = new System.Drawing.Point(380, 30);
             this.data2TextBox.Name = "data2TextBox";
             this.data2TextBox.Size = new System.Drawing.Size(151, 20);
-            this.data2TextBox.TabIndex = 9;
+            this.data2TextBox.TabIndex = 12;
             this.data2TextBox.Visible = false;
+            this.data2TextBox.TextChanged += new System.EventHandler(this.data2TextBox_TextChanged);
             // 
             // data3TextBox
             // 
@@ -251,8 +258,9 @@ namespace Laboration_4
             this.data3TextBox.Location = new System.Drawing.Point(380, 57);
             this.data3TextBox.Name = "data3TextBox";
             this.data3TextBox.Size = new System.Drawing.Size(151, 20);
-            this.data3TextBox.TabIndex = 10;
+            this.data3TextBox.TabIndex = 13;
             this.data3TextBox.Visible = false;
+            this.data3TextBox.TextChanged += new System.EventHandler(this.data3TextBox_TextChanged);
             // 
             // data4TextBox
             // 
@@ -260,8 +268,9 @@ namespace Laboration_4
             this.data4TextBox.Location = new System.Drawing.Point(380, 84);
             this.data4TextBox.Name = "data4TextBox";
             this.data4TextBox.Size = new System.Drawing.Size(151, 20);
-            this.data4TextBox.TabIndex = 11;
+            this.data4TextBox.TabIndex = 14;
             this.data4TextBox.Visible = false;
+            this.data4TextBox.TextChanged += new System.EventHandler(this.data4TextBox_TextChanged);
             // 
             // buttonAddInventory
             // 
@@ -269,7 +278,7 @@ namespace Laboration_4
             this.buttonAddInventory.Location = new System.Drawing.Point(542, 3);
             this.buttonAddInventory.Name = "buttonAddInventory";
             this.buttonAddInventory.Size = new System.Drawing.Size(75, 21);
-            this.buttonAddInventory.TabIndex = 12;
+            this.buttonAddInventory.TabIndex = 7;
             this.buttonAddInventory.Text = "Lägg till";
             this.buttonAddInventory.UseVisualStyleBackColor = true;
             this.buttonAddInventory.Click += new System.EventHandler(this.buttonAddInventory_Click);
@@ -280,7 +289,7 @@ namespace Laboration_4
             this.buttonRemoveInventory.Location = new System.Drawing.Point(542, 30);
             this.buttonRemoveInventory.Name = "buttonRemoveInventory";
             this.buttonRemoveInventory.Size = new System.Drawing.Size(75, 21);
-            this.buttonRemoveInventory.TabIndex = 13;
+            this.buttonRemoveInventory.TabIndex = 8;
             this.buttonRemoveInventory.Text = "Ta bort";
             this.buttonRemoveInventory.UseVisualStyleBackColor = true;
             this.buttonRemoveInventory.Click += new System.EventHandler(this.buttonRemoveInventory_Click);
@@ -291,7 +300,7 @@ namespace Laboration_4
             this.buttonUpdateInventory.Location = new System.Drawing.Point(542, 57);
             this.buttonUpdateInventory.Name = "buttonUpdateInventory";
             this.buttonUpdateInventory.Size = new System.Drawing.Size(75, 21);
-            this.buttonUpdateInventory.TabIndex = 14;
+            this.buttonUpdateInventory.TabIndex = 9;
             this.buttonUpdateInventory.Text = "Uppdatera";
             this.buttonUpdateInventory.UseVisualStyleBackColor = true;
             this.buttonUpdateInventory.Click += new System.EventHandler(this.buttonUpdateInventory_Click);
@@ -350,7 +359,7 @@ namespace Laboration_4
             this.buttonClearInventory.Location = new System.Drawing.Point(542, 84);
             this.buttonClearInventory.Name = "buttonClearInventory";
             this.buttonClearInventory.Size = new System.Drawing.Size(75, 21);
-            this.buttonClearInventory.TabIndex = 20;
+            this.buttonClearInventory.TabIndex = 10;
             this.buttonClearInventory.Text = "Rensa";
             this.buttonClearInventory.UseVisualStyleBackColor = true;
             this.buttonClearInventory.Click += new System.EventHandler(this.buttonClearInventory_Click);
@@ -363,12 +372,11 @@ namespace Laboration_4
             "",
             "Bok",
             "Spel",
-            "DVD",
-            "Annan"});
+            "DVD"});
             this.typeComboBox.Location = new System.Drawing.Point(113, 111);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(151, 21);
-            this.typeComboBox.TabIndex = 26;
+            this.typeComboBox.TabIndex = 5;
             this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
             // 
             // inventoryDataGrid
@@ -389,7 +397,7 @@ namespace Laboration_4
             this.inventoryDataGrid.ShowRowErrors = false;
             this.inventoryDataGrid.Size = new System.Drawing.Size(620, 246);
             this.inventoryDataGrid.TabIndex = 1;
-            this.inventoryDataGrid.SelectionChanged += new System.EventHandler(this.inventoryDataGridView_SelectionChanged);
+            this.inventoryDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventoryDataGridView_CellClick);
             // 
             // inventoryGridView
             // 

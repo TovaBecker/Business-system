@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Laboration_4
 {
-    internal class Product
+    public class Product
     {
         //Declare an instance variables 
         private Type _type;
@@ -21,9 +21,6 @@ namespace Laboration_4
         private string _platform;
         private int _playtime;
 
-        //Declare private static value
-        static int itemNumberID = 1;
-
         //Declare an instance variabl for inventory 
         private Inventory _inventory;
 
@@ -32,10 +29,10 @@ namespace Laboration_4
             _inventory = inventory;
         }
 
-        public Product(string type, string itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
+        public Product( string type, int itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
             Type = GetType(type);
-            ItemNumber = Convert.ToInt32(itemNumber);
+            ItemNumber = itemNumber;
             Name = name;
             Price = price == "" ? 0 : Convert.ToDouble(price);
             Quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
@@ -47,20 +44,6 @@ namespace Laboration_4
             Playtime = playtime == "" ? 0 : Convert.ToInt32(playtime);
         }
 
-    public Product(Type type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
-        {
-            Type = type;
-            ItemNumber = itemNumber;
-            Name = name;
-            Price = price;
-            Quantity = quantity;
-            Author = author;
-            Genre = genre;
-            Format = format;
-            Language = language;
-            Platform = platform;
-            Playtime = playtime;
-        }
         public Type Type
         {
             get => _type;
@@ -74,23 +57,8 @@ namespace Laboration_4
         {
             get => _itemNumber;
             set
-            {//TODO
-                //if (0 < value)
-                //{
-                //    if (null == _inventory.ProductSearch(value))
-                //    {
-                //        _itemNumber = value;
-                //    }
-                //    else
-                //    {
-                //        SetItemID();
-                //    }
-                //}
-                //else
-                //{
-                //    SetItemID();
-                //}
-                SetItemID();
+            {
+                _itemNumber = value;
             }
         }
 
@@ -186,31 +154,6 @@ namespace Laboration_4
             }
         }
 
-       
-        private void SetItemID()
-        {//TODO
-         //Declare an bool instance variabl
-            bool idSet = false;
-
-            ////Find first free ID
-            //while (idSet == false)
-            //{
-            //    if (null == _inventory.ProductSearch(itemNumberID))
-            //    {
-            //        itemNumberID++;
-            //        idSet = true;
-            //    }
-            //    else
-            //    {
-            //        itemNumberID++;
-            //    }            
-            //}
-
-            //Sett item number
-            _itemNumber = itemNumberID;
-            itemNumberID++;
-        }
-
         private Type GetType(string type)
         {
             if (type == "Bok")
@@ -219,8 +162,6 @@ namespace Laboration_4
                 return Type.DVD;
             else if (type == "Spel")
                 return Type.Spel;
-            else
-                return Type.Annan;
 
             throw new Exception("Type does not exists");
 

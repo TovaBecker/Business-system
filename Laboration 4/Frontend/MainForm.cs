@@ -35,6 +35,7 @@ namespace Laboration_4
             checkout.Dock = DockStyle.Fill;
             CheckoutTab.Controls.Add(checkout);
 
+
             ManageStatisticsControl statistics = new ManageStatisticsControl();
             statistics.Dock = DockStyle.Fill;
             StatisticsTab.Controls.Add(statistics);

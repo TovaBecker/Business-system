@@ -5,12 +5,11 @@ using System.Text;
 
 namespace Laboration_4
 {
-    public enum Type
+    public enum Status
     {
-        Bok,
-        Spel,
-        DVD
+        InBasket,
+        Bought,
+        Repuchased
     }
-
 
 }
