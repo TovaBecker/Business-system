@@ -41,10 +41,17 @@ namespace Laboration_4
             int outPlaytime = 0;
 
             //Check if itemNrTextBox has a value
-            if (false == int.TryParse(itemNrTextBox.Text, out outQuantity))
+            if (false == int.TryParse(itemNrTextBox.Text, out outItemNr))
             {
-                //Set itemNrTextBox value
-                itemNrTextBox.Text = $"{_control.GetValidID("1")}";
+                //Set itemNrTextBox value to 0
+                itemNrTextBox.Text = "0";
+
+                //Show message that tells user prodoct price is set to zero
+                MessageBox.Show(
+                                "Varunummer är satt till 0 beroende på att angivna värdet är felaktigt",
+                                "Info",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
             }
 
             if (nameTextBox.Text != "" && typeComboBox.SelectedItem != "")
@@ -239,6 +246,72 @@ namespace Laboration_4
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            //Declare an instance int varibels for try
+            int outItemNr = 0;
+            int outPrice = 0;
+            int outQuantity = 0;
+            int outPlaytime = 0;
+
+             //Check if itemNrTextBox has a value
+                if (false == int.TryParse(itemNrTextBox.Text, out outItemNr))
+                {
+                    //Set itemNrTextBox value to 0
+                    itemNrTextBox.Text = "";
+
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Varunummer är bortaget.\n" +
+                                    "Det inte går att söka på det angivna värdet då varunummer måste anges i siffror",
+                                    "Varunummer bortagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+
+            //Check if quantity value is a int value or set it too null
+            if (false == int.TryParse(priceTextBox.Text, out outPrice))
+            {
+                //Set priceTextBox value to null
+                priceTextBox.Text = "";
+
+                //Show message that tells user prodoct price is set to null
+                MessageBox.Show(
+                                "Priset är bortaget.\n" +
+                                    "Det inte går att söka på det angivna värdet då priset måste anges i siffror",
+                                    "Priset bortagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+            }
+
+            //Check if quantity value is a int value or set it too null
+            if (false == int.TryParse(quantityTextBox.Text, out outQuantity))
+            {
+                //Set quantityTextBox value to null
+                quantityTextBox.Text = "";
+
+                //Show message that tells user prodoct quantity is set to null
+                MessageBox.Show(
+                                "Antal är bortaget.\n" +
+                                    "Det går inte att söka på det angivna värdet då antal måste anges i siffror",
+                                    "Antal bortagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+            }
+
+            //Check if playtime value is a int value or set it too null
+            if (typeComboBox.SelectedItem == "DVD" && false == int.TryParse(data1TextBox.Text, out outPlaytime))
+            {
+                //Set playtimeTextBox value to null
+                data1TextBox.Text = "";
+
+                //Show message that tells user prodoct playtime is set to null
+                MessageBox.Show(
+                                "Speltid är bortaget.\n" +
+                                    "Det går inte att söka på det angivna värdet då speltid måste anges i antal minuter (siffror)",
+                                    "Speltid bortagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+            }
+
             //Get data from textboxes
             string type = "";
             int itemNumber = itemNrTextBox.Text == "" ? 0 : Convert.ToInt32(itemNrTextBox.Text);
@@ -277,6 +350,7 @@ namespace Laboration_4
                     break;
 
             }
+
             //Search in grid
             _control.Search(type, itemNumber, name, price, quantity, author, genre, format, language, platform, playtime);
 
