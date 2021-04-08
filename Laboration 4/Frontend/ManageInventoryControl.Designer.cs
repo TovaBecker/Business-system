@@ -375,7 +375,6 @@ namespace Laboration_4
             // typeComboBox
             // 
             this.typeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.typeComboBox.FormattingEnabled = true;
             this.typeComboBox.Items.AddRange(new object[] {
             "",
             "Bok",

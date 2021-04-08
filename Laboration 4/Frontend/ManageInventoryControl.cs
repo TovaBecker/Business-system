@@ -253,46 +253,46 @@ namespace Laboration_4
             int outPlaytime = 0;
 
              //Check if itemNrTextBox has a value
-                if (false == int.TryParse(itemNrTextBox.Text, out outItemNr))
+                if (itemNrTextBox.Text != "" && false == int.TryParse(itemNrTextBox.Text, out outItemNr))
                 {
                     //Set itemNrTextBox value to 0
                     itemNrTextBox.Text = "";
 
                     //Show message that tells user prodoct price is set to zero
                     MessageBox.Show(
-                                    "Varunummer är bortaget.\n" +
+                                    "Varunummer är borttaget.\n" +
                                     "Det inte går att söka på det angivna värdet då varunummer måste anges i siffror",
-                                    "Varunummer bortagen",
+                                    "Varunummer borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                 }
 
             //Check if quantity value is a int value or set it too null
-            if (false == int.TryParse(priceTextBox.Text, out outPrice))
+            if (priceTextBox.Text != "" && false == int.TryParse(priceTextBox.Text, out outPrice))
             {
                 //Set priceTextBox value to null
                 priceTextBox.Text = "";
 
                 //Show message that tells user prodoct price is set to null
                 MessageBox.Show(
-                                "Priset är bortaget.\n" +
-                                    "Det inte går att söka på det angivna värdet då priset måste anges i siffror",
-                                    "Priset bortagen",
+                                "Priset är borttaget.\n" +
+                                    "Det går inte att söka på det angivna värdet då priset måste anges i siffror",
+                                    "Priset borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
             }
 
             //Check if quantity value is a int value or set it too null
-            if (false == int.TryParse(quantityTextBox.Text, out outQuantity))
+            if (quantityTextBox.Text != "" && false == int.TryParse(quantityTextBox.Text, out outQuantity))
             {
                 //Set quantityTextBox value to null
                 quantityTextBox.Text = "";
 
                 //Show message that tells user prodoct quantity is set to null
                 MessageBox.Show(
-                                "Antal är bortaget.\n" +
+                                "Antal är borttaget.\n" +
                                     "Det går inte att söka på det angivna värdet då antal måste anges i siffror",
-                                    "Antal bortagen",
+                                    "Antal borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
             }
@@ -305,9 +305,9 @@ namespace Laboration_4
 
                 //Show message that tells user prodoct playtime is set to null
                 MessageBox.Show(
-                                "Speltid är bortaget.\n" +
+                                "Speltid är borttaget.\n" +
                                     "Det går inte att söka på det angivna värdet då speltid måste anges i antal minuter (siffror)",
-                                    "Speltid bortagen",
+                                    "Speltid borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
             }
