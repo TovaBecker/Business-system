@@ -34,8 +34,63 @@ namespace Laboration_4
 
         private void buttonAddInventory_Click(object sender, EventArgs e)
         {
-            if (nameTextBox.Text != "" && typeComboBox.SelectedItem == "Bok"|| typeComboBox.SelectedItem == "Spel" || typeComboBox.SelectedItem == "DVD")
+            //Declare an instance int varibels for try
+            int outItemNr = 0; 
+            int outPrice = 0; 
+            int outQuantity = 0;
+            int outPlaytime = 0;
+
+            //Check if itemNrTextBox has a value
+            if (false == int.TryParse(itemNrTextBox.Text, out outQuantity))
             {
+                //Set itemNrTextBox value
+                itemNrTextBox.Text = $"{_control.GetValidID("1")}";
+            }
+
+            if (nameTextBox.Text != "" && typeComboBox.SelectedItem != "")
+            {
+                //Check if quantity value is a int value or set it too zero
+                if (false == int.TryParse(priceTextBox.Text, out outPrice))
+                {
+                    //Set priceTextBox value to 0
+                    priceTextBox.Text = "0";
+
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Priset är satt till 0 beroende på att angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+
+                //Check if quantity value is a int value or set it too zero
+                if (false == int.TryParse(quantityTextBox.Text, out outQuantity))
+                {
+                    //Set quantityTextBox value to 0
+                    quantityTextBox.Text = "0";
+
+                    //Show message that tells user prodoct quantity is set to zero
+                    MessageBox.Show(
+                                    "Antal är satt till 0 beroende på att angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+
+                //Check if playtime value is a int value or set it too zero
+                if (typeComboBox.SelectedItem == "DVD" && false == int.TryParse(data1TextBox.Text, out outPlaytime))
+                {
+                    //Set playtimeTextBox value to 0
+                    data1TextBox.Text = "0";
+
+                    //Show message that tells user prodoct playtime is set to zero
+                    MessageBox.Show(
+                                    "Speltid är satt till 0 beroende på att angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+
                 //Add new product
                 Product NewProduct = fetchProduct();
 
@@ -47,14 +102,13 @@ namespace Laboration_4
             }
             else
             {
-                //Show message that tells user prodoct is removed
+                //Show message that tells user prodoct is added
                 MessageBox.Show(
-                                "Du behöver lägga in både varunummer, namn och välja typ för att lägga til en ny vara",
+                                "Du behöver lägga in namn och välja typ för att lägga til en ny vara",
                                 "Info",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
-            
         }
 
         private void buttonUpdateInventory_Click(object sender, EventArgs e)
@@ -125,8 +179,8 @@ namespace Laboration_4
                 {
                     //Show message to ask user if it wants to remove prodoct with inventory
                     var result = MessageBox.Show(
-                                    $"Vill du verkligen ta bort ta bort produkten med {_removeProcuct.Quantity} i lager?",
-                                    "Ta bort brodukt",
+                                    $"Vill du verkligen ta bort produkten med {_removeProcuct.Quantity} i lager?",
+                                    "Ta bort produkt",
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
                     
@@ -488,7 +542,6 @@ namespace Laboration_4
                 {
                     // Set the error if price is not a int
                     itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
-
                 }
             }
             
@@ -503,7 +556,6 @@ namespace Laboration_4
 
                 //Disabel type droppdown
                 typeComboBox.Enabled = false;
-
             }
             else
             {
@@ -517,8 +569,6 @@ namespace Laboration_4
                 //Enabel type droppdown
                 typeComboBox.Enabled = true;
             }
-
-            
         }
 
         private void inventoryDataGridView_CellClick(object sender, EventArgs e)

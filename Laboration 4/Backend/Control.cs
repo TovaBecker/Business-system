@@ -41,6 +41,12 @@ namespace Laboration_4
         {
             _selling.AddToBasket(itemNumber);
         }
+
+        internal int GetValidID(string itemNumber)
+        {
+            return _inventory.SetItemID(itemNumber);
+        }
+
         public void Return()
         {
             //TODO

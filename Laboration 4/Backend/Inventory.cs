@@ -79,11 +79,6 @@ namespace Laboration_4
                 _inventoryList.Remove(item);
                 return true;
             }
-            else
-            {
-                //Print error
-                //TO DO
-            }
             return false;
 
         }
@@ -144,10 +139,11 @@ namespace Laboration_4
             return _inventoryList.FirstOrDefault(i => i.ItemNumber == itemNumber);
         }
 
-        private int SetItemID(string itemNumber)
-        {//TODO
+        internal int SetItemID(string itemNumber)
+        {
             int id = int.Parse(itemNumber);
-            if (ProductIDSearch(id) == null)
+
+            if (0 < id && ProductIDSearch(id) == null)
             {
                 return id;
             }

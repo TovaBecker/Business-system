@@ -31,17 +31,49 @@ namespace Laboration_4
 
         public Product( string type, int itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
+            //Declare an instance int varibels for try
+            int outQuantity = 0;
+            int outPlaytime = 0;
+
+            //Set values
             Type = GetType(type);
             ItemNumber = itemNumber;
             Name = name;
-            Price = price == "" ? 0 : Convert.ToDouble(price);
-            Quantity = quantity == "" ? 0 : Convert.ToInt32(quantity);
             Author = author;
             Genre = genre;
             Format = format;
             Language = language;
             Platform = platform;
-            Playtime = playtime == "" ? 0 : Convert.ToInt32(playtime);
+
+            //Check if price value is a double value or set it too zero
+            try
+            {
+                Price = price == "" ? 0 : Convert.ToDouble(price);
+            }
+            catch(FormatException)
+            {
+                Price = 0;
+            }
+
+            //Check if quantity value is a int value or set it too zero
+            if (false == int.TryParse(quantity, out outQuantity))
+            {
+                Quantity = 0;
+            }
+            else
+            {
+                Quantity = outQuantity;
+            }
+
+            //Check if playtime value is a int value or set it too zero
+            if (false == int.TryParse(playtime, out outPlaytime))
+            {
+                Playtime = 0;
+            }
+            else
+            {
+                Playtime = outPlaytime;
+            }
         }
 
         public Type Type

@@ -57,11 +57,11 @@ namespace Laboration_4
             this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.inventoryDataGrid = new System.Windows.Forms.DataGridView();
             this.inventoryGridView = new System.Windows.Forms.DataGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.itemNumberErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.priceErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.quantityErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.playtimeErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -69,11 +69,11 @@ namespace Laboration_4
             this.infoTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playtimeErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -420,10 +420,6 @@ namespace Laboration_4
             this.inventoryGridView.Size = new System.Drawing.Size(620, 246);
             this.inventoryGridView.TabIndex = 0;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Laboration_4.Product);
-            // 
             // itemNumberErrorProvider
             // 
             this.itemNumberErrorProvider.ContainerControl = this;
@@ -440,6 +436,10 @@ namespace Laboration_4
             // 
             this.playtimeErrorProvider.ContainerControl = this;
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Laboration_4.Product);
+            // 
             // ManageInventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,11 +455,11 @@ namespace Laboration_4
             this.infoTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playtimeErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
