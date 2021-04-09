@@ -12,38 +12,58 @@ namespace Laboration_4
 {
     public partial class MainForm : Form
     {
-        
+        //Data sourses for the progam
+        BindingSource _inventoryBindingSource;
+        BindingSource _basketBindingSource;
+        Control _control = new Control();
+
 
         public MainForm()
         {
             InitializeComponent();
+
         }
 
-        private void inventoryControlMainView_Load(object sender, EventArgs e)
+        public BindingSource inventoryBindingSource()
         {
-            
+            //Conect ManageInventoryControl to Contol class and get binding source
+            _inventoryBindingSource = _control.LoadInventory();
 
+            return _inventoryBindingSource;
+        }
+
+        public BindingSource basketBindingSource()
+        {
+            //Conect ManageInventoryControl to Contol class and get binding source
+            _basketBindingSource = _control.LoadBasket();
+
+            return _basketBindingSource;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ManageInventoryControl inventory = new ManageInventoryControl();
+            _inventoryBindingSource = _control.LoadInventory();
+            _basketBindingSource = _control.LoadBasket();
+
+            ManageInventoryControl inventory = new ManageInventoryControl(_control, _inventoryBindingSource);
             inventory.Dock = DockStyle.Fill;
             InventoryTab.Controls.Add(inventory);
 
-            ManageCheckoutControl checkout = new ManageCheckoutControl();
+            ManageCheckoutControl checkout = new ManageCheckoutControl(_control, _inventoryBindingSource, _basketBindingSource);
             checkout.Dock = DockStyle.Fill;
             CheckoutTab.Controls.Add(checkout);
 
+            ManageDeliveryControl delivery = new ManageDeliveryControl(_control);
+            delivery.Dock = DockStyle.Fill;
+            deliveryTab.Controls.Add(delivery);
 
             ManageStatisticsControl statistics = new ManageStatisticsControl();
             statistics.Dock = DockStyle.Fill;
             StatisticsTab.Controls.Add(statistics);
         }
-
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        
+        private void MainTab_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

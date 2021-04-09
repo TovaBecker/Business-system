@@ -31,6 +31,7 @@
             this.MainTab = new System.Windows.Forms.TabControl();
             this.CheckoutTab = new System.Windows.Forms.TabPage();
             this.InventoryTab = new System.Windows.Forms.TabPage();
+            this.deliveryTab = new System.Windows.Forms.TabPage();
             this.StatisticsTab = new System.Windows.Forms.TabPage();
             this.MainTab.SuspendLayout();
             this.SuspendLayout();
@@ -39,6 +40,7 @@
             // 
             this.MainTab.Controls.Add(this.CheckoutTab);
             this.MainTab.Controls.Add(this.InventoryTab);
+            this.MainTab.Controls.Add(this.deliveryTab);
             this.MainTab.Controls.Add(this.StatisticsTab);
             this.MainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTab.Location = new System.Drawing.Point(0, 0);
@@ -46,6 +48,7 @@
             this.MainTab.SelectedIndex = 0;
             this.MainTab.Size = new System.Drawing.Size(800, 421);
             this.MainTab.TabIndex = 0;
+            this.MainTab.Click += new System.EventHandler(this.MainTab_Click);
             // 
             // CheckoutTab
             // 
@@ -66,6 +69,16 @@
             this.InventoryTab.TabIndex = 1;
             this.InventoryTab.Text = "Lager";
             this.InventoryTab.UseVisualStyleBackColor = true;
+            // 
+            // deliveryTab
+            // 
+            this.deliveryTab.Location = new System.Drawing.Point(4, 22);
+            this.deliveryTab.Name = "deliveryTab";
+            this.deliveryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.deliveryTab.Size = new System.Drawing.Size(792, 395);
+            this.deliveryTab.TabIndex = 3;
+            this.deliveryTab.Text = "leverans";
+            this.deliveryTab.UseVisualStyleBackColor = true;
             // 
             // StatisticsTab
             // 
@@ -97,6 +110,7 @@
         private System.Windows.Forms.TabPage CheckoutTab;
         private System.Windows.Forms.TabPage InventoryTab;
         private System.Windows.Forms.TabPage StatisticsTab;
+        private System.Windows.Forms.TabPage deliveryTab;
     }
 }
 

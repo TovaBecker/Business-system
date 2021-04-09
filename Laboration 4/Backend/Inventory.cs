@@ -42,11 +42,23 @@ namespace Laboration_4
 
                         _inventoryList.Add(NewProduct);
                     }
-
-
                 }
-                return _inventoryBindingSource;
             }
+            return _inventoryBindingSource;
+        }
+        public bool DeviveryQuantityAdd(int itemNumber, int quantity)
+        {
+            Product _product = ProductIDSearch(itemNumber);
+
+            if (_product != null)
+            {
+                _product.Quantity = _product.Quantity + quantity;
+                int index = _inventoryList.IndexOf(_product);
+                _inventoryList[index] = _product;
+                return true;
+            }
+
+            return false;
         }
 
         public void InventorySave()
@@ -95,17 +107,20 @@ namespace Laboration_4
                 filteredList = filteredList.Where(i => i.Type == searchType).ToList();
             }
 
+            //if (itemNumber > 0)
+            //    filteredList = filteredList.Where(i => i.ItemNumber == itemNumber).ToList();
+
             if (itemNumber > 0)
-                filteredList = filteredList.Where(i => i.ItemNumber == itemNumber).ToList();
+                filteredList = filteredList.Where(i => $"{i.ItemNumber}".ToLower().Contains($"{itemNumber}".ToLower())).ToList();
 
             if (!string.IsNullOrEmpty(name))
                 filteredList = filteredList.Where(i => i.Name.ToLower().Contains(name.ToLower()) ).ToList();
 
             if (price > 0)
-                filteredList = filteredList.Where(i => i.Price == price).ToList();
+                filteredList = filteredList.Where(i => $"{i.Price }".ToLower().Contains($"{price}".ToLower())).ToList();
 
             if (quantity > 0)
-                filteredList = filteredList.Where(i => i.Quantity == quantity).ToList();
+                filteredList = filteredList.Where(i => $"{i.Quantity}".ToLower().Contains($"{quantity}".ToLower())).ToList();
 
             if (!string.IsNullOrEmpty(author))
                 filteredList = filteredList.Where(i => i.Author.ToLower().Contains(author.ToLower())).ToList();
@@ -123,8 +138,8 @@ namespace Laboration_4
                 filteredList = filteredList.Where(i => i.Platform.ToLower().Contains(platform.ToLower())).ToList();
 
             if (playtime > 0)
-                filteredList = filteredList.Where(i => i.Playtime == playtime).ToList();
-            
+                filteredList = filteredList.Where(i => $"{i.Playtime}".ToLower().Contains($"{playtime}".ToLower())).ToList();
+
             //Send filter 
             _inventoryBindingSource.DataSource = filteredList;
         }
@@ -167,6 +182,25 @@ namespace Laboration_4
             itemNumberID++;
 
             return itemNumberID - 1;
+        }
+
+        public void ReduceStock(int itemNumber, int quantity)
+        {
+            var product = ProductIDSearch(itemNumber);
+
+            if(product != null && product.Quantity >= quantity)
+            {
+                int index = _inventoryList.IndexOf(product);
+                _inventoryList[index].Quantity = _inventoryList[index].Quantity - quantity;
+            }
+        }
+        public void IncreaseStock(int itemNumber, int quantity)
+        {
+            var product = ProductIDSearch(itemNumber);
+
+                int index = _inventoryList.IndexOf(product);
+                _inventoryList[index].Quantity = _inventoryList[index].Quantity + quantity;
+            
         }
 
         private Type GetType(string type)

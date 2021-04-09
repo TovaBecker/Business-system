@@ -12,21 +12,29 @@ namespace Laboration_4
 {
     public partial class ManageInventoryControl : UserControl
     {
-        Control _control = new Control();
-        BindingSource inventoryBindingSource;
+        //Declare an instance a Contol class varible for conecting inventory to Control class
+        Control _control;
+
+        //Declare an instance a BindingSource class varible for saving a bindingSource varible.
+        BindingSource _inventoryBindingSource;
+
+        //Declare an instance a Product class varible for svaing selected item
         Product _selectedItem;
 
         internal Product NewProduct { get; private set; }
 
-        public ManageInventoryControl()
+        public ManageInventoryControl(Control control, BindingSource inventoryBindingSource)
         {
             InitializeComponent();
 
+            //Get and set referans to the Contol class
+            _control = control;
+
             //Conect ManageInventoryControl to Contol class and get binding source
-            this.inventoryBindingSource = _control.LoadInventory();
+            this._inventoryBindingSource = inventoryBindingSource;
 
             //Set binding source
-            inventoryDataGrid.DataSource = inventoryBindingSource;
+            inventoryDataGrid.DataSource = _inventoryBindingSource;
 
             //Clear window
             clearWindow();
@@ -40,22 +48,26 @@ namespace Laboration_4
             int outQuantity = 0;
             int outPlaytime = 0;
 
-            //Check if itemNrTextBox has a value
-            if (false == int.TryParse(itemNrTextBox.Text, out outItemNr))
-            {
-                //Set itemNrTextBox value to 0
-                itemNrTextBox.Text = "0";
-
-                //Show message that tells user prodoct price is set to zero
-                MessageBox.Show(
-                                "Varunummer är satt till 0 beroende på att angivna värdet är felaktigt",
-                                "Info",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-            }
-
             if (nameTextBox.Text != "" && typeComboBox.SelectedItem != "")
             {
+
+                //Check if itemNrTextBox has a value
+                if (false == int.TryParse(itemNrTextBox.Text, out outItemNr) || int.Parse(itemNrTextBox.Text) < 1)
+                {
+                    //Update product
+                   int ID =  _control.FindID();
+
+                    //Set itemNrTextBox value to 0
+                    itemNrTextBox.Text = $"{ID}";
+
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    $"Varunummer är satt till ett nytt id {ID} beroende på att det angivna värdet var felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+
                 //Check if quantity value is a int value or set it too zero
                 if (false == int.TryParse(priceTextBox.Text, out outPrice))
                 {
@@ -122,12 +134,71 @@ namespace Laboration_4
         {
             //Declare item nubers as int
             int _itemNumber = 0;
+            int _number = 0;
 
             //If there is a value in item number set number
             if (itemNrTextBox.Text != "")
             {
-                //Set itemnnumber
-                _itemNumber = int.Parse(itemNrTextBox.Text);
+                try
+                {
+                    //Set itemnnumber
+                    _itemNumber = int.Parse(itemNrTextBox.Text);
+                }
+                catch
+                {
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Varan uppdaterades inte beroende på att varunummret är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+                try
+                {
+                    //Set number
+                    _number = int.Parse(priceTextBox.Text);
+                }
+                catch
+                {
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Priset uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+                try
+                {
+                    //Set number
+                    _number = int.Parse(quantityTextBox.Text);
+                }
+                catch
+                {
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Antal uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+                try
+                {
+                    if(typeComboBox.SelectedItem == "DVD")
+                    {
+                        //Set number
+                        _number = int.Parse(data1TextBox.Text);
+                    }
+                    
+                }
+                catch
+                {
+                    //Show message that tells user prodoct price is set to zero
+                    MessageBox.Show(
+                                    "Speltiden uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
             }
 
             if (null != _control.Search(_itemNumber))
@@ -140,7 +211,7 @@ namespace Laboration_4
             }
 
             //Show uppdate in list
-            inventoryBindingSource.ResetCurrentItem();
+            _inventoryBindingSource.ResetCurrentItem();
 
             //Go through data and set buttons 
             dataChanged();
@@ -186,7 +257,7 @@ namespace Laboration_4
                 {
                     //Show message to ask user if it wants to remove prodoct with inventory
                     var result = MessageBox.Show(
-                                    $"Vill du verkligen ta bort produkten med {_removeProcuct.Quantity} i lager?",
+                                    $"Vill du verkligen ta bort produkten \"{_removeProcuct.Name}\" med {_removeProcuct.Quantity} i lager?",
                                     "Ta bort produkt",
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
@@ -255,10 +326,10 @@ namespace Laboration_4
              //Check if itemNrTextBox has a value
                 if (itemNrTextBox.Text != "" && false == int.TryParse(itemNrTextBox.Text, out outItemNr))
                 {
-                    //Set itemNrTextBox value to 0
+                    //Set itemNrTextBox value is removed
                     itemNrTextBox.Text = "";
 
-                    //Show message that tells user prodoct price is set to zero
+                    //Show message that tells user prodoct varunummer is removed
                     MessageBox.Show(
                                     "Varunummer är borttaget.\n" +
                                     "Det inte går att söka på det angivna värdet då varunummer måste anges i siffror",
@@ -270,10 +341,10 @@ namespace Laboration_4
             //Check if quantity value is a int value or set it too null
             if (priceTextBox.Text != "" && false == int.TryParse(priceTextBox.Text, out outPrice))
             {
-                //Set priceTextBox value to null
+                //Set priceTextBox value is removed
                 priceTextBox.Text = "";
 
-                //Show message that tells user prodoct price is set to null
+                //Show message that tells user prodoct price is is removed
                 MessageBox.Show(
                                 "Priset är borttaget.\n" +
                                     "Det går inte att söka på det angivna värdet då priset måste anges i siffror",
@@ -285,10 +356,10 @@ namespace Laboration_4
             //Check if quantity value is a int value or set it too null
             if (quantityTextBox.Text != "" && false == int.TryParse(quantityTextBox.Text, out outQuantity))
             {
-                //Set quantityTextBox value to null
+                //Set quantityTextBox value is removed
                 quantityTextBox.Text = "";
 
-                //Show message that tells user prodoct quantity is set to null
+                //Show message that tells user prodoct quantity is removed
                 MessageBox.Show(
                                 "Antal är borttaget.\n" +
                                     "Det går inte att söka på det angivna värdet då antal måste anges i siffror",
@@ -300,10 +371,10 @@ namespace Laboration_4
             //Check if playtime value is a int value or set it too null
             if (typeComboBox.SelectedItem == "DVD" && false == int.TryParse(data1TextBox.Text, out outPlaytime))
             {
-                //Set playtimeTextBox value to null
+                //Set playtimeTextBox value is removed
                 data1TextBox.Text = "";
 
-                //Show message that tells user prodoct playtime is set to null
+                //Show message that tells user prodoct playtime is removed
                 MessageBox.Show(
                                 "Speltid är borttaget.\n" +
                                     "Det går inte att söka på det angivna värdet då speltid måste anges i antal minuter (siffror)",
@@ -427,7 +498,7 @@ namespace Laboration_4
             playtimeErrorProvider.SetError(this.data1TextBox, String.Empty);
 
             //Show uppdate in list
-            inventoryBindingSource.ResetCurrentItem();
+            _inventoryBindingSource.ResetCurrentItem();
 
             //Clear search in grid
             _control.ClearSearch();
@@ -679,9 +750,6 @@ namespace Laboration_4
                         {
                             //Remove the error if price is a int
                             itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
-
-                            //Go through data and set buttons 
-                            dataChanged();
                         }
                     }
                     catch (FormatException)
@@ -704,9 +772,6 @@ namespace Laboration_4
 
                         //Remove the error if price is a int
                         itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
-
-                        //Go through data and set buttons 
-                        dataChanged();
                     }
                 }
                 catch (FormatException)
@@ -715,6 +780,9 @@ namespace Laboration_4
                     itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
                 }
             }
+
+            //Go through data and set buttons 
+            dataChanged();
 
         }
 

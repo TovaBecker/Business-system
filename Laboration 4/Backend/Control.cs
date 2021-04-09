@@ -34,13 +34,23 @@ namespace Laboration_4
 
         public void Purchase()
         {
-            //TODO
+            _selling.BuyItemsInBasket();
         }
 
-        public void AddToBasket(int itemNumber)
+        public bool AddToBasketBuy(int itemNumber)
         {
-            _selling.AddToBasket(itemNumber);
+            return _selling.AddToBasketBuy(itemNumber);
         }
+        public bool AddToBasketReturn(int saleID)
+        {
+            return _selling.AddToBasketReturn(saleID);
+        }
+
+        public void RemoveFromBasket(SaleInfo saleInfo)
+        {
+            _selling.RemoveFromBasket(saleInfo);
+        }
+
 
         internal int GetValidID(string itemNumber)
         {
@@ -49,12 +59,12 @@ namespace Laboration_4
 
         public void Return()
         {
-            //TODO
+            _selling.ReturnItemsInBasket();
         }
 
-        public void Delivery()
+        public bool Delivery(int itemNumber, int quantity)
         {
-            //TODO
+            return _inventory.DeviveryQuantityAdd(itemNumber, quantity);
         }
 
         internal Product Search(int itemNumber)
@@ -86,10 +96,18 @@ namespace Laboration_4
         {
             return _inventory.ProductDelete(itemNumber);
         }
+
+        public int FindID()
+        {
+           return _inventory.SetItemID("1");
+
+        }
+
         public BindingSource LoadInventory()
         {
             return _inventory.InventoryLoad();
         }
+
         public BindingSource LoadBasket()
         {
             return _selling.BasketLoad();

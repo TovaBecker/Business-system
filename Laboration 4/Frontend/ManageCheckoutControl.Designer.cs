@@ -32,10 +32,10 @@ namespace Laboration_4
             this.components = new System.ComponentModel.Container();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MenuSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.itemNumberSearchLabel = new System.Windows.Forms.Label();
+            this.SearcIDhLabel = new System.Windows.Forms.Label();
             this.itemNumberSearchextBox = new System.Windows.Forms.TextBox();
             this.returnRadioButton = new System.Windows.Forms.RadioButton();
-            this.radioButtonBuy = new System.Windows.Forms.RadioButton();
+            this.buyRadioButton = new System.Windows.Forms.RadioButton();
             this.checkutLabel = new System.Windows.Forms.Label();
             this.basketDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonRemoveCheckout = new System.Windows.Forms.Button();
@@ -84,10 +84,10 @@ namespace Laboration_4
             // 
             // MenuSplitContainer.Panel1
             // 
-            this.MenuSplitContainer.Panel1.Controls.Add(this.itemNumberSearchLabel);
+            this.MenuSplitContainer.Panel1.Controls.Add(this.SearcIDhLabel);
             this.MenuSplitContainer.Panel1.Controls.Add(this.itemNumberSearchextBox);
             this.MenuSplitContainer.Panel1.Controls.Add(this.returnRadioButton);
-            this.MenuSplitContainer.Panel1.Controls.Add(this.radioButtonBuy);
+            this.MenuSplitContainer.Panel1.Controls.Add(this.buyRadioButton);
             this.MenuSplitContainer.Panel1.Controls.Add(this.checkutLabel);
             // 
             // MenuSplitContainer.Panel2
@@ -103,12 +103,12 @@ namespace Laboration_4
             // 
             // itemNumberSearchLabel
             // 
-            this.itemNumberSearchLabel.AutoSize = true;
-            this.itemNumberSearchLabel.Location = new System.Drawing.Point(4, 79);
-            this.itemNumberSearchLabel.Name = "itemNumberSearchLabel";
-            this.itemNumberSearchLabel.Size = new System.Drawing.Size(66, 13);
-            this.itemNumberSearchLabel.TabIndex = 4;
-            this.itemNumberSearchLabel.Text = "Varunummer";
+            this.SearcIDhLabel.AutoSize = true;
+            this.SearcIDhLabel.Location = new System.Drawing.Point(4, 79);
+            this.SearcIDhLabel.Name = "itemNumberSearchLabel";
+            this.SearcIDhLabel.Size = new System.Drawing.Size(66, 13);
+            this.SearcIDhLabel.TabIndex = 4;
+            this.SearcIDhLabel.Text = "Varunummer";
             // 
             // itemNumberSearchextBox
             // 
@@ -133,16 +133,16 @@ namespace Laboration_4
             // 
             // radioButtonBuy
             // 
-            this.radioButtonBuy.AutoSize = true;
-            this.radioButtonBuy.Checked = true;
-            this.radioButtonBuy.Location = new System.Drawing.Point(7, 30);
-            this.radioButtonBuy.Name = "radioButtonBuy";
-            this.radioButtonBuy.Size = new System.Drawing.Size(44, 17);
-            this.radioButtonBuy.TabIndex = 1;
-            this.radioButtonBuy.TabStop = true;
-            this.radioButtonBuy.Text = "Köp";
-            this.radioButtonBuy.UseVisualStyleBackColor = true;
-            this.radioButtonBuy.CheckedChanged += new System.EventHandler(this.radioButtonBuy_CheckedChanged);
+            this.buyRadioButton.AutoSize = true;
+            this.buyRadioButton.Checked = true;
+            this.buyRadioButton.Location = new System.Drawing.Point(7, 30);
+            this.buyRadioButton.Name = "radioButtonBuy";
+            this.buyRadioButton.Size = new System.Drawing.Size(44, 17);
+            this.buyRadioButton.TabIndex = 1;
+            this.buyRadioButton.TabStop = true;
+            this.buyRadioButton.Text = "Köp";
+            this.buyRadioButton.UseVisualStyleBackColor = true;
+            this.buyRadioButton.CheckedChanged += new System.EventHandler(this.buyRadioButton_CheckedChanged);
             // 
             // checkutLabel
             // 
@@ -270,10 +270,10 @@ namespace Laboration_4
 
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.SplitContainer MenuSplitContainer;
-        private System.Windows.Forms.Label itemNumberSearchLabel;
+        private System.Windows.Forms.Label SearcIDhLabel;
         private System.Windows.Forms.TextBox itemNumberSearchextBox;
         private System.Windows.Forms.RadioButton returnRadioButton;
-        private System.Windows.Forms.RadioButton radioButtonBuy;
+        private System.Windows.Forms.RadioButton buyRadioButton;
         private System.Windows.Forms.Label checkutLabel;
         private System.Windows.Forms.Label cartLabel;
         private System.Windows.Forms.Button buttonBuyCheckout;

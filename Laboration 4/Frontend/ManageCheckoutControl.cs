@@ -12,54 +12,154 @@ namespace Laboration_4
 {
     public partial class ManageCheckoutControl : UserControl
     {
-        Control _control = new Control();
-        BindingSource basketBindingSource;
-        BindingSource inventoryBindingSource;
+        //Declare an instance a Contol class varible for conecting inventory to Control class
+        Control _control;
+
+        //Declare an instance a BindingSource class varible for saving a bindingSource varible.
+        BindingSource _inventoryBindingSource;
+        BindingSource _basketBindingSource;
+
+        //Declare an instance a Product class varible for svaing selected item
         Product _selectedItem;
 
-        public ManageCheckoutControl()
+
+        public ManageCheckoutControl(Control control, BindingSource inventoryBindingSource, BindingSource basketBindingSource)
         {
             InitializeComponent();
 
-            //Conect ManageInventoryControl to Contol class and get binding source
-            this.inventoryBindingSource = _control.LoadInventory();
+            //Get and set referans to the Contol class
+            _control = control;
 
             //Conect ManageInventoryControl to Contol class and get binding source
-            this.basketBindingSource = _control.LoadBasket();
+           this._inventoryBindingSource = inventoryBindingSource;
+
+            //Conect ManageInventoryControl to Contol class and get binding source
+            this._basketBindingSource = basketBindingSource;
 
             //Set binding source
-            checkoutDataGrid.DataSource = inventoryBindingSource;
-            basketDataGridView.DataSource = basketBindingSource;
-
-            //Disabel buttons
-            resetCheckoutButtons();
+            checkoutDataGrid.DataSource = _inventoryBindingSource;
+            basketDataGridView.DataSource = _basketBindingSource;
         }
-
+        
         private void buttonAddCheckout_Click(object sender, EventArgs e)
         {
-            var itemNumber = itemNumberSearchextBox.Text;
+            //Declare an instance bool varibels for succes to adding to basket
+            bool succesAdd = true;
 
-            _control.AddToBasket(Convert.ToInt32(itemNumber));
+            //Declare an instance int varibels for try
+            int outNr = 0;
+
+            //check if return radiobutton is checked
+            if (returnRadioButton.Checked == true)
+            {
+                //Check if itemNrTextBox has a value
+                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr))
+                {
+                    //Add prodcut to basket
+                    succesAdd = _control.AddToBasketReturn(outNr);
+
+                    if (succesAdd == false)
+                    {
+                        //Show message that tells user itemnumber is removed
+                        MessageBox.Show(
+                                        "Det gick inte att lägga till försäljningen i varukorgen.\n" +
+                                        "Fler varor såldes inte på det försäljnings ID..",
+                                        "Inte i fler varor sålda",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    //Set itemNrTextBox value is removed
+                    itemNumberSearchextBox.Text = "";
+
+                    //Show message that tells user itemnumber is removed
+                    MessageBox.Show(
+                                    "Det gick inte att lägga till försäljningen.\n" +
+                                    "Försäljnings ID är borttaget.\n" +
+                                    "Försäljnings ID måste anges i siffror",
+                                    "Försäljnings ID borttagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+
+                //Check if itemNrTextBox has a value
+                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr))
+                {
+                    //Add prodcut to basket
+                    succesAdd = _control.AddToBasketBuy(outNr);
+
+                    if (succesAdd == false)
+                    {
+                        //Show message that tells user itemnumber is removed
+                        MessageBox.Show(
+                                        "Det gick inte att lägga till varan i varukorgen.\n" +
+                                        "Varan är slut på lagret.",
+                                        "Inte i lager",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    //Set itemNrTextBox value is removed
+                    itemNumberSearchextBox.Text = "";
+
+                    //Show message that tells user itemnumber is removed
+                    MessageBox.Show(
+                                    "Det gick inte att lägga till varan.\n" +
+                                    "Varunummer är borttaget.\n" +
+                                    "Varunummer måste anges i siffror",
+                                    "Varunummer borttagen",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+            }
 
             //Show uppdate in list
-            basketBindingSource.ResetCurrentItem();
+            _basketBindingSource.ResetCurrentItem();
         }
 
         private void buttonRemoveCheckout_Click(object sender, EventArgs e)
         {
+            if (! (basketDataGridView.SelectedRows.Count < 1))
+            {
+                var itemInBasket = (SaleInfo)basketDataGridView.SelectedRows[0].DataBoundItem;
+
+                if (itemInBasket != null)
+                    _control.RemoveFromBasket(itemInBasket);
+            }
 
         }
 
         private void buttonBuyCheckout_Click(object sender, EventArgs e)
         {
+            if (returnRadioButton.Checked == true)
+            {
+                _control.Return();
+            }
+            else
+            {
+                _control.Purchase();
+
+            }
+
+            //Show uppdate in list
+            _inventoryBindingSource.ResetCurrentItem();
 
         }
 
-        private void radioButtonBuy_CheckedChanged(object sender, EventArgs e)
+        private void buyRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonBuy.Checked == true)
+            if (buyRadioButton.Checked == true)
             {
+                SearcIDhLabel.Text = "Varunummer";
                 buttonBuyCheckout.Text = "Köp";
+                checkoutDataGrid.Enabled = true;
             }
         }
 
@@ -67,7 +167,9 @@ namespace Laboration_4
         {
             if (returnRadioButton.Checked == true)
             {
+                SearcIDhLabel.Text = "Försäljnings ID";
                 buttonBuyCheckout.Text = "Återköp";
+                checkoutDataGrid.Enabled = false;
             }
         }
 
