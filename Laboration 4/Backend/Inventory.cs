@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using Laboration_4.Backend;
 
 namespace Laboration_4
 {
@@ -24,28 +25,7 @@ namespace Laboration_4
             _inventoryBindingSource = new BindingSource(_inventoryList, null);
 
         }
-        public BindingSource InventoryLoad()
-        {
-            //Start upp reding from CVS file
-            using (var reader = new StreamReader(@"..\..\Database\inventory.csv"))
-            {
-                //Get rows and split into data from CVS file
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
 
-                    //Create new prodokts and add produkts to inventoryList
-                    if (values.Length == 11)
-                    {
-                        Product NewProduct = new Product(values[0], SetItemID(values[1]), values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]);
-
-                        _inventoryList.Add(NewProduct);
-                    }
-                }
-            }
-            return _inventoryBindingSource;
-        }
         public bool DeviveryQuantityAdd(int itemNumber, int quantity)
         {
             Product _product = ProductIDSearch(itemNumber);
@@ -59,11 +39,6 @@ namespace Laboration_4
             }
 
             return false;
-        }
-
-        public void InventorySave()
-        {
-            //TODO
         }
 
         public void ProductAdd(Product newProduct)
@@ -92,7 +67,6 @@ namespace Laboration_4
                 return true;
             }
             return false;
-
         }
 
         internal void ProductSearch(string type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
@@ -103,12 +77,9 @@ namespace Laboration_4
             //Check and add search data
             if (!string.IsNullOrEmpty(type))
             {
-                var searchType = GetType(type);
+                var searchType = Helper.GetType(type);
                 filteredList = filteredList.Where(i => i.Type == searchType).ToList();
             }
-
-            //if (itemNumber > 0)
-            //    filteredList = filteredList.Where(i => i.ItemNumber == itemNumber).ToList();
 
             if (itemNumber > 0)
                 filteredList = filteredList.Where(i => $"{i.ItemNumber}".ToLower().Contains($"{itemNumber}".ToLower())).ToList();
@@ -146,6 +117,7 @@ namespace Laboration_4
 
         internal void ProductClearSearch()
         {
+            //Reset datagrids source
             _inventoryBindingSource.DataSource = _inventoryList;
         }
 
@@ -203,17 +175,60 @@ namespace Laboration_4
             
         }
 
-        private Type GetType(string type)
+        public BindingSource InventoryLoad()
         {
-            if (type == "Bok")
-                return Type.Bok;
-            else if (type == "DVD")
-                return Type.DVD;
-            else if (type == "Spel")
-                return Type.Spel;
+            //Check file
+            if (!Helper.dataFileCheck(@"..\..\Database\inventory.csv"))
+            {
+                return _inventoryBindingSource;
+            }
 
-            throw new Exception("Type does not exists");
+            //Start upp reding from CVS file
+            using (var reader = new StreamReader(@"..\..\Database\inventory.csv"))
+            {
+                //Get rows and split into data from CVS file
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
 
+                    //Create new prodokts and add produkts to inventoryList
+                    if (values.Length == 11)
+                    {
+                        Product NewProduct = new Product(values[0], SetItemID(values[1]), values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]);
+
+                        _inventoryList.Add(NewProduct);
+                    }
+                }
+            }
+            return _inventoryBindingSource;
+        }
+
+        public void InventorySave()
+        {
+            //Check file
+            Helper.dataFileCheck(@"..\..\Database\inventory.csv");
+
+            //Open file
+            using (var writer = new StreamWriter(@"..\..\Database\inventory.csv"))
+            {
+                //Write all items from inventory list
+                foreach (var item in _inventoryList)
+                {
+                    writer.WriteLine(
+                        $"{item.Type}," +
+                        $"{item.ItemNumber}," +
+                        $"{item.Name}," +
+                        $"{item.Price}," +
+                        $"{item.Quantity}," +
+                        $"{item.Author}," +
+                        $"{item.Genre}," +
+                        $"{item.Format}," +
+                        $"{item.Language}," +
+                        $"{item.Platform}," +
+                        $"{item.Playtime}");
+                }
+            }
         }
     }
 }

@@ -31,10 +31,14 @@ namespace Laboration_4
             _inventory = inventory;
         }
 
-
         public void Purchase()
         {
             _selling.BuyItemsInBasket();
+        }
+
+        public void ClearBasket()
+        {
+            _selling.ClearBasket();
         }
 
         public bool AddToBasketBuy(int itemNumber)
@@ -106,11 +110,24 @@ namespace Laboration_4
         public BindingSource LoadInventory()
         {
             return _inventory.InventoryLoad();
+            
+        }
+
+        public BindingSource LoadSaleHistory()
+        {
+            return _selling.SaleHistoryLoad();
         }
 
         public BindingSource LoadBasket()
         {
             return _selling.BasketLoad();
+        }
+
+
+        public void Save()
+        {
+            _inventory.InventorySave();
+            _selling.SaleHistorySave();
         }
 
     }

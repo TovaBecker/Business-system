@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using Laboration_4.Backend;
+using System.Threading.Tasks;
 
 namespace Laboration_4
 {
@@ -16,6 +18,9 @@ namespace Laboration_4
         BindingSource _basketBindingSource;
         BindingSource _saleInfoBindingSource;
         private Inventory _inventory;
+
+        //Declare an instance int variabl
+        int saleId = 1;
 
         public Selling(Inventory inventory)
         {
@@ -74,33 +79,22 @@ namespace Laboration_4
 
         public bool AddToBasketReturn(int saleID)
         {
+            //Find the sale
             SaleInfo _sale = SaleIDSearch(saleID);
 
-            var itemInBasket = _basketList.FirstOrDefault(b => b.SaleID == saleID);
-
-            if (itemInBasket != null)
+            //Chack if sale exist and not returned
+            if (_sale != null && _sale.Status == Status.Bought)
             {
-                var index = _basketList.IndexOf(itemInBasket);
-
-                //Check that we have more product
-                if (_basketList[index].Quantity < _sale.Quantity)
-                {
-                    _basketList[index].Quantity++;
-                }
-                else
-                {
-                    return false;
-                }
-
+                //Add sale to the return basket
+                _basketList.Add(_sale);
             }
             else
             {
-                if (_sale.Quantity > 0)
-                {
-                    SaleInfo saleInfo = new SaleInfo(_sale.Type, _sale.ItemNumber, _sale.Name, _sale.Price, 1, _sale.Date, _sale.SaleID, Status.InBasket);
-                    _basketList.Add(saleInfo);
-                }
+                //If sale do not exist retun false
+                return false;
             }
+
+            //If product exist return true
             return true;
         }
 
@@ -118,7 +112,7 @@ namespace Laboration_4
                 _inventory.ReduceStock(item.ItemNumber, item.Quantity);
             }
 
-            _basketList.Clear();
+            ClearBasket();
         }
 
         public void ReturnItemsInBasket()
@@ -129,14 +123,13 @@ namespace Laboration_4
                 {
                     if (saleInfo.SaleID == item.SaleID)
                     {
-                        UppdateSaleInfoList(item.SaleID, item.Quantity);
                         saleInfo.Status = Status.Repuchased;
                         _inventory.IncreaseStock(item.SaleID, item.Quantity);
                     }
                 }
             }
 
-            _basketList.Clear();
+            ClearBasket();
         }
 
         public void UppdateSaleInfoList(int saleID, int quantity)
@@ -157,7 +150,6 @@ namespace Laboration_4
 
         private int GetSaleId()
         {
-            var saleId = 0;
             foreach(var saleInfo in _basketList)
             {
                 if(saleInfo.SaleID > saleId)
@@ -166,6 +158,64 @@ namespace Laboration_4
                 }
             }
             return saleId++;
+        }
+
+        public void ClearBasket()
+        {
+            _basketList.Clear();
+        }
+
+        public BindingSource SaleHistoryLoad()
+        {
+            //Check file
+            if (!Helper.dataFileCheck(@"..\..\Database\saleHistory.csv"))
+            {
+                return _saleInfoBindingSource;
+            }
+
+            //Start upp reding from CVS file
+            using (var reader = new StreamReader(@"..\..\Database\saleHistory.csv"))
+            {
+                //Get rows and split into data from CVS file
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    //Create new prodokts and add produkts to inventoryList
+                    if (values.Length == 8)
+                    {
+                        SaleInfo saleInfo = new SaleInfo(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
+
+                        _saleInfoList.Add(saleInfo);
+                    }
+                }
+            }
+            return _saleInfoBindingSource;
+        }
+
+        public void SaleHistorySave()
+        {
+            //Check file
+            Helper.dataFileCheck(@"..\..\Database\saleHistory.csv");
+
+            //Open file
+            using (var writer = new StreamWriter(@"..\..\Database\saleHistory.csv"))
+            {
+                //Write all items from inventory list
+                foreach (var item in _saleInfoList)
+                {
+                    writer.WriteLine(
+                        $"{item.Type}," +
+                        $"{item.ItemNumber}," +
+                        $"{item.Name}," +
+                        $"{item.Price}," +
+                        $"{item.Quantity}," +
+                        $"{item.Date}," +
+                        $"{item.SaleID}," +
+                        $"{item.Status}") ;
+                }
+            }
         }
     }
 }

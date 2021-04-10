@@ -48,7 +48,6 @@
             this.MainTab.SelectedIndex = 0;
             this.MainTab.Size = new System.Drawing.Size(800, 421);
             this.MainTab.TabIndex = 0;
-            this.MainTab.Click += new System.EventHandler(this.MainTab_Click);
             // 
             // CheckoutTab
             // 
@@ -98,6 +97,7 @@
             this.MinimumSize = new System.Drawing.Size(620, 460);
             this.Name = "MainForm";
             this.Text = "Affärssystemet Mia";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTab.ResumeLayout(false);
             this.ResumeLayout(false);

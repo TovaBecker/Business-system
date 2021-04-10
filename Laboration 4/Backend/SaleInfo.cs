@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Laboration_4.Backend;
 
 namespace Laboration_4
 {
@@ -32,6 +33,17 @@ namespace Laboration_4
             Date = date;
             SaleID = saleID ;
             Status = status;
+        }
+        public SaleInfo(string type, string itemNumber, string name, string price, string quantity, string date, string saleID, string status)
+        {
+            Type = Helper.GetType(type);
+            ItemNumber = Helper.ConvertInteger(itemNumber);
+            Name = name;
+            Price = Helper.ConvertDouble(price);
+            Quantity = Helper.ConvertInteger(quantity);
+            Date = Helper.ConvertDate(date);
+            SaleID = Helper.ConvertInteger(saleID);
+            Status = Helper.GetStatus(status);
         }
 
         public Type Type

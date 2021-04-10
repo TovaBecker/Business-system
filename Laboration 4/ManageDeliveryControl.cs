@@ -25,64 +25,96 @@ namespace Laboration_4
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            deliveryTextBox.Text = "";
+            //Clear textbox 
+            clearTextBox();
         }
 
         private void addDeliverButton_Click(object sender, EventArgs e)
         {
-            //Declare a bool varibel for sucess
-            bool _success;
-
             //Declare a int varibel for counting error in list
             int _errorQuantity = 0;
-
-            //Save the text in textbox to a string varible
-            string text = deliveryTextBox.Text;
-
-            //create string array that saves input that did not go in
-            string[] errorInput;
 
             //Split text into a array with a product itemnumer and quantity in same row
             string[] allLines = deliveryTextBox.Text.Split('\n');
 
+            //Declare a string varibel for error message
+            string errorText = $"Dessa leveranser las inte in:";
+            string errorLines = "";
+
             foreach (string line in allLines)
             {
-                //Split row into a array with itemnumer and quantity
-                string[] row = deliveryTextBox.Text.Split(',');
-
-                try
+                if (line != errorText)
                 {
-                    //Declare two int instance
-                    int _itemnumer = int.Parse(row[0]);
-                    int _quantity = int.Parse(row[1]);
+                    //Split row into a array with itemnumer and quantity
+                    string[] row = line.Split(',');
 
-                    //Add product
-                    _success = _control.Delivery(_itemnumer, _quantity);
+                    try
+                    {
+                        if (row.Count() == 2)
+                        {
+                            //Declare two int instance
+                            int _itemnumer = int.Parse(row[0]);
+                            int _quantity = int.Parse(row[1]);
+
+                            //Add product
+                            if (_control.Delivery(_itemnumer, _quantity) == false)
+                            {
+                                throw new Exception("Inte rätt värden");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Inte rätt värden");
+                        }
+                    }
+                    catch
+                    {
+                        errorLines = $"{errorLines}\n{line}";
+
+                        _errorQuantity++;
+                    }
                 }
-                catch
-                {
-                    //errorInput[_errorQuantity] = $"{row[0]}, { row[1]}";
-
-                    _errorQuantity++;
-                }
-
-
-                //if(_success == false)
-                //{
-                //    errorInput[_errorQuantity] = $"{row[0]}, { row[1]}";
-
-                //    _errorQuantity++;
-                //}
             }
 
-            //deliveryTextBox.Text = $"Dessa las inte in: \n";
-            //foreach (string line in errorInput)
-            //{
+            //Check if there is anny error in input
+            if( 0 < _errorQuantity)
+            {
+                if(1 == _errorQuantity)
+                {
+                    //Show message that tells user itemnumber is removed
+                    MessageBox.Show(
+                                    $"Det gick inte att uppdatera {_errorQuantity} rad.\n" +
+                                    "Varunummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Kontrollera raden som visas i fönstret.",
+                                    "Kontrollera inmatning",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Show message that tells user itemnumber is removed
+                    MessageBox.Show(
+                                    $"Det gick inte att uppdatera {_errorQuantity} rader.\n" +
+                                    "Varunummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Kontrollera raderna som visas i fönstret.",
+                                    "Kontrollera inmatning",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
 
-            //    deliveryTextBox.Text = $"{deliveryTextBox.Text}{errorInput[line]}\n";
-   
+                //Print out error resualt to user
+                deliveryTextBox.Text = errorText + errorLines;
+            }
+            else
+            {
+                //Clear textbox 
+                clearTextBox();
+            }
+        }
 
-            //}
+        private void clearTextBox()
+        {
+            deliveryTextBox.Text = "";
         }
     }
 }

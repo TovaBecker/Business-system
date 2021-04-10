@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Backend\Control.cs" />
     <Compile Include="Backend\Basket.cs" />
+    <Compile Include="Backend\Helper.cs" />
     <Compile Include="Backend\Status.cs" />
     <Compile Include="Frontend\MainForm.cs">
       <SubType>Form</SubType>

@@ -41,7 +41,7 @@ namespace Laboration_4
             // 
             this.deliveryLabel.AutoSize = true;
             this.deliveryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deliveryLabel.Location = new System.Drawing.Point(16, 13);
+            this.deliveryLabel.Location = new System.Drawing.Point(14, 13);
             this.deliveryLabel.Name = "deliveryLabel";
             this.deliveryLabel.Size = new System.Drawing.Size(82, 20);
             this.deliveryLabel.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace Laboration_4
             this.deliveryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deliveryTextBox.Location = new System.Drawing.Point(20, 78);
+            this.deliveryTextBox.Location = new System.Drawing.Point(18, 78);
             this.deliveryTextBox.Name = "deliveryTextBox";
             this.deliveryTextBox.Size = new System.Drawing.Size(491, 292);
             this.deliveryTextBox.TabIndex = 1;
@@ -84,7 +84,7 @@ namespace Laboration_4
             // 
             this.infoTextLabel.AutoSize = true;
             this.infoTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoTextLabel.Location = new System.Drawing.Point(17, 58);
+            this.infoTextLabel.Location = new System.Drawing.Point(15, 58);
             this.infoTextLabel.Name = "infoTextLabel";
             this.infoTextLabel.Size = new System.Drawing.Size(125, 17);
             this.infoTextLabel.TabIndex = 4;
@@ -93,12 +93,12 @@ namespace Laboration_4
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(17, 33);
+            this.infoLabel.Location = new System.Drawing.Point(15, 33);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(436, 13);
+            this.infoLabel.Size = new System.Drawing.Size(412, 13);
             this.infoLabel.TabIndex = 5;
-            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett varunummer och antal (323, " +
-    "5) per rad).";
+            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett varunummer, antal (323,5) p" +
+    "er rad.";
             // 
             // ManageDeliveryControl
             // 

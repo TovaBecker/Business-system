@@ -14,9 +14,9 @@ namespace Laboration_4
     {
         //Data sourses for the progam
         BindingSource _inventoryBindingSource;
+        BindingSource _saleHistoryBindingSource;
         BindingSource _basketBindingSource;
         Control _control = new Control();
-
 
         public MainForm()
         {
@@ -42,8 +42,24 @@ namespace Laboration_4
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _inventoryBindingSource = _control.LoadInventory();
-            _basketBindingSource = _control.LoadBasket();
+            try
+            {
+                _inventoryBindingSource = _control.LoadInventory();
+                _saleHistoryBindingSource = _control.LoadSaleHistory();
+                _basketBindingSource = _control.LoadBasket();
+            }
+            catch (Exception error)
+            {
+                //Show message that tells user file is not availebled
+                MessageBox.Show(
+                                $"{error.Message}",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                //Close the program
+                Application.Exit();
+            }
 
             ManageInventoryControl inventory = new ManageInventoryControl(_control, _inventoryBindingSource);
             inventory.Dock = DockStyle.Fill;
@@ -62,8 +78,9 @@ namespace Laboration_4
             StatisticsTab.Controls.Add(statistics);
         }
         
-        private void MainTab_Click(object sender, EventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _control.Save();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Laboration_4.Backend;
 
 namespace Laboration_4
 {
@@ -31,49 +32,19 @@ namespace Laboration_4
 
         public Product( string type, int itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
-            //Declare an instance int varibels for try
-            int outQuantity = 0;
-            int outPlaytime = 0;
-
             //Set values
-            Type = GetType(type);
+            Type = Helper.GetType(type);
             ItemNumber = itemNumber;
             Name = name;
+            Price = Helper.ConvertDouble(price);
+            Quantity = Helper.ConvertInteger(quantity);
             Author = author;
             Genre = genre;
             Format = format;
             Language = language;
             Platform = platform;
+            Playtime = Helper.ConvertInteger(playtime);
 
-            //Check if price value is a double value or set it too zero
-            try
-            {
-                Price = price == "" ? 0 : Convert.ToDouble(price);
-            }
-            catch(FormatException)
-            {
-                Price = 0;
-            }
-
-            //Check if quantity value is a int value or set it too zero
-            if (false == int.TryParse(quantity, out outQuantity))
-            {
-                Quantity = 0;
-            }
-            else
-            {
-                Quantity = outQuantity;
-            }
-
-            //Check if playtime value is a int value or set it too zero
-            if (false == int.TryParse(playtime, out outPlaytime))
-            {
-                Playtime = 0;
-            }
-            else
-            {
-                Playtime = outPlaytime;
-            }
         }
 
         public Type Type
@@ -184,19 +155,6 @@ namespace Laboration_4
                 else
                     _playtime = 0;
             }
-        }
-
-        private Type GetType(string type)
-        {
-            if (type == "Bok")
-                return Type.Bok;
-            else if (type == "DVD")
-                return Type.DVD;
-            else if (type == "Spel")
-                return Type.Spel;
-
-            throw new Exception("Type does not exists");
-
         }
        
     }

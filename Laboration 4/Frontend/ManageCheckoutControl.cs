@@ -63,7 +63,7 @@ namespace Laboration_4
                         //Show message that tells user itemnumber is removed
                         MessageBox.Show(
                                         "Det gick inte att lägga till försäljningen i varukorgen.\n" +
-                                        "Fler varor såldes inte på det försäljnings ID..",
+                                        "Fler varor såldes inte på det försäljnings ID.",
                                         "Inte i fler varor sålda",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
@@ -86,7 +86,6 @@ namespace Laboration_4
             }
             else
             {
-
                 //Check if itemNrTextBox has a value
                 if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr))
                 {
@@ -145,32 +144,44 @@ namespace Laboration_4
             else
             {
                 _control.Purchase();
-
             }
 
             //Show uppdate in list
             _inventoryBindingSource.ResetCurrentItem();
-
         }
 
         private void buyRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (buyRadioButton.Checked == true)
             {
+                //Set labels and view for return
                 SearcIDhLabel.Text = "Varunummer";
                 buttonBuyCheckout.Text = "Köp";
-                checkoutDataGrid.Enabled = true;
+                checkoutDataGrid.Visible = true;
+
+                //Remove items in grid
+                _control.ClearBasket();
             }
+
+            //Show uppdate in list
+            _inventoryBindingSource.ResetCurrentItem();
         }
 
         private void returnRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (returnRadioButton.Checked == true)
             {
+                //Set labels and view for return
                 SearcIDhLabel.Text = "Försäljnings ID";
                 buttonBuyCheckout.Text = "Återköp";
-                checkoutDataGrid.Enabled = false;
+                checkoutDataGrid.Visible = false;
+
+                //Remove items in grid
+                _control.ClearBasket();
             }
+
+            //Show uppdate in list
+            _inventoryBindingSource.ResetCurrentItem();
         }
 
         private void checkoutDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -192,9 +203,15 @@ namespace Laboration_4
         {
             try
             {
-                if (0 < int.Parse(itemNumberSearchextBox.Text))
+                if (itemNumberSearchextBox.Text != "")
                 {
-                    buttonAddCheckout.Enabled = true;
+                    if (0 < int.Parse(itemNumberSearchextBox.Text))
+                    {
+                        buttonAddCheckout.Enabled = true;
+
+                        // Remove error if price is a int
+                        itemNumberErrorProviderAdd.SetError(this.itemNumberSearchextBox, "");
+                    }
                 }
             }
             catch (FormatException)
