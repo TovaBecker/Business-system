@@ -101,14 +101,14 @@ namespace Laboration_4
             this.MenuSplitContainer.SplitterDistance = 112;
             this.MenuSplitContainer.TabIndex = 0;
             // 
-            // itemNumberSearchLabel
+            // SearcIDhLabel
             // 
             this.SearcIDhLabel.AutoSize = true;
             this.SearcIDhLabel.Location = new System.Drawing.Point(4, 79);
-            this.SearcIDhLabel.Name = "itemNumberSearchLabel";
-            this.SearcIDhLabel.Size = new System.Drawing.Size(66, 13);
+            this.SearcIDhLabel.Name = "SearcIDhLabel";
+            this.SearcIDhLabel.Size = new System.Drawing.Size(73, 13);
             this.SearcIDhLabel.TabIndex = 4;
-            this.SearcIDhLabel.Text = "Varunummer";
+            this.SearcIDhLabel.Text = "Artikelnummer";
             // 
             // itemNumberSearchextBox
             // 
@@ -131,12 +131,12 @@ namespace Laboration_4
             this.returnRadioButton.UseVisualStyleBackColor = true;
             this.returnRadioButton.CheckedChanged += new System.EventHandler(this.returnRadioButton_CheckedChanged);
             // 
-            // radioButtonBuy
+            // buyRadioButton
             // 
             this.buyRadioButton.AutoSize = true;
             this.buyRadioButton.Checked = true;
             this.buyRadioButton.Location = new System.Drawing.Point(7, 30);
-            this.buyRadioButton.Name = "radioButtonBuy";
+            this.buyRadioButton.Name = "buyRadioButton";
             this.buyRadioButton.Size = new System.Drawing.Size(44, 17);
             this.buyRadioButton.TabIndex = 1;
             this.buyRadioButton.TabStop = true;

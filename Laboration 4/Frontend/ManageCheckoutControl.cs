@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Printing;
 
 namespace Laboration_4
 {
@@ -22,6 +24,9 @@ namespace Laboration_4
         //Declare an instance a Product class varible for svaing selected item
         Product _selectedItem;
 
+        //Declare instance for printing receipt
+        private Font receiptFont;
+        private StreamReader receiptToPrint;
 
         public ManageCheckoutControl(Control control, BindingSource inventoryBindingSource, BindingSource basketBindingSource)
         {
@@ -144,6 +149,10 @@ namespace Laboration_4
             else
             {
                 _control.Purchase();
+
+                //Print the receipt for the buy to the user
+                printReceipt();
+
             }
 
             //Show uppdate in list
@@ -227,6 +236,61 @@ namespace Laboration_4
             buttonAddCheckout.Enabled = false;
             buttonRemoveCheckout.Enabled = false;
             buttonBuyCheckout.Enabled = false;
+        }
+        
+        private void printReceipt()
+        {
+        try
+            {
+                receiptToPrint = new StreamReader
+                   (@"..\..\Receipt\Receipt.htm");
+                try
+                {
+                    receiptFont = new Font("Arial", 10);
+                    PrintDocument receipt = new PrintDocument();
+                    receipt.PrintPage += new PrintPageEventHandler(this.receipt_PrintPage);
+                    receipt.Print();
+                }
+                finally
+                {
+                    receiptToPrint.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void receipt_PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            float linesPerPage = 0;
+            float yPos = 0;
+            int count = 0;
+            float leftMargin = ev.MarginBounds.Left;
+            float topMargin = ev.MarginBounds.Top;
+            string line = null;
+
+            // Calculate the number of lines per page.
+            linesPerPage = ev.MarginBounds.Height /
+               receiptFont.GetHeight(ev.Graphics);
+
+            // Print each line of the file.
+            while (count < linesPerPage &&
+               ((line = receiptToPrint.ReadLine()) != null))
+            {
+                yPos = topMargin + (count *
+                   receiptFont.GetHeight(ev.Graphics));
+                ev.Graphics.DrawString(line, receiptFont, Brushes.Black,
+                   leftMargin, yPos, new StringFormat());
+                count++;
+            }
+
+            // If more lines exist, print another page.
+            if (line != null)
+                ev.HasMorePages = true;
+            else
+                ev.HasMorePages = false;
         }
     }
 }

@@ -129,6 +129,16 @@ namespace Laboration_4
             _inventory.InventorySave();
             _selling.SaleHistorySave();
         }
+        
+        public BindingSource GetTopTen(DateTime from, DateTime to)
+        {
+            return _selling.GetTopTen(from, to);
+        }
+
+        public Dictionary<string, int> GetTotalSale(DateTime from, DateTime to)
+        {
+            return _selling.GetTotalSale(from, to);
+        }
 
     }
 }

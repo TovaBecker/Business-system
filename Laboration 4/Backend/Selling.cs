@@ -15,8 +15,10 @@ namespace Laboration_4
         //Data sourses for the progam
         BindingList<SaleInfo> _basketList;
         BindingList<SaleInfo> _saleInfoList;
+        BindingList<TopTen> _topTenList;
         BindingSource _basketBindingSource;
         BindingSource _saleInfoBindingSource;
+        BindingSource _topTenBindingSource;
         private Inventory _inventory;
 
         //Declare an instance int variabl
@@ -30,6 +32,9 @@ namespace Laboration_4
             _inventory = inventory;
             _saleInfoList = new BindingList<SaleInfo>();
             _saleInfoBindingSource = new BindingSource(_saleInfoList, null);
+            _topTenList = new BindingList<TopTen>();
+            _topTenBindingSource = new BindingSource(_topTenList, null);
+
 
         }
 
@@ -111,7 +116,10 @@ namespace Laboration_4
                 _saleInfoList.Add(item);
                 _inventory.ReduceStock(item.ItemNumber, item.Quantity);
             }
+            //Save buy for receipt
+            ReceiptSave();
 
+            //Clear basket
             ClearBasket();
         }
 
@@ -129,6 +137,7 @@ namespace Laboration_4
                 }
             }
 
+            //Clear basket
             ClearBasket();
         }
 
@@ -162,6 +171,7 @@ namespace Laboration_4
 
         public void ClearBasket()
         {
+            //Remove the content in basket
             _basketList.Clear();
         }
 
@@ -216,6 +226,98 @@ namespace Laboration_4
                         $"{item.Status}") ;
                 }
             }
+        }
+        public void ReceiptSave()
+        {
+            //Declare a double instance
+            double sumTotal = 0;
+            //Check file
+            Helper.dataFileCheck(@"..\..\Receipt\Receipt.htm");
+
+            //Open file
+            using (var writer = new StreamWriter(@"..\..\Receipt\Receipt.htm", false, System.Text.Encoding.UTF8))
+            {
+                //Write the receipt header
+                writer.WriteLine($"<html><h1>Receipt</h1>\n { DateTime.Now}");
+                writer.WriteLine($"");
+
+                //Write the columns header
+                writer.WriteLine($"Försäljnings ID\t" +
+                        $"Artikelnummer\t" +
+                        $"Namn\t" +
+                        $"Antal\t" +
+                        $"Pris\t" +
+                        $"Summa");
+
+                //Write all items from basket list
+                foreach (var item in _basketList)
+                {
+                    writer.WriteLine(
+                        $"{item.SaleID}\t" +
+                        $"{item.ItemNumber}\t" +
+                        $"{item.Type}, {item.Name}\t" +
+                        $"{item.Quantity}\t" +
+                        $"{item.Price}\t" +
+                        $"{item.Quantity * item.Price}");
+
+                    //Add line sum to the total sum
+                    sumTotal += item.Quantity * item.Price;
+                }
+
+                //Write the receipt total sum
+                writer.WriteLine(
+                        $"\t" +
+                        $"\t" +
+                        $"\t" +
+                        $"\t" +
+                        $"Totalt: \t" +
+                        $"{sumTotal.ToString("#.##")}</html>");
+
+            }
+        }
+
+        public BindingSource GetTopTen(DateTime from, DateTime to)
+        {
+            _topTenList.Clear();
+            foreach (var item in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)))
+            {
+
+                var topTenValue = _topTenList.FirstOrDefault(t => t.ItemNumber == item.ItemNumber);
+                if (topTenValue != null)
+                {
+                    int index = _topTenList.IndexOf(topTenValue);
+                    _topTenList[index].Quantity += item.Quantity;
+                }
+                else
+                {
+                    _topTenList.Add(new TopTen(item.ItemNumber, item.Name, item.Quantity));
+                }
+
+            }
+            return _topTenBindingSource;
+        }
+
+        public Dictionary<string, int> GetTotalSale(DateTime from, DateTime to)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            foreach(var item in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)))
+            {
+                //Declare an string instance for the date format
+                string date = item.Date.ToString("Y");
+                
+                if (dictionary.ContainsKey(date))
+                {
+                    dictionary[date] += item.Quantity;
+                }
+                else
+                {
+                    dictionary[date] = item.Quantity;
+                }
+                
+            }
+
+            return dictionary;
         }
     }
 }

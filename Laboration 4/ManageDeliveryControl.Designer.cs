@@ -88,7 +88,7 @@ namespace Laboration_4
             this.infoTextLabel.Name = "infoTextLabel";
             this.infoTextLabel.Size = new System.Drawing.Size(125, 17);
             this.infoTextLabel.TabIndex = 4;
-            this.infoTextLabel.Text = "Varunnumer, antal";
+            this.infoTextLabel.Text = "Artikelnummer, antal";
             // 
             // infoLabel
             // 
@@ -97,7 +97,7 @@ namespace Laboration_4
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.Size = new System.Drawing.Size(412, 13);
             this.infoLabel.TabIndex = 5;
-            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett varunummer, antal (323,5) p" +
+            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett artikelnummer, antal (323,5) p" +
     "er rad.";
             // 
             // ManageDeliveryControl

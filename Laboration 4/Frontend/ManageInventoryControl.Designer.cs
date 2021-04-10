@@ -169,7 +169,7 @@ namespace Laboration_4
             this.itemNrLabel.Name = "itemNrLabel";
             this.itemNrLabel.Size = new System.Drawing.Size(99, 27);
             this.itemNrLabel.TabIndex = 0;
-            this.itemNrLabel.Text = "Varunummer";
+            this.itemNrLabel.Text = "Artikelnummer";
             // 
             // namLabel
             // 

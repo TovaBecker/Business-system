@@ -1,0 +1,6 @@
+<b>Receipt</b>
+ 2021-04-10 16:19:16
+
+Försäljnings ID	Artikelnummer	Namn	Antal	Pris	Summa
+1	1	Bok, Commentarii de Bello Gallico et Civili	1	449	449
+				Totalt: 	449

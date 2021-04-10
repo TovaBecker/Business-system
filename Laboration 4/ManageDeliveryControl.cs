@@ -84,7 +84,7 @@ namespace Laboration_4
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
                                     $"Det gick inte att uppdatera {_errorQuantity} rad.\n" +
-                                    "Varunummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Artikelnummer och antal måste anges i siffror med komma emellan.\n" +
                                     "Kontrollera raden som visas i fönstret.",
                                     "Kontrollera inmatning",
                                     MessageBoxButtons.OK,
@@ -95,7 +95,7 @@ namespace Laboration_4
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
                                     $"Det gick inte att uppdatera {_errorQuantity} rader.\n" +
-                                    "Varunummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Artikelnummer och antal måste anges i siffror med komma emellan.\n" +
                                     "Kontrollera raderna som visas i fönstret.",
                                     "Kontrollera inmatning",
                                     MessageBoxButtons.OK,

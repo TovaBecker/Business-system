@@ -73,7 +73,7 @@ namespace Laboration_4
             delivery.Dock = DockStyle.Fill;
             deliveryTab.Controls.Add(delivery);
 
-            ManageStatisticsControl statistics = new ManageStatisticsControl();
+            ManageStatisticsControl statistics = new ManageStatisticsControl(_control);
             statistics.Dock = DockStyle.Fill;
             StatisticsTab.Controls.Add(statistics);
         }
