@@ -43,8 +43,8 @@ namespace Laboration_4
         private void buttonAddInventory_Click(object sender, EventArgs e)
         {
             //Declare an instance int varibels for try
-            int outItemNr = 0; 
-            int outPrice = 0; 
+            int outItemNr = 0;
+            double outPrice = 0;
             int outQuantity = 0;
             int outPlaytime = 0;
 
@@ -55,21 +55,21 @@ namespace Laboration_4
                 if (false == int.TryParse(itemNrTextBox.Text, out outItemNr) || int.Parse(itemNrTextBox.Text) < 1)
                 {
                     //Update product
-                   int ID =  _control.FindID();
+                    int ID = _control.FindID();
 
                     //Set itemNrTextBox value to 0
                     itemNrTextBox.Text = $"{ID}";
 
                     //Show message that tells user prodoct price is set to zero
                     MessageBox.Show(
-                                    $"Varunummer är satt till ett nytt id {ID} beroende på att det angivna värdet var felaktigt",
+                                    $"Artikelnummer är satt till ett nytt id {ID} beroende på att det angivna värdet var felaktigt",
                                     "Info",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                 }
 
                 //Check if quantity value is a int value or set it too zero
-                if (false == int.TryParse(priceTextBox.Text, out outPrice))
+                if (false == double.TryParse(priceTextBox.Text, out outPrice))
                 {
                     //Set priceTextBox value to 0
                     priceTextBox.Text = "0";
@@ -110,11 +110,24 @@ namespace Laboration_4
                                     MessageBoxIcon.Warning);
                 }
 
+
                 //Add new product
                 Product NewProduct = fetchProduct();
 
                 //Add new product
-                _control.NewProduct(NewProduct);
+                Product addProduct = _control.NewProduct(NewProduct);
+
+                //Check if product item number is the same as input
+                if (addProduct.ItemNumber != NewProduct.ItemNumber)
+                {
+                    //Show message that tells user prodoct is added with another ID
+                    MessageBox.Show(
+                                    $"Atriklen är tillagd med ett annat nummer ({addProduct.ItemNumber})." +
+                                    $"Nummret du angav är taget av en annan artikel",
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }
 
                 //Go through data and set buttons 
                 dataChanged();
@@ -123,7 +136,7 @@ namespace Laboration_4
             {
                 //Show message that tells user prodoct is added
                 MessageBox.Show(
-                                "Du behöver lägga in namn och välja typ för att lägga til en ny vara",
+                                "Du behöver lägga in namn och välja typ för att lägga til en ny artikel",
                                 "Info",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -132,23 +145,36 @@ namespace Laboration_4
 
         private void buttonUpdateInventory_Click(object sender, EventArgs e)
         {
-            //Declare item nubers as int
+            //Declare and initziera two int varibles and one doubel varible
             int _itemNumber = 0;
-            int _number = 0;
+            int _numberInt = 0;
+            double _numberDouble = 0;
 
-            //If there is a value in item number set number
+            //Check if there is a value in item number 
             if (itemNrTextBox.Text != "")
             {
                 try
                 {
                     //Set itemnnumber
                     _itemNumber = int.Parse(itemNrTextBox.Text);
+
+                    //Check if value is in allowed span
+                    if (0 <= _itemNumber && _itemNumber <= int.MaxValue)
+                    {
+                        //DO nothing
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
                 }
                 catch
                 {
-                    //Show message that tells user prodoct price is set to zero
+                    //Show message that tells user prodoct item number is not updated
                     MessageBox.Show(
-                                    "Varan uppdaterades inte beroende på att varunummret är felaktigt",
+                                    "Artikel uppdaterades inte beroende på att artikelnummer är felaktigt." +
+                                    $"Artikelnummeret måste vara emellan 0 - {int.MaxValue}.",
                                     "Info",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
@@ -156,13 +182,24 @@ namespace Laboration_4
                 try
                 {
                     //Set number
-                    _number = int.Parse(priceTextBox.Text);
+                    _numberDouble = double.Parse(priceTextBox.Text);
+
+                    //Check if value is in allowed span
+                    if (0 <= _numberDouble && _numberDouble <= double.MaxValue)
+                    {
+                        //DO nothing
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
                 catch
                 {
-                    //Show message that tells user prodoct price is set to zero
+                    //Show message that tells user prodoct price is not updated
                     MessageBox.Show(
-                                    "Priset uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Priset uppdaterades inte beroende på att det angivna värdet är felaktigt" +
+                                    $"Priset måste vara emellan 0 - {double.MaxValue}.",
                                     "Info",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
@@ -170,37 +207,68 @@ namespace Laboration_4
                 try
                 {
                     //Set number
-                    _number = int.Parse(quantityTextBox.Text);
+                    _numberInt = int.Parse(quantityTextBox.Text);
+
+                    //Check if value is in allowed span
+                    if (0 <= _numberInt && _numberInt <= int.MaxValue)
+                    {
+                        //DO nothing
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
                 catch
                 {
-                    //Show message that tells user prodoct price is set to zero
+                    //Show message that tells user prodoct quantity is not updated
                     MessageBox.Show(
-                                    "Antal uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Antal uppdaterades inte beroende på att det angivna värdet är felaktigt" +
+                                    $"Antal måste vara emellan 0 - {int.MaxValue}.",
                                     "Info",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                 }
                 try
                 {
-                    if(typeComboBox.SelectedItem == "DVD")
+                    if (typeComboBox.SelectedItem == "DVD")
                     {
                         //Set number
-                        _number = int.Parse(data1TextBox.Text);
+                        _numberInt = int.Parse(data1TextBox.Text);
+
+                        //Check if value is in allowed span
+                        if (0 <= _numberInt && _numberInt <= int.MaxValue)
+                        {
+                            //DO nothing
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
                     }
-                    
+
                 }
                 catch
                 {
-                    //Show message that tells user prodoct price is set to zero
+                    //Show message that tells user prodoct playtime is not updated
                     MessageBox.Show(
-                                    "Speltiden uppdaterades inte beroende på att det angivna värdet är felaktigt",
+                                    "Speltiden uppdaterades inte beroende på att det angivna värdet är felaktigt" +
+                                    $"Speltiden måste vara emellan 0 - {int.MaxValue}.",
                                     "Info",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                 }
             }
-
+            else
+            {
+                //Show message that tells itemnumber is needed prodoct price is set to zero
+                MessageBox.Show(
+                                "Artikel uppdaterades inte." +
+                                "Du måste ange artikelnummer för att uppdatera artikel.",
+                                "Uppdaerades inte",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+            }
             if (null != _control.Search(_itemNumber))
             {
                 //Get data
@@ -209,6 +277,8 @@ namespace Laboration_4
                 //Update product
                 _control.UpdateProduct(UpdateProduct);
             }
+
+
 
             //Show uppdate in list
             _inventoryBindingSource.ResetCurrentItem();
@@ -238,7 +308,7 @@ namespace Laboration_4
                 {
                     //Show message that tells user it did not enter a itemnumber
                     MessageBox.Show(
-                                    "Du angav inte ett varunummer",
+                                    "Du angav inte ett artikelnummer",
                                     "Error",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
@@ -247,7 +317,7 @@ namespace Laboration_4
             catch (FormatException)
             {
                 // Set the error if price is not a int
-                itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
+                itemNumberErrorProvider.SetError(this.itemNrTextBox, "Artikelnummer är endast siffror.");
             }
             var _removeProcuct = _control.Search(_itemNumber);
 
@@ -261,8 +331,8 @@ namespace Laboration_4
                                     "Ta bort produkt",
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
-                    
-                    if(result == DialogResult.Yes)
+
+                    if (result == DialogResult.Yes)
                     {
                         bool sucess = _control.RemoveProduct(_itemNumber);
 
@@ -323,20 +393,20 @@ namespace Laboration_4
             int outQuantity = 0;
             int outPlaytime = 0;
 
-             //Check if itemNrTextBox has a value
-                if (itemNrTextBox.Text != "" && false == int.TryParse(itemNrTextBox.Text, out outItemNr))
-                {
-                    //Set itemNrTextBox value is removed
-                    itemNrTextBox.Text = "";
+            //Check if itemNrTextBox has a value
+            if (itemNrTextBox.Text != "" && false == int.TryParse(itemNrTextBox.Text, out outItemNr))
+            {
+                //Set itemNrTextBox value is removed
+                itemNrTextBox.Text = "";
 
-                    //Show message that tells user prodoct varunummer is removed
-                    MessageBox.Show(
-                                    "Varunummer är borttaget.\n" +
-                                    "Det inte går att söka på det angivna värdet då varunummer måste anges i siffror",
-                                    "Varunummer borttagen.",
+                //Show message that tells user prodoct artikelnummer is removed
+                MessageBox.Show(
+                                    "Artikelnummer är borttaget.\n" +
+                                    "Det inte går att söka på det angivna värdet då artikelnummer måste anges i siffror",
+                                    "Artikelnummer borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
-                }
+            }
 
             //Check if quantity value is a int value or set it too null
             if (priceTextBox.Text != "" && false == int.TryParse(priceTextBox.Text, out outPrice))
@@ -671,7 +741,7 @@ namespace Laboration_4
         }
 
         private void dataChanged()
-       {
+        {
             //Declare item nubers as int
             int _itemNumber = 0;
 
@@ -683,13 +753,13 @@ namespace Laboration_4
                     //Convert itemnumber textbox text to a int
                     _itemNumber = int.Parse(itemNrTextBox.Text);
                 }
-                catch (FormatException)
+                catch
                 {
                     // Set the error if price is not a int
-                    itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
+                    itemNumberErrorProvider.SetError(this.itemNrTextBox, $"Artikelnummer är endast siffror emellan 0 - {int.MaxValue}..");
                 }
             }
-            
+
             if (null != _control.Search(_itemNumber))
             {
                 //Enabel button
@@ -735,15 +805,15 @@ namespace Laboration_4
         }
         private void itemNrTextBox_TextChanged(object sender, EventArgs e)
         {
-            //Check that a row is selected in grid or return with null
-            if (0 < inventoryDataGrid.SelectedRows.Count)
+            try
             {
-                //Get selected product from row
-                var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
-
-                if (product != null)
+                //Check that a row is selected in grid or return with null
+                if (0 < inventoryDataGrid.SelectedRows.Count)
                 {
-                    try
+                    //Get selected product from row
+                    var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
+
+                    if (product != null)
                     {
                         //Check if data has changed 
                         if (itemNrTextBox.Text == "" || product.ItemNumber != int.Parse(itemNrTextBox.Text))
@@ -751,39 +821,32 @@ namespace Laboration_4
                             //Remove the error if price is a int
                             itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
                         }
-                    }
-                    catch (FormatException)
-                    {
-                        // Set the error if price is not a int
-                        itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
+                        //Go through data and set buttons 
+                        dataChanged();
 
                     }
                 }
-            }
-            else
-            {
-                try
+                else
                 {
                     //Check if data has changed 
-                    if (itemNrTextBox.Text != "" )
+                    if (itemNrTextBox.Text != "")
                     {
                         //Convert itemnumber textbox text to a int
                         int _itemNumber = int.Parse(itemNrTextBox.Text);
 
                         //Remove the error if price is a int
                         itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
+
+                        //Go through data and set buttons 
+                        dataChanged();
                     }
                 }
-                catch (FormatException)
-                {
-                    // Set the error if price is not a int
-                    itemNumberErrorProvider.SetError(this.itemNrTextBox, "Varunummer är endast siffror.");
-                }
             }
-
-            //Go through data and set buttons 
-            dataChanged();
-
+            catch
+            {
+                // Set the error if price is not a int
+                itemNumberErrorProvider.SetError(this.itemNrTextBox, $"Artikelnummer är endast siffror emellan 0 - {int.MaxValue}.");
+            }
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
@@ -808,15 +871,15 @@ namespace Laboration_4
 
         private void priceTextBox_TextChanged(object sender, EventArgs e)
         {
-            //Check that a row is selected in grid or return with null
-            if (0 < inventoryDataGrid.SelectedRows.Count)
+            try
             {
-                //Get selected product from row
-                var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
-
-                if (product != null)
+                //Check that a row is selected in grid or return with null
+                if (0 < inventoryDataGrid.SelectedRows.Count)
                 {
-                    try
+                    //Get selected product from row
+                    var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
+
+                    if (product != null)
                     {
                         //Check if data has changed 
                         if (priceTextBox.Text == "" || product.Price != double.Parse(priceTextBox.Text))
@@ -828,16 +891,8 @@ namespace Laboration_4
                             dataChanged();
                         }
                     }
-                    catch(FormatException)
-                    {
-                        // Set the error if price is not a double
-                        priceErrorProvider.SetError(this.priceTextBox, "Pris är endast siffror.");
-                    }
                 }
-            }
-            else
-            {
-                try
+                else
                 {
                     //Check if data has changed 
                     if (priceTextBox.Text != "")
@@ -852,28 +907,28 @@ namespace Laboration_4
                         dataChanged();
                     }
                 }
-                catch (FormatException)
-                {
-                    // Set the error if price is not a double
-                    priceErrorProvider.SetError(this.priceTextBox, "Pris är endast siffror.");
-                }
+            }
+            catch
+            {
+                // Set the error if price is not a double
+                priceErrorProvider.SetError(this.priceTextBox, $"Pris är endast siffror emellan 0 - {double.MaxValue}.");
             }
         }
 
         private void quantityTextBox_TextChanged(object sender, EventArgs e)
         {
-            //Check that a row is selected in grid or return with null
-            if (0 < inventoryDataGrid.SelectedRows.Count)
+            try
             {
-                //Get selected product from row
-                var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
-
-                if (product != null)
+                //Check that a row is selected in grid or return with null
+                if (0 < inventoryDataGrid.SelectedRows.Count)
                 {
-                    try
+                    //Get selected product from row
+                    var product = (Product)inventoryDataGrid.SelectedRows[0].DataBoundItem;
+
+                    if (product != null)
                     {
                         //Check if data has changed 
-                        if (quantityTextBox.Text == "" || product.Price != int.Parse(quantityTextBox.Text))
+                        if (quantityTextBox.Text == "" || product.Quantity != int.Parse(quantityTextBox.Text))
                         {
                             //Remove the error if quantity is a int
                             quantityErrorProvider.SetError(this.quantityTextBox, String.Empty);
@@ -881,20 +936,13 @@ namespace Laboration_4
                             //Go through data and set buttons 
                             dataChanged();
                         }
-                    }
-                    catch (FormatException)
-                    {
-                        //Set the error if quantity is not a int
-                        quantityErrorProvider.SetError(this.quantityTextBox, "Antal är endast siffror.");
+
                     }
                 }
-            }
-            else
-            {
-                try
+                else
                 {
                     //Check if data has changed 
-                    if (quantityTextBox.Text != "" )
+                    if (quantityTextBox.Text != "")
                     {
                         //Convert quantity textbox text to a int
                         int _quantity = int.Parse(quantityTextBox.Text);
@@ -905,12 +953,13 @@ namespace Laboration_4
                         //Go through data and set buttons 
                         dataChanged();
                     }
+
                 }
-                catch (FormatException)
-                {
-                    //Set the error if quantity is not a int
-                    quantityErrorProvider.SetError(this.quantityTextBox, "Antal är endast siffror.");
-                }
+            }
+            catch
+            {
+                //Set the error if quantity is not a int
+                quantityErrorProvider.SetError(this.quantityTextBox, $"Antal är endast siffror emellan 0 - {int.MaxValue}.");
             }
         }
 
@@ -963,19 +1012,19 @@ namespace Laboration_4
                                 }
 
                             }
-                            catch (FormatException)
+                            catch
                             {
                                 //Set the error if playtime is not a int
-                                playtimeErrorProvider.SetError(this.data1TextBox, "Speltid är antal minuter.");
+                                playtimeErrorProvider.SetError(this.data1TextBox, $"Speltid är antal minuter emellan 0 - {int.MaxValue}.");
                             }
-                            
+
                             break;
                         default:
                             break;
-                    }   
+                    }
                 }
             }
-            else if( typeComboBox.SelectedItem == "DVD")
+            else if (typeComboBox.SelectedItem == "DVD")
             {
                 try
                 {
@@ -998,10 +1047,10 @@ namespace Laboration_4
                     }
 
                 }
-                catch (FormatException)
+                catch
                 {
                     //Set the error if playtime is not a int
-                    playtimeErrorProvider.SetError(this.data1TextBox, "Speltid är antal minuter.");
+                    playtimeErrorProvider.SetError(this.data1TextBox, $"Speltid är antal minuter emellan 0 - {int.MaxValue}.");
                 }
             }
         }
@@ -1064,6 +1113,22 @@ namespace Laboration_4
                     }
                 }
             }
+        }
+
+        private void ManageInventoryControl_Load(object sender, EventArgs e)
+        {
+            //Set columns head in inventory grid
+            inventoryDataGrid.Columns["Type"].HeaderText = "Typ";
+            inventoryDataGrid.Columns["ItemNumber"].HeaderText = "Artikelnummer";
+            inventoryDataGrid.Columns["Name"].HeaderText = "Namn";
+            inventoryDataGrid.Columns["Price"].HeaderText = "Pris";
+            inventoryDataGrid.Columns["Quantity"].HeaderText = "Antal";
+            inventoryDataGrid.Columns["Author"].HeaderText = "Författare";
+            inventoryDataGrid.Columns["Genre"].HeaderText = "Genre";
+            inventoryDataGrid.Columns["Format"].HeaderText = "Format";
+            inventoryDataGrid.Columns["Language"].HeaderText = "Språk";
+            inventoryDataGrid.Columns["Platform"].HeaderText = "Plattform";
+            inventoryDataGrid.Columns["Playtime"].HeaderText = "Speltid";
         }
     }
 }

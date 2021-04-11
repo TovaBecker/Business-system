@@ -8,12 +8,14 @@ namespace Laboration_4.Backend
 {
     class TopTen
     {
+        //Declare and initiate variables 
         private int _itemNumber;
         private string _name;
         private int _quantity;
 
         public TopTen(int itemNumber, string name, int quantity)
         {
+            //Set values
             ItemNumber = itemNumber;
             Name = name;
             Quantity = quantity;
@@ -51,5 +53,5 @@ namespace Laboration_4.Backend
         }
     }
 
-    
+
 }

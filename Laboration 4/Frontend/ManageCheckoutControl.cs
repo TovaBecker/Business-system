@@ -14,17 +14,17 @@ namespace Laboration_4
 {
     public partial class ManageCheckoutControl : UserControl
     {
-        //Declare an instance a Contol class varible for conecting inventory to Control class
+        //Declare a instance a Contol class varible for conecting inventory to Control class
         Control _control;
 
-        //Declare an instance a BindingSource class varible for saving a bindingSource varible.
+        //Declare a instance a BindingSource class varible for saving a bindingSource varible.
         BindingSource _inventoryBindingSource;
         BindingSource _basketBindingSource;
 
-        //Declare an instance a Product class varible for svaing selected item
+        //Declare a instance a Product class varible for svaing selected item
         Product _selectedItem;
 
-        //Declare instance for printing receipt
+        //Declare a instance for printing receipt
         private Font receiptFont;
         private StreamReader receiptToPrint;
 
@@ -36,7 +36,7 @@ namespace Laboration_4
             _control = control;
 
             //Conect ManageInventoryControl to Contol class and get binding source
-           this._inventoryBindingSource = inventoryBindingSource;
+            this._inventoryBindingSource = inventoryBindingSource;
 
             //Conect ManageInventoryControl to Contol class and get binding source
             this._basketBindingSource = basketBindingSource;
@@ -44,11 +44,12 @@ namespace Laboration_4
             //Set binding source
             checkoutDataGrid.DataSource = _inventoryBindingSource;
             basketDataGridView.DataSource = _basketBindingSource;
+
         }
-        
+
         private void buttonAddCheckout_Click(object sender, EventArgs e)
         {
-            //Declare an instance bool varibels for succes to adding to basket
+            //Declare an instance bool varibels for success to adding to basket
             bool succesAdd = true;
 
             //Declare an instance int varibels for try
@@ -101,8 +102,8 @@ namespace Laboration_4
                     {
                         //Show message that tells user itemnumber is removed
                         MessageBox.Show(
-                                        "Det gick inte att lägga till varan i varukorgen.\n" +
-                                        "Varan är slut på lagret.",
+                                        "Det gick inte att lägga till artikel i varukorgen.\n" +
+                                        "Artikel är slut på lagret.",
                                         "Inte i lager",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
@@ -115,56 +116,66 @@ namespace Laboration_4
 
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
-                                    "Det gick inte att lägga till varan.\n" +
-                                    "Varunummer är borttaget.\n" +
-                                    "Varunummer måste anges i siffror",
-                                    "Varunummer borttagen",
+                                    "Det gick inte att lägga till artikel.\n" +
+                                    "Artikelnummer är borttaget.\n" +
+                                    "Artikelnummer måste anges i siffror",
+                                    "Artikelnummer borttagen",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
             }
 
-            //Show uppdate in list
-            _basketBindingSource.ResetCurrentItem();
+            //Uppdate binding source and focus on search bok
+            ResetView();
         }
 
         private void buttonRemoveCheckout_Click(object sender, EventArgs e)
         {
-            if (! (basketDataGridView.SelectedRows.Count < 1))
+            //Check that user has selected a row in basket grid
+            if (!(basketDataGridView.SelectedRows.Count < 1))
             {
+                //Find item in basket grid
                 var itemInBasket = (SaleInfo)basketDataGridView.SelectedRows[0].DataBoundItem;
 
+                //Remove item form basket grid
                 if (itemInBasket != null)
                     _control.RemoveFromBasket(itemInBasket);
             }
 
+            //Uppdate binding source and focus on search bok
+            ResetView();
         }
 
         private void buttonBuyCheckout_Click(object sender, EventArgs e)
         {
+            //Check if return radiobutton is selected
             if (returnRadioButton.Checked == true)
             {
+                //Return the items in basket grid
                 _control.Return();
             }
             else
             {
-                _control.Purchase();
+                //Buy items in the basket grid
+                if (_control.Purchase())
+                {
+                    //Print the receipt for the buy to the user
+                    printReceipt();
 
-                //Print the receipt for the buy to the user
-                printReceipt();
-
+                }
             }
 
-            //Show uppdate in list
-            _inventoryBindingSource.ResetCurrentItem();
+            //Uppdate binding source and focus on search bok
+            ResetView();
         }
 
         private void buyRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Check if buy radiobutton is selected
             if (buyRadioButton.Checked == true)
             {
                 //Set labels and view for return
-                SearcIDhLabel.Text = "Varunummer";
+                SearcIDhLabel.Text = "Artikelnummer";
                 buttonBuyCheckout.Text = "Köp";
                 checkoutDataGrid.Visible = true;
 
@@ -172,12 +183,13 @@ namespace Laboration_4
                 _control.ClearBasket();
             }
 
-            //Show uppdate in list
-            _inventoryBindingSource.ResetCurrentItem();
+            //Uppdate binding source and focus on search bok
+            ResetView();
         }
 
         private void returnRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //Check if return radiobutton is selected
             if (returnRadioButton.Checked == true)
             {
                 //Set labels and view for return
@@ -189,21 +201,23 @@ namespace Laboration_4
                 _control.ClearBasket();
             }
 
-            //Show uppdate in list
-            _inventoryBindingSource.ResetCurrentItem();
+            //Uppdate binding source and focus on search bok
+            ResetView();
         }
 
         private void checkoutDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Get the item number of the selected row
             ManageCheckout_GetProduct();
 
+            //Set item number
             itemNumberSearchextBox.Text = $"{_selectedItem.ItemNumber}";
         }
         private void ManageCheckout_GetProduct()
         {
             //Get selected product from row
             var product = (Product)checkoutDataGrid.SelectedRows[0].DataBoundItem;
-            
+
             //Get the products data
             _selectedItem = product;
         }
@@ -212,10 +226,13 @@ namespace Laboration_4
         {
             try
             {
+                //Check if there is text in the textbox
                 if (itemNumberSearchextBox.Text != "")
                 {
+                    //Check if it is a number in the textbox
                     if (0 < int.Parse(itemNumberSearchextBox.Text))
                     {
+                        //Make add button availeble to the user
                         buttonAddCheckout.Enabled = true;
 
                         // Remove error if price is a int
@@ -223,47 +240,61 @@ namespace Laboration_4
                     }
                 }
             }
-            catch (FormatException)
+            catch
             {
                 // Set the error if price is not a int
-                itemNumberErrorProviderAdd.SetError(this.itemNumberSearchextBox, "Varunummer är endast siffror.");
+                itemNumberErrorProviderAdd.SetError(this.itemNumberSearchextBox, "Artikelnummer är endast siffror emellan 0 - {int.MaxValue}.");
             }
         }
 
-        private void resetCheckoutButtons()
+        private void ResetView()
         {
-            //Disabel buttons
-            buttonAddCheckout.Enabled = false;
-            buttonRemoveCheckout.Enabled = false;
-            buttonBuyCheckout.Enabled = false;
+            //Show uppdate in inventory grid
+            _inventoryBindingSource.ResetBindings(true);
+
+            //Show uppdate in basket grid
+            _basketBindingSource.ResetBindings(true);
+
+            //Focus on input textbox
+            itemNumberSearchextBox.Focus();
         }
-        
+
         private void printReceipt()
         {
-        try
+            try
             {
-                receiptToPrint = new StreamReader
-                   (@"..\..\Receipt\Receipt.htm");
+                //Find and get file that is going to be converted to PDF
+                receiptToPrint = new StreamReader(@"..\..\Receipt\Receipt.htm");
                 try
                 {
-                    receiptFont = new Font("Arial", 10);
+                    //Set print front propertis
+                    receiptFont = new Font("Arial", 12);
+
+                    //Create an instace for printing document
                     PrintDocument receipt = new PrintDocument();
+
+                    //Get Pages that is to be convertet to PDF
                     receipt.PrintPage += new PrintPageEventHandler(this.receipt_PrintPage);
+
+                    //Print the result
                     receipt.Print();
                 }
                 finally
                 {
+                    //Close the printing method
                     receiptToPrint.Close();
                 }
             }
             catch (Exception ex)
             {
+                //Show error message for user
                 MessageBox.Show(ex.Message);
             }
         }
 
         private void receipt_PrintPage(object sender, PrintPageEventArgs ev)
         {
+            //Set print propertis
             float linesPerPage = 0;
             float yPos = 0;
             int count = 0;
@@ -271,11 +302,11 @@ namespace Laboration_4
             float topMargin = ev.MarginBounds.Top;
             string line = null;
 
-            // Calculate the number of lines per page.
+            //Calculate the number of lines per page
             linesPerPage = ev.MarginBounds.Height /
                receiptFont.GetHeight(ev.Graphics);
 
-            // Print each line of the file.
+            //Print each line of the file
             while (count < linesPerPage &&
                ((line = receiptToPrint.ReadLine()) != null))
             {
@@ -286,11 +317,38 @@ namespace Laboration_4
                 count++;
             }
 
-            // If more lines exist, print another page.
+            //If more lines exist then print another page
             if (line != null)
                 ev.HasMorePages = true;
             else
                 ev.HasMorePages = false;
+        }
+
+        private void ManageCheckoutControl_Load(object sender, EventArgs e)
+        {
+
+            //Set columns head in checkout grid
+            checkoutDataGrid.Columns["Type"].HeaderText = "Typ";
+            checkoutDataGrid.Columns["ItemNumber"].HeaderText = "Artikelnummer";
+            checkoutDataGrid.Columns["Name"].HeaderText = "Namn";
+            checkoutDataGrid.Columns["Price"].HeaderText = "Pris";
+            checkoutDataGrid.Columns["Quantity"].HeaderText = "Antal";
+            checkoutDataGrid.Columns["Author"].HeaderText = "Författare";
+            checkoutDataGrid.Columns["Genre"].HeaderText = "Genre";
+            checkoutDataGrid.Columns["Format"].HeaderText = "Format";
+            checkoutDataGrid.Columns["Language"].HeaderText = "Språk";
+            checkoutDataGrid.Columns["Platform"].HeaderText = "Plattform";
+            checkoutDataGrid.Columns["Playtime"].HeaderText = "Speltid";
+
+            //Set columns head in basket grid
+            basketDataGridView.Columns["Type"].HeaderText = "Typ";
+            basketDataGridView.Columns["ItemNumber"].HeaderText = "Artikelnummer";
+            basketDataGridView.Columns["Name"].HeaderText = "Namn";
+            basketDataGridView.Columns["Price"].HeaderText = "Pris";
+            basketDataGridView.Columns["Quantity"].HeaderText = "Antal";
+            basketDataGridView.Columns["Date"].Visible = false;
+            basketDataGridView.Columns["SaleID"].Visible = false;
+            basketDataGridView.Columns["Status"].Visible = false;
         }
     }
 }

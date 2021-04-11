@@ -72,10 +72,10 @@
     <Compile Include="Frontend\ManageInventoryControl.Designer.cs">
       <DependentUpon>ManageInventoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageDeliveryControl.cs">
+    <Compile Include="Frontend\ManageDeliveryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ManageDeliveryControl.Designer.cs">
+    <Compile Include="Frontend\ManageDeliveryControl.Designer.cs">
       <DependentUpon>ManageDeliveryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,7 +97,7 @@
     <EmbeddedResource Include="Frontend\ManageInventoryControl.resx">
       <DependentUpon>ManageInventoryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageDeliveryControl.resx">
+    <EmbeddedResource Include="Frontend\ManageDeliveryControl.resx">
       <DependentUpon>ManageDeliveryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

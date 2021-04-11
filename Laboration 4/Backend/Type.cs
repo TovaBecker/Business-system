@@ -7,6 +7,7 @@ namespace Laboration_4
 {
     public enum Type
     {
+        //Options
         Bok,
         Spel,
         DVD

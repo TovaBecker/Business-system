@@ -28,42 +28,77 @@ namespace Laboration_4
 
         public bool DeviveryQuantityAdd(int itemNumber, int quantity)
         {
+            //Find and get the product
             Product _product = ProductIDSearch(itemNumber);
 
+            //Check ig product exist
             if (_product != null)
             {
+                //Add quantity to product
                 _product.Quantity = _product.Quantity + quantity;
+
+                //Get the index of the product
                 int index = _inventoryList.IndexOf(_product);
+
+                //Uppdate the product in list
                 _inventoryList[index] = _product;
+
+                //If successful return true
                 return true;
             }
-
+            //If unsuccessful return false
             return false;
         }
 
-        public void ProductAdd(Product newProduct)
+        public Product ProductAdd(Product Product)
         {
-            _inventoryList.Add(newProduct);
+            //Check if the ID is used
+            if (ProductIDSearch(Product.ItemNumber) == null)
+            {
+                //Add the product
+                _inventoryList.Add(Product);
+            }
+            else
+            {
+                //Create a new product with unic ID
+                Product newProduct = new Product(Product.Type, SetItemID(Convert.ToString(Product.ItemNumber)), Product.Name, Product.Price, Product.Quantity, Product.Author, Product.Genre, Product.Format, Product.Language, Product.Platform, Product.Playtime);
+
+                //Add product into inventory list
+                _inventoryList.Add(newProduct);
+
+                //Return the product created with unic ID
+                return newProduct;
+            }
+            //Return the product that were sent in
+            return Product;
         }
 
         public void ProductUppdate(Product updateProduct)
         {
+            //Find and get the product
             Product oldProduct = ProductIDSearch(updateProduct.ItemNumber);
 
+            //Check if product do exist 
             if (oldProduct != null)
             {
+                //Find products index in inventory list
                 int index = _inventoryList.IndexOf(oldProduct);
+
+                //Add updated product into inventory list
                 _inventoryList[index] = updateProduct;
             }
         }
 
         public bool ProductDelete(int itemNumber)
         {
-            Product item = ProductIDSearch(itemNumber);
+            //Find and get the product
+            Product deleteProduct = ProductIDSearch(itemNumber);
 
-            if (item != null)
+            //Check if product do exist 
+            if (deleteProduct != null)
             {
-                _inventoryList.Remove(item);
+                //Remove product from inventory list
+                _inventoryList.Remove(deleteProduct);
                 return true;
             }
             return false;
@@ -85,7 +120,7 @@ namespace Laboration_4
                 filteredList = filteredList.Where(i => $"{i.ItemNumber}".ToLower().Contains($"{itemNumber}".ToLower())).ToList();
 
             if (!string.IsNullOrEmpty(name))
-                filteredList = filteredList.Where(i => i.Name.ToLower().Contains(name.ToLower()) ).ToList();
+                filteredList = filteredList.Where(i => i.Name.ToLower().Contains(name.ToLower())).ToList();
 
             if (price > 0)
                 filteredList = filteredList.Where(i => $"{i.Price }".ToLower().Contains($"{price}".ToLower())).ToList();
@@ -123,15 +158,19 @@ namespace Laboration_4
 
         internal Product ProductIDSearch(int itemNumber)
         {
+            //Find and get the product
             return _inventoryList.FirstOrDefault(i => i.ItemNumber == itemNumber);
         }
 
         internal int SetItemID(string itemNumber)
         {
+            //Convert string itemNumber to integer ID
             int id = int.Parse(itemNumber);
 
+            //Check ID and find, get if a product has the ID
             if (0 < id && ProductIDSearch(id) == null)
             {
+                //Return the ID if the ID is unic 
                 return id;
             }
 
@@ -141,38 +180,47 @@ namespace Laboration_4
             //Find first free ID
             while (idSet == false)
             {
+                //Get a unic ID
                 if (null == ProductIDSearch(itemNumberID))
                 {
                     idSet = true;
                 }
                 else
                 {
+                    //Increese the default ID
                     itemNumberID++;
                 }
             }
 
+            //Increese the default ID to be ready for next input
             itemNumberID++;
 
+            //Return a unic ID found by the system
             return itemNumberID - 1;
         }
 
         public void ReduceStock(int itemNumber, int quantity)
         {
+            //Find product
             var product = ProductIDSearch(itemNumber);
 
-            if(product != null && product.Quantity >= quantity)
+            //Check if product is in stock
+            if (product != null && product.Quantity >= quantity)
             {
+                //Decrease stock on item
                 int index = _inventoryList.IndexOf(product);
                 _inventoryList[index].Quantity = _inventoryList[index].Quantity - quantity;
             }
         }
         public void IncreaseStock(int itemNumber, int quantity)
         {
+            //Find product
             var product = ProductIDSearch(itemNumber);
 
-                int index = _inventoryList.IndexOf(product);
-                _inventoryList[index].Quantity = _inventoryList[index].Quantity + quantity;
-            
+            //Increase stock on item
+            int index = _inventoryList.IndexOf(product);
+            _inventoryList[index].Quantity = _inventoryList[index].Quantity + quantity;
+
         }
 
         public BindingSource InventoryLoad()
@@ -233,4 +281,3 @@ namespace Laboration_4
     }
 }
 
-    

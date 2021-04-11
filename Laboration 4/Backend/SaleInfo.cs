@@ -25,17 +25,19 @@ namespace Laboration_4
 
         public SaleInfo(Type type, int itemNumber, string name, double price, int quantity, DateTime date, int saleID, Status status)
         {
+            //Set values
             Type = type;
             ItemNumber = itemNumber;
             Name = name;
             Price = price;
             Quantity = quantity;
             Date = date;
-            SaleID = saleID ;
+            SaleID = saleID;
             Status = status;
         }
         public SaleInfo(string type, string itemNumber, string name, string price, string quantity, string date, string saleID, string status)
         {
+            //Set values
             Type = Helper.GetType(type);
             ItemNumber = Helper.ConvertInteger(itemNumber);
             Name = name;
@@ -125,6 +127,6 @@ namespace Laboration_4
             }
         }
 
-        
+
     }
 }

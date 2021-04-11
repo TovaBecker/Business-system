@@ -9,7 +9,7 @@ namespace Laboration_4
 {
     public class Product
     {
-        //Declare an instance variables 
+        //Declare and initiate variables 
         private Type _type;
         private int _itemNumber;
         private string _name;
@@ -22,7 +22,7 @@ namespace Laboration_4
         private string _platform;
         private int _playtime;
 
-        //Declare an instance variabl for inventory 
+        //Declare an initiate variabl for inventory 
         private Inventory _inventory;
 
         public Product(Inventory inventory)
@@ -30,7 +30,7 @@ namespace Laboration_4
             _inventory = inventory;
         }
 
-        public Product( string type, int itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
+        public Product(string type, int itemNumber, string name, string price, string quantity, string author, string genre, string format, string language, string platform, string playtime)
         {
             //Set values
             Type = Helper.GetType(type);
@@ -44,6 +44,23 @@ namespace Laboration_4
             Language = language;
             Platform = platform;
             Playtime = Helper.ConvertInteger(playtime);
+
+        }
+
+        public Product(Type type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
+        {
+            //Set values
+            Type = type;
+            ItemNumber = itemNumber;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+            Author = author;
+            Genre = genre;
+            Format = format;
+            Language = language;
+            Platform = platform;
+            Playtime = playtime;
 
         }
 
@@ -79,9 +96,12 @@ namespace Laboration_4
             get => _price;
             set
             {
-                //validate price
-                if (value >= 0)
-                    _price = value;
+                //Validate price
+                if (0 <= value)
+                {
+                    if (value <= double.MaxValue)
+                        _price = value;
+                }
                 else
                     _price = 0;
             }
@@ -91,9 +111,12 @@ namespace Laboration_4
             get => _quantity;
             set
             {
-                //validate quantity
-                if (value >= 0)
-                    _quantity = value;
+                //Validate quantity
+                if (0 <= value)
+                {
+                    if (value <= double.MaxValue)
+                        _quantity = value;
+                }
                 else
                     _quantity = 0;
             }
@@ -104,9 +127,9 @@ namespace Laboration_4
             get => _author;
             set
             {
-                _author = value; 
-    }
-}
+                _author = value;
+            }
+        }
 
         public string Genre
         {
@@ -134,14 +157,14 @@ namespace Laboration_4
                 _language = value;
             }
         }
-       
+
         public string Platform
         {
             get => _platform;
             set
             {
                 _platform = value;
-                
+
             }
         }
         public int Playtime
@@ -149,13 +172,16 @@ namespace Laboration_4
             get => _playtime;
             set
             {
-                //validate plytime
-                if (value >= 0)
-                    _playtime = value;
+                //Validate plytime
+                if (0 <= value)
+                {
+                    if (value <= double.MaxValue)
+                        _playtime = value;
+                }
                 else
                     _playtime = 0;
             }
         }
-       
+
     }
 }

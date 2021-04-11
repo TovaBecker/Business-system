@@ -44,6 +44,7 @@ namespace Laboration_4
         {
             try
             {
+                //Loade the binding source in system
                 _inventoryBindingSource = _control.LoadInventory();
                 _saleHistoryBindingSource = _control.LoadSaleHistory();
                 _basketBindingSource = _control.LoadBasket();
@@ -61,25 +62,30 @@ namespace Laboration_4
                 Application.Exit();
             }
 
+            //Get and put ManageInventoryControl in inventory tab
             ManageInventoryControl inventory = new ManageInventoryControl(_control, _inventoryBindingSource);
             inventory.Dock = DockStyle.Fill;
             InventoryTab.Controls.Add(inventory);
 
+            //Get and put ManageCheckoutControl in checkout tab
             ManageCheckoutControl checkout = new ManageCheckoutControl(_control, _inventoryBindingSource, _basketBindingSource);
             checkout.Dock = DockStyle.Fill;
             CheckoutTab.Controls.Add(checkout);
 
+            //Get and put ManageDeliveryControl in delivery tab
             ManageDeliveryControl delivery = new ManageDeliveryControl(_control);
             delivery.Dock = DockStyle.Fill;
             deliveryTab.Controls.Add(delivery);
 
+            //Get and put ManageStatisticsControl in statistics tab
             ManageStatisticsControl statistics = new ManageStatisticsControl(_control);
             statistics.Dock = DockStyle.Fill;
             StatisticsTab.Controls.Add(statistics);
         }
-        
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //Save data in files when form is closing
             _control.Save();
         }
     }

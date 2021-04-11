@@ -40,45 +40,59 @@ namespace Laboration_4
 
         public BindingSource BasketLoad()
         {
-           return _basketBindingSource;
-            
+            //Send baskets binding source
+            return _basketBindingSource;
         }
 
         public BindingSource SaleInfoLoad()
         {
+            //Send saleInfo binding source
             return _saleInfoBindingSource;
-
         }
 
         public bool AddToBasketBuy(int itemNumber)
         {
+            //Find product
             Product product = _inventory.ProductIDSearch(itemNumber);
 
+            //Find product in basket
             var itemInBasket = _basketList.FirstOrDefault(b => b.ItemNumber == itemNumber);
 
+            //Check if item is in basket
             if (itemInBasket != null)
             {
+                //Get indext of item in basket grid
                 var index = _basketList.IndexOf(itemInBasket);
-                
+
                 //Check that we have more product
-                if(_basketList[index].Quantity < product.Quantity)
+                if (_basketList[index].Quantity < product.Quantity)
                 {
+                    //Inccrese quantity of the selected product
                     _basketList[index].Quantity++;
                 }
                 else
                 {
+                    //If product do mot exist in stock return false
                     return false;
                 }
-                
             }
             else
             {
                 if (product.Quantity > 0)
                 {
+                    //Create saleInfo object
                     SaleInfo saleInfo = new SaleInfo(product.Type, itemNumber, product.Name, product.Price, 1, DateTime.Now, GetSaleId(), Status.InBasket);
+
+                    //Add saleInfo object to basket list
                     _basketList.Add(saleInfo);
                 }
+                else
+                {
+                    //If product do mot exist in stock return false
+                    return false;
+                }
             }
+            //If product was added succesful return true
             return true;
         }
 
@@ -87,52 +101,86 @@ namespace Laboration_4
             //Find the sale
             SaleInfo _sale = SaleIDSearch(saleID);
 
-            //Chack if sale exist and not returned
-            if (_sale != null && _sale.Status == Status.Bought)
+            //Get item
+            var itemInBasket = _basketList.FirstOrDefault(b => b.SaleID == saleID);
+
+            //Check if item is in basket
+            if (itemInBasket == null)
             {
-                //Add sale to the return basket
-                _basketList.Add(_sale);
+                //Chack if sale exist and not returned
+                if (_sale != null && _sale.Status == Status.Bought)
+                {
+                    //Add sale to the return basket
+                    _basketList.Add(_sale);
+                }
+                else
+                {
+                    //If sale do not exist retun false
+                    return false;
+                }
             }
             else
             {
-                //If sale do not exist retun false
+                //If return exist in basket return false
                 return false;
             }
 
-            //If product exist return true
+            //If return exist return true
             return true;
         }
 
         public void RemoveFromBasket(SaleInfo saleInfo)
         {
+            //Remove product from basket
             _basketList.Remove(saleInfo);
         }
 
-        public void BuyItemsInBasket()
+        public bool BuyItemsInBasket()
         {
-            foreach(var item in _basketList)
+            //Check if basketlist is empty
+            if (_basketList.Count() == 0)
             {
+                return false;
+            }
+
+            //Go thougt basket and add buy
+            foreach (var item in _basketList)
+            {
+                //Set product status to bought
                 item.Status = Status.Bought;
+
+                //Add product to saleInfo list
                 _saleInfoList.Add(item);
+
+                //Remove the bought quantity from stock
                 _inventory.ReduceStock(item.ItemNumber, item.Quantity);
             }
+
             //Save buy for receipt
             ReceiptSave();
 
             //Clear basket
             ClearBasket();
+
+            return true;
         }
 
         public void ReturnItemsInBasket()
         {
+            //Go thought all products in basket
             foreach (var item in _basketList)
             {
+                //Go thought all products in saleInfo
                 foreach (var saleInfo in _saleInfoList)
                 {
-                    if (saleInfo.SaleID == item.SaleID)
+                    //Check saleID and that status is Bought
+                    if (saleInfo.SaleID == item.SaleID && saleInfo.Status == Status.Bought)
                     {
+                        //Uppdate status to repuchased
                         saleInfo.Status = Status.Repuchased;
-                        _inventory.IncreaseStock(item.SaleID, item.Quantity);
+
+                        //Increase stock in inventory
+                        _inventory.IncreaseStock(item.ItemNumber, item.Quantity);
                     }
                 }
             }
@@ -141,32 +189,37 @@ namespace Laboration_4
             ClearBasket();
         }
 
-        public void UppdateSaleInfoList(int saleID, int quantity)
-        {
-            var _saleID = SaleIDSearch(saleID);
-
-            if (_saleID != null && _saleID.Status != Status.Repuchased)
-            {
-                int index = _saleInfoList.IndexOf(_saleID);
-                _saleInfoList[index].Quantity = _saleInfoList[index].Quantity - quantity;
-            }
-        }
-
         internal SaleInfo SaleIDSearch(int saleID)
         {
+            //Find and get the product
             return _saleInfoList.FirstOrDefault(i => i.SaleID == saleID);
         }
 
         private int GetSaleId()
         {
-            foreach(var saleInfo in _basketList)
+            //Declare an bool instance variabl
+            bool idSet = false;
+
+            //Find first free ID
+            while (idSet == false)
             {
-                if(saleInfo.SaleID > saleId)
+                //Get a unic ID
+                if (null == SaleIDSearch(saleId))
                 {
-                    saleId = saleInfo.SaleID;
+                    idSet = true;
+                }
+                else
+                {
+                    //Increese the default ID
+                    saleId++;
                 }
             }
-            return saleId++;
+
+            //Increese the default ID to be ready for next input
+            saleId++;
+
+            //Return a unic ID found by the system
+            return saleId - 1;
         }
 
         public void ClearBasket()
@@ -223,7 +276,7 @@ namespace Laboration_4
                         $"{item.Quantity}," +
                         $"{item.Date}," +
                         $"{item.SaleID}," +
-                        $"{item.Status}") ;
+                        $"{item.Status}");
                 }
             }
         }
@@ -278,43 +331,72 @@ namespace Laboration_4
 
         public BindingSource GetTopTen(DateTime from, DateTime to)
         {
+            //Clear the list
             _topTenList.Clear();
-            foreach (var item in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)))
-            {
 
-                var topTenValue = _topTenList.FirstOrDefault(t => t.ItemNumber == item.ItemNumber);
+            //Create a list for the data
+            var _data = new List<TopTen>();
+
+            //Get sales that were bought between specified dates
+            foreach (var sale in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)))
+            {
+                //Check if sale is in list
+                var topTenValue = _data.FirstOrDefault(t => t.ItemNumber == sale.ItemNumber);
+
                 if (topTenValue != null)
                 {
-                    int index = _topTenList.IndexOf(topTenValue);
-                    _topTenList[index].Quantity += item.Quantity;
+                    //Get index of sale
+                    int index = _data.IndexOf(topTenValue);
+
+                    //Add sale quantity to sale
+                    _data[index].Quantity += sale.Quantity;
                 }
                 else
                 {
-                    _topTenList.Add(new TopTen(item.ItemNumber, item.Name, item.Quantity));
+                    //Add sae to the list
+                    _data.Add(new TopTen(sale.ItemNumber, sale.Name, sale.Quantity));
                 }
-
             }
+            //Order the list in descending order on quantity
+            _data = _data.OrderByDescending(i => i.Quantity).ToList();
+
+            //Get the 10 sales with higest quantity
+            for (int i = 0; i < 10; i++)
+            {
+                if (_data.Count > i)
+                {
+                    //Add sale to list
+                    _topTenList.Add(_data[i]);
+                }
+            }
+
+            //Return binding source 
             return _topTenBindingSource;
         }
 
         public Dictionary<string, int> GetTotalSale(DateTime from, DateTime to)
         {
+            //Create a dictionary with string and int
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
-            foreach(var item in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)))
+            //Go thought sales that were bought between specified dates
+            foreach (var sale in _saleInfoList.Where(i => i.Status == Status.Bought && from <= i.Date && i.Date <= to.AddDays(1)).OrderBy(i => i.Date).ToList())
             {
                 //Declare an string instance for the date format
-                string date = item.Date.ToString("Y");
-                
+                string date = sale.Date.ToString("Y");
+
+                //Check if date extist in dictionary
                 if (dictionary.ContainsKey(date))
                 {
-                    dictionary[date] += item.Quantity;
+                    //Uppdate extisting date with sale quantity
+                    dictionary[date] += sale.Quantity;
                 }
                 else
                 {
-                    dictionary[date] = item.Quantity;
+                    //Add a new date and set sale quantity
+                    dictionary[date] = sale.Quantity;
                 }
-                
+
             }
 
             return dictionary;

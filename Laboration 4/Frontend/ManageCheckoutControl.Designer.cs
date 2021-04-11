@@ -75,6 +75,7 @@ namespace Laboration_4
             this.mainSplitContainer.Size = new System.Drawing.Size(620, 386);
             this.mainSplitContainer.SplitterDistance = 118;
             this.mainSplitContainer.TabIndex = 0;
+            this.mainSplitContainer.TabStop = false;
             // 
             // MenuSplitContainer
             // 
@@ -99,7 +100,8 @@ namespace Laboration_4
             this.MenuSplitContainer.Panel2.Controls.Add(this.cartLabel);
             this.MenuSplitContainer.Size = new System.Drawing.Size(620, 118);
             this.MenuSplitContainer.SplitterDistance = 112;
-            this.MenuSplitContainer.TabIndex = 0;
+            this.MenuSplitContainer.TabIndex = 1;
+            this.MenuSplitContainer.TabStop = false;
             // 
             // SearcIDhLabel
             // 
@@ -117,7 +119,7 @@ namespace Laboration_4
             this.itemNumberSearchextBox.Location = new System.Drawing.Point(7, 95);
             this.itemNumberSearchextBox.Name = "itemNumberSearchextBox";
             this.itemNumberSearchextBox.Size = new System.Drawing.Size(87, 20);
-            this.itemNumberSearchextBox.TabIndex = 3;
+            this.itemNumberSearchextBox.TabIndex = 1;
             this.itemNumberSearchextBox.TextChanged += new System.EventHandler(this.itemNumberSearchextBox_TextChanged);
             // 
             // returnRadioButton
@@ -126,7 +128,7 @@ namespace Laboration_4
             this.returnRadioButton.Location = new System.Drawing.Point(7, 56);
             this.returnRadioButton.Name = "returnRadioButton";
             this.returnRadioButton.Size = new System.Drawing.Size(62, 17);
-            this.returnRadioButton.TabIndex = 2;
+            this.returnRadioButton.TabIndex = 5;
             this.returnRadioButton.Text = "Återköp";
             this.returnRadioButton.UseVisualStyleBackColor = true;
             this.returnRadioButton.CheckedChanged += new System.EventHandler(this.returnRadioButton_CheckedChanged);
@@ -135,11 +137,10 @@ namespace Laboration_4
             // 
             this.buyRadioButton.AutoSize = true;
             this.buyRadioButton.Checked = true;
-            this.buyRadioButton.Location = new System.Drawing.Point(7, 30);
+            this.buyRadioButton.Location = new System.Drawing.Point(7, 31);
             this.buyRadioButton.Name = "buyRadioButton";
             this.buyRadioButton.Size = new System.Drawing.Size(44, 17);
-            this.buyRadioButton.TabIndex = 1;
-            this.buyRadioButton.TabStop = true;
+            this.buyRadioButton.TabIndex = 5;
             this.buyRadioButton.Text = "Köp";
             this.buyRadioButton.UseVisualStyleBackColor = true;
             this.buyRadioButton.CheckedChanged += new System.EventHandler(this.buyRadioButton_CheckedChanged);
@@ -162,6 +163,7 @@ namespace Laboration_4
             this.basketDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.basketDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.basketDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.basketDataGridView.Location = new System.Drawing.Point(6, 25);
             this.basketDataGridView.MultiSelect = false;
@@ -173,7 +175,8 @@ namespace Laboration_4
             this.basketDataGridView.ShowEditingIcon = false;
             this.basketDataGridView.ShowRowErrors = false;
             this.basketDataGridView.Size = new System.Drawing.Size(412, 88);
-            this.basketDataGridView.TabIndex = 18;
+            this.basketDataGridView.TabIndex = 0;
+            this.basketDataGridView.TabStop = false;
             // 
             // buttonRemoveCheckout
             // 
@@ -181,7 +184,7 @@ namespace Laboration_4
             this.buttonRemoveCheckout.Location = new System.Drawing.Point(424, 57);
             this.buttonRemoveCheckout.Name = "buttonRemoveCheckout";
             this.buttonRemoveCheckout.Size = new System.Drawing.Size(75, 23);
-            this.buttonRemoveCheckout.TabIndex = 17;
+            this.buttonRemoveCheckout.TabIndex = 3;
             this.buttonRemoveCheckout.Text = "Ta bort";
             this.buttonRemoveCheckout.UseVisualStyleBackColor = true;
             this.buttonRemoveCheckout.Click += new System.EventHandler(this.buttonRemoveCheckout_Click);
@@ -192,7 +195,7 @@ namespace Laboration_4
             this.buttonAddCheckout.Location = new System.Drawing.Point(424, 25);
             this.buttonAddCheckout.Name = "buttonAddCheckout";
             this.buttonAddCheckout.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddCheckout.TabIndex = 16;
+            this.buttonAddCheckout.TabIndex = 2;
             this.buttonAddCheckout.Text = "Lägg till";
             this.buttonAddCheckout.UseVisualStyleBackColor = true;
             this.buttonAddCheckout.Click += new System.EventHandler(this.buttonAddCheckout_Click);
@@ -203,7 +206,7 @@ namespace Laboration_4
             this.buttonBuyCheckout.Location = new System.Drawing.Point(424, 90);
             this.buttonBuyCheckout.Name = "buttonBuyCheckout";
             this.buttonBuyCheckout.Size = new System.Drawing.Size(75, 23);
-            this.buttonBuyCheckout.TabIndex = 14;
+            this.buttonBuyCheckout.TabIndex = 4;
             this.buttonBuyCheckout.Text = "Köp";
             this.buttonBuyCheckout.UseVisualStyleBackColor = true;
             this.buttonBuyCheckout.Click += new System.EventHandler(this.buttonBuyCheckout_Click);
@@ -223,6 +226,7 @@ namespace Laboration_4
             this.checkoutDataGrid.AllowUserToAddRows = false;
             this.checkoutDataGrid.AllowUserToDeleteRows = false;
             this.checkoutDataGrid.AllowUserToOrderColumns = true;
+            this.checkoutDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.checkoutDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.checkoutDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkoutDataGrid.Location = new System.Drawing.Point(0, 0);
@@ -235,7 +239,8 @@ namespace Laboration_4
             this.checkoutDataGrid.ShowEditingIcon = false;
             this.checkoutDataGrid.ShowRowErrors = false;
             this.checkoutDataGrid.Size = new System.Drawing.Size(620, 264);
-            this.checkoutDataGrid.TabIndex = 2;
+            this.checkoutDataGrid.TabIndex = 0;
+            this.checkoutDataGrid.TabStop = false;
             this.checkoutDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.checkoutDataGrid_CellClick);
             // 
             // itemNumberErrorProviderAdd
@@ -249,6 +254,7 @@ namespace Laboration_4
             this.Controls.Add(this.mainSplitContainer);
             this.Name = "ManageCheckoutControl";
             this.Size = new System.Drawing.Size(620, 386);
+            this.Load += new System.EventHandler(this.ManageCheckoutControl_Load);
             this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();

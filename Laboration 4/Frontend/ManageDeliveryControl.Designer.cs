@@ -61,7 +61,7 @@ namespace Laboration_4
             // addDeliverButton
             // 
             this.addDeliverButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDeliverButton.Location = new System.Drawing.Point(528, 107);
+            this.addDeliverButton.Location = new System.Drawing.Point(528, 78);
             this.addDeliverButton.Name = "addDeliverButton";
             this.addDeliverButton.Size = new System.Drawing.Size(75, 23);
             this.addDeliverButton.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace Laboration_4
             // clearButton
             // 
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearButton.Location = new System.Drawing.Point(528, 78);
+            this.clearButton.Location = new System.Drawing.Point(528, 107);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 3;
@@ -86,7 +86,7 @@ namespace Laboration_4
             this.infoTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoTextLabel.Location = new System.Drawing.Point(15, 58);
             this.infoTextLabel.Name = "infoTextLabel";
-            this.infoTextLabel.Size = new System.Drawing.Size(125, 17);
+            this.infoTextLabel.Size = new System.Drawing.Size(137, 17);
             this.infoTextLabel.TabIndex = 4;
             this.infoTextLabel.Text = "Artikelnummer, antal";
             // 
@@ -95,10 +95,10 @@ namespace Laboration_4
             this.infoLabel.AutoSize = true;
             this.infoLabel.Location = new System.Drawing.Point(15, 33);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(412, 13);
+            this.infoLabel.Size = new System.Drawing.Size(419, 13);
             this.infoLabel.TabIndex = 5;
-            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett artikelnummer, antal (323,5) p" +
-    "er rad.";
+            this.infoLabel.Text = "För att regristrera en leverans behöver du skriva ett artikelnummer, antal (323,5" +
+    ") per rad.";
             // 
             // ManageDeliveryControl
             // 

@@ -31,8 +31,9 @@ namespace Laboration_4
 
         private void addDeliverButton_Click(object sender, EventArgs e)
         {
-            //Declare a int varibel for counting error in list
+            //Declare a int varibel for counting error and success in list
             int _errorQuantity = 0;
+            int _successQuantity = 0;
 
             //Split text into a array with a product itemnumer and quantity in same row
             string[] allLines = deliveryTextBox.Text.Split('\n');
@@ -59,27 +60,46 @@ namespace Laboration_4
                             //Add product
                             if (_control.Delivery(_itemnumer, _quantity) == false)
                             {
+                                //Throw error for saving line and add to _errorQuantity '
                                 throw new Exception("Inte rätt värden");
+                            }
+                            else
+                            {
+                                //Add to success
+                                _successQuantity++;
                             }
                         }
                         else
                         {
+                            //Throw error for saving line and add to _errorQuantity 
                             throw new Exception("Inte rätt värden");
                         }
                     }
                     catch
                     {
+                        //Add error line too output for user
                         errorLines = $"{errorLines}\n{line}";
-
+                        
+                        //Add to error
                         _errorQuantity++;
                     }
                 }
             }
 
-            //Check if there is anny error in input
-            if( 0 < _errorQuantity)
+            //Check if there is anny success in input
+            if (0 < _successQuantity)
             {
-                if(1 == _errorQuantity)
+                //Show message that tells user how many that was uppdated
+                MessageBox.Show(
+                                $"{_successQuantity} artiklar antal uppdaterades.\n",
+                                "Leverans",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            //Check if there is anny error in input
+            if (0 < _errorQuantity)
+            {
+                if (1 == _errorQuantity)
                 {
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
@@ -114,6 +134,7 @@ namespace Laboration_4
 
         private void clearTextBox()
         {
+            //Clear textbox text 
             deliveryTextBox.Text = "";
         }
     }

@@ -10,7 +10,7 @@ namespace Laboration_4.Backend
 {
     class Helper
     {
-        public static bool  dataFileCheck(string path)
+        public static bool dataFileCheck(string path)
         {
             //Check if file exsist
             if (!File.Exists(path))
@@ -45,6 +45,7 @@ namespace Laboration_4.Backend
 
         public static Type GetType(string type)
         {
+            //Return type from input 
             if (type == "Bok")
                 return Type.Bok;
             else if (type == "DVD")
@@ -52,12 +53,13 @@ namespace Laboration_4.Backend
             else if (type == "Spel")
                 return Type.Spel;
 
+            //Throw error message for user
             throw new Exception("Type does not exists");
-
         }
 
         public static Status GetStatus(string status)
         {
+            //Return status from input
             if (status == "InBasket")
                 return Status.InBasket;
             else if (status == "Bought")
@@ -65,8 +67,8 @@ namespace Laboration_4.Backend
             else if (status == "Repuchased")
                 return Status.Repuchased;
 
+            //Throw error message for user
             throw new Exception("Status does not exists");
-
         }
 
         public static int ConvertInteger(string value)
@@ -76,7 +78,7 @@ namespace Laboration_4.Backend
             {
                 return value == "" ? 0 : Convert.ToInt32(value);
             }
-            catch (FormatException)
+            catch
             {
                 return 0;
             }
@@ -89,7 +91,7 @@ namespace Laboration_4.Backend
             {
                 return value == "" ? 0 : Convert.ToDouble(value);
             }
-            catch (FormatException)
+            catch
             {
                 return 0;
             }
