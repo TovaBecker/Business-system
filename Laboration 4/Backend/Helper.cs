@@ -10,6 +10,7 @@ namespace Laboration_4.Backend
 {
     class Helper
     {
+
         public static bool dataFileCheck(string path)
         {
             //Check if file exsist

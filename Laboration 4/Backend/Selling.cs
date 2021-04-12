@@ -69,6 +69,7 @@ namespace Laboration_4
                 {
                     //Inccrese quantity of the selected product
                     _basketList[index].Quantity++;
+                    _basketList[index].Sum = _basketList[index].Price * _basketList[index].Quantity;
                 }
                 else
                 {
@@ -81,7 +82,7 @@ namespace Laboration_4
                 if (product.Quantity > 0)
                 {
                     //Create saleInfo object
-                    SaleInfo saleInfo = new SaleInfo(product.Type, itemNumber, product.Name, product.Price, 1, DateTime.Now, GetSaleId(), Status.InBasket);
+                    SaleInfo saleInfo = new SaleInfo(product.Type, itemNumber, product.Name, product.Price, 1, product.Price, DateTime.Now, GetSaleId(), Status.InBasket);
 
                     //Add saleInfo object to basket list
                     _basketList.Add(saleInfo);
@@ -137,6 +138,9 @@ namespace Laboration_4
 
         public bool BuyItemsInBasket()
         {
+            //Double for total amount on Receipt
+            double _total = 0;
+
             //Check if basketlist is empty
             if (_basketList.Count() == 0)
             {
@@ -146,6 +150,9 @@ namespace Laboration_4
             //Go thougt basket and add buy
             foreach (var item in _basketList)
             {
+                //Add sum to total
+                _total += item.Price * item.Quantity;
+
                 //Set product status to bought
                 item.Status = Status.Bought;
 
@@ -156,8 +163,12 @@ namespace Laboration_4
                 _inventory.ReduceStock(item.ItemNumber, item.Quantity);
             }
 
-            //Save buy for receipt
-            ReceiptSave();
+            //Print the receipt for the buy to the user
+            using (PrintReceiptForm print = new PrintReceiptForm(_basketList, Convert.ToString(_total)))
+            {
+                print.ShowDialog();
+
+            };
 
             //Clear basket
             ClearBasket();
@@ -188,7 +199,6 @@ namespace Laboration_4
             //Clear basket
             ClearBasket();
         }
-
         internal SaleInfo SaleIDSearch(int saleID)
         {
             //Find and get the product
@@ -246,9 +256,9 @@ namespace Laboration_4
                     var values = line.Split(',');
 
                     //Create new prodokts and add produkts to inventoryList
-                    if (values.Length == 8)
+                    if (values.Length == 9)
                     {
-                        SaleInfo saleInfo = new SaleInfo(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
+                        SaleInfo saleInfo = new SaleInfo(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8]);
 
                         _saleInfoList.Add(saleInfo);
                     }
@@ -256,79 +266,6 @@ namespace Laboration_4
             }
             return _saleInfoBindingSource;
         }
-
-        public void SaleHistorySave()
-        {
-            //Check file
-            Helper.dataFileCheck(@"..\..\Database\saleHistory.csv");
-
-            //Open file
-            using (var writer = new StreamWriter(@"..\..\Database\saleHistory.csv"))
-            {
-                //Write all items from inventory list
-                foreach (var item in _saleInfoList)
-                {
-                    writer.WriteLine(
-                        $"{item.Type}," +
-                        $"{item.ItemNumber}," +
-                        $"{item.Name}," +
-                        $"{item.Price}," +
-                        $"{item.Quantity}," +
-                        $"{item.Date}," +
-                        $"{item.SaleID}," +
-                        $"{item.Status}");
-                }
-            }
-        }
-        public void ReceiptSave()
-        {
-            //Declare a double instance
-            double sumTotal = 0;
-            //Check file
-            Helper.dataFileCheck(@"..\..\Receipt\Receipt.htm");
-
-            //Open file
-            using (var writer = new StreamWriter(@"..\..\Receipt\Receipt.htm", false, System.Text.Encoding.UTF8))
-            {
-                //Write the receipt header
-                writer.WriteLine($"<html><h1>Receipt</h1>\n { DateTime.Now}");
-                writer.WriteLine($"");
-
-                //Write the columns header
-                writer.WriteLine($"Försäljnings ID\t" +
-                        $"Artikelnummer\t" +
-                        $"Namn\t" +
-                        $"Antal\t" +
-                        $"Pris\t" +
-                        $"Summa");
-
-                //Write all items from basket list
-                foreach (var item in _basketList)
-                {
-                    writer.WriteLine(
-                        $"{item.SaleID}\t" +
-                        $"{item.ItemNumber}\t" +
-                        $"{item.Type}, {item.Name}\t" +
-                        $"{item.Quantity}\t" +
-                        $"{item.Price}\t" +
-                        $"{item.Quantity * item.Price}");
-
-                    //Add line sum to the total sum
-                    sumTotal += item.Quantity * item.Price;
-                }
-
-                //Write the receipt total sum
-                writer.WriteLine(
-                        $"\t" +
-                        $"\t" +
-                        $"\t" +
-                        $"\t" +
-                        $"Totalt: \t" +
-                        $"{sumTotal.ToString("#.##")}</html>");
-
-            }
-        }
-
         public BindingSource GetTopTen(DateTime from, DateTime to)
         {
             //Clear the list
@@ -401,5 +338,31 @@ namespace Laboration_4
 
             return dictionary;
         }
+
+        public void SaleHistorySave()
+        {
+            //Check file
+            Helper.dataFileCheck(@"..\..\Database\saleHistory.csv");
+
+            //Open file
+            using (var writer = new StreamWriter(@"..\..\Database\saleHistory.csv"))
+            {
+                //Write all items from saleInfo list into file
+                foreach (var item in _saleInfoList)
+                {
+                    writer.WriteLine(
+                        $"{item.Type}," +
+                        $"{item.ItemNumber}," +
+                        $"{item.Name}," +
+                        $"{item.Price}," +
+                        $"{item.Quantity}," +
+                        $"{item.Sum}," +
+                        $"{item.Date}," +
+                        $"{item.SaleID}," +
+                        $"{item.Status}");
+                }
+            }
+        }
+       
     }
 }

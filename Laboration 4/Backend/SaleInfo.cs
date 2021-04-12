@@ -14,6 +14,7 @@ namespace Laboration_4
         private string _name;
         private double _price;
         private int _quantity;
+        private double _sum;
         private DateTime _date;
         private int _saleID;
         private Status _status;
@@ -23,7 +24,7 @@ namespace Laboration_4
 
         }
 
-        public SaleInfo(Type type, int itemNumber, string name, double price, int quantity, DateTime date, int saleID, Status status)
+        public SaleInfo(Type type, int itemNumber, string name, double price, int quantity, double sum, DateTime date, int saleID, Status status)
         {
             //Set values
             Type = type;
@@ -31,11 +32,12 @@ namespace Laboration_4
             Name = name;
             Price = price;
             Quantity = quantity;
+            Sum = sum;
             Date = date;
             SaleID = saleID;
             Status = status;
         }
-        public SaleInfo(string type, string itemNumber, string name, string price, string quantity, string date, string saleID, string status)
+        public SaleInfo(string type, string itemNumber, string name, string price, string quantity, string sum, string date, string saleID, string status)
         {
             //Set values
             Type = Helper.GetType(type);
@@ -43,6 +45,7 @@ namespace Laboration_4
             Name = name;
             Price = Helper.ConvertDouble(price);
             Quantity = Helper.ConvertInteger(quantity);
+            Sum = Helper.ConvertDouble(sum);
             Date = Helper.ConvertDate(date);
             SaleID = Helper.ConvertInteger(saleID);
             Status = Helper.GetStatus(status);
@@ -99,6 +102,14 @@ namespace Laboration_4
                     _quantity = 0;
             }
         }
+        public double Sum
+        {
+            get => _sum;
+            set
+            {
+                _sum = value;
+            }
+        }
 
         public DateTime Date
         {
@@ -126,7 +137,5 @@ namespace Laboration_4
                 _status = value;
             }
         }
-
-
     }
 }

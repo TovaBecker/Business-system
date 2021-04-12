@@ -1,41 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Laboration_4.Inventory">
-    <Position X="2.5" Y="1.5" Width="1.5" />
+    <Position X="8" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAABQABAAABAAA=</HashCode>
+      <HashCode>IAAACBAAAgAAAAAAQAAAAAQAAAAEAAAIBQABAEIBACA=</HashCode>
       <FileName>Backend\Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Laboration_4.SaleInfo">
-    <Position X="0.5" Y="4" Width="1.5" />
+    <Position X="3" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAABAAAAgAAAEAA=</HashCode>
-      <FileName>Backend\Sale.cs</FileName>
+      <HashCode>AkAAIAAEAQgAAAQBBAAACASAAAAAAAABAYAAgAAAEAQ=</HashCode>
+      <FileName>Backend\SaleInfo.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Laboration_4.Sale">
-    <Position X="0.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAQAAAAABAAAAAAAA=</HashCode>
-      <FileName>Backend\Selling.cs</FileName>
-    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SaleID" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Laboration_4.Product">
-    <Position X="4.5" Y="1.5" Width="1.5" />
+    <Position X="5.5" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgAAYAABCQCAAAQBgCIACBSAgAgAAAEACQAAgAAAAGA=</HashCode>
+      <HashCode>AgAAYAABCQCAAAQBgCIACBSAgAgAAACACQAAgAAAAEA=</HashCode>
       <FileName>Backend\Product.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Type" />
     </ShowAsAssociation>
   </Class>
+  <Class Name="Laboration_4.Basket">
+    <Position X="12.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Backend\Basket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laboration_4.Control">
+    <Position X="10.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAIYAABAAAiAIAIEAIQACAAAAAABCAAICAFIMgAAg=</HashCode>
+      <FileName>Backend\Control.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laboration_4.Backend.Helper">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAEAAACAAEAAARAAAAAAAA=</HashCode>
+      <FileName>Backend\Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laboration_4.Selling">
+    <Position X="14.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAQAAgEAAAAiIIAEECQQAEAAAAAABCABAEIAEIAAAA=</HashCode>
+      <FileName>Backend\Selling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laboration_4.Backend.TopTen">
+    <Position X="12.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAABAAAACASAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Backend\TopTen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="System.Int32">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Struct>
   <Enum Name="Laboration_4.Type">
-    <Position X="6.75" Y="3" Width="1.5" />
+    <Position X="1" Y="6.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQAAAAgAAAA=</HashCode>
       <FileName>Backend\Type.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Laboration_4.Status">
+    <Position X="1" Y="5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Backend\Status.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

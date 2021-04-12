@@ -38,11 +38,30 @@ namespace Laboration_4
             this.buyRadioButton = new System.Windows.Forms.RadioButton();
             this.checkutLabel = new System.Windows.Forms.Label();
             this.basketDataGridView = new System.Windows.Forms.DataGridView();
+            this.itemNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonRemoveCheckout = new System.Windows.Forms.Button();
             this.buttonAddCheckout = new System.Windows.Forms.Button();
             this.buttonBuyCheckout = new System.Windows.Forms.Button();
             this.cartLabel = new System.Windows.Forms.Label();
             this.checkoutDataGrid = new System.Windows.Forms.DataGridView();
+            this.typeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.formatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.languageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.platformDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playtimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemNumberErrorProviderAdd = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -53,7 +72,9 @@ namespace Laboration_4
             this.MenuSplitContainer.Panel2.SuspendLayout();
             this.MenuSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkoutDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProviderAdd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,6 +162,7 @@ namespace Laboration_4
             this.buyRadioButton.Name = "buyRadioButton";
             this.buyRadioButton.Size = new System.Drawing.Size(44, 17);
             this.buyRadioButton.TabIndex = 5;
+            this.buyRadioButton.TabStop = true;
             this.buyRadioButton.Text = "Köp";
             this.buyRadioButton.UseVisualStyleBackColor = true;
             this.buyRadioButton.CheckedChanged += new System.EventHandler(this.buyRadioButton_CheckedChanged);
@@ -163,8 +185,19 @@ namespace Laboration_4
             this.basketDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.basketDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.basketDataGridView.AutoGenerateColumns = false;
+            this.basketDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.basketDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.basketDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.basketDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.basketDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.itemNumberDataGridViewTextBoxColumn,
+            this.typeDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn,
+            this.Sum});
+            this.basketDataGridView.DataSource = this.saleInfoBindingSource;
             this.basketDataGridView.Location = new System.Drawing.Point(6, 25);
             this.basketDataGridView.MultiSelect = false;
             this.basketDataGridView.Name = "basketDataGridView";
@@ -177,6 +210,58 @@ namespace Laboration_4
             this.basketDataGridView.Size = new System.Drawing.Size(412, 88);
             this.basketDataGridView.TabIndex = 0;
             this.basketDataGridView.TabStop = false;
+            // 
+            // itemNumberDataGridViewTextBoxColumn
+            // 
+            this.itemNumberDataGridViewTextBoxColumn.DataPropertyName = "ItemNumber";
+            this.itemNumberDataGridViewTextBoxColumn.HeaderText = "Artikel Nr";
+            this.itemNumberDataGridViewTextBoxColumn.Name = "itemNumberDataGridViewTextBoxColumn";
+            this.itemNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.itemNumberDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Typ";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.typeDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Namn";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Pris";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn.Width = 49;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Antal";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityDataGridViewTextBoxColumn.Width = 56;
+            // 
+            // Sum
+            // 
+            this.Sum.DataPropertyName = "Sum";
+            this.Sum.HeaderText = "Summa";
+            this.Sum.Name = "Sum";
+            this.Sum.ReadOnly = true;
+            this.Sum.Width = 67;
+            // 
+            // saleInfoBindingSource
+            // 
+            this.saleInfoBindingSource.DataSource = typeof(Laboration_4.SaleInfo);
             // 
             // buttonRemoveCheckout
             // 
@@ -226,8 +311,23 @@ namespace Laboration_4
             this.checkoutDataGrid.AllowUserToAddRows = false;
             this.checkoutDataGrid.AllowUserToDeleteRows = false;
             this.checkoutDataGrid.AllowUserToOrderColumns = true;
-            this.checkoutDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.checkoutDataGrid.AutoGenerateColumns = false;
+            this.checkoutDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.checkoutDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.checkoutDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.checkoutDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.typeDataGridViewTextBoxColumn1,
+            this.itemNumberDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.priceDataGridViewTextBoxColumn1,
+            this.quantityDataGridViewTextBoxColumn1,
+            this.authorDataGridViewTextBoxColumn,
+            this.genreDataGridViewTextBoxColumn,
+            this.formatDataGridViewTextBoxColumn,
+            this.languageDataGridViewTextBoxColumn,
+            this.platformDataGridViewTextBoxColumn,
+            this.playtimeDataGridViewTextBoxColumn});
+            this.checkoutDataGrid.DataSource = this.productBindingSource;
             this.checkoutDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkoutDataGrid.Location = new System.Drawing.Point(0, 0);
             this.checkoutDataGrid.MultiSelect = false;
@@ -243,6 +343,98 @@ namespace Laboration_4
             this.checkoutDataGrid.TabStop = false;
             this.checkoutDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.checkoutDataGrid_CellClick);
             // 
+            // typeDataGridViewTextBoxColumn1
+            // 
+            this.typeDataGridViewTextBoxColumn1.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn1.HeaderText = "Typ";
+            this.typeDataGridViewTextBoxColumn1.Name = "typeDataGridViewTextBoxColumn1";
+            this.typeDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.typeDataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // itemNumberDataGridViewTextBoxColumn1
+            // 
+            this.itemNumberDataGridViewTextBoxColumn1.DataPropertyName = "ItemNumber";
+            this.itemNumberDataGridViewTextBoxColumn1.HeaderText = "Artikel Nr";
+            this.itemNumberDataGridViewTextBoxColumn1.Name = "itemNumberDataGridViewTextBoxColumn1";
+            this.itemNumberDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.itemNumberDataGridViewTextBoxColumn1.Width = 75;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Namn";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Pris";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn1.Width = 49;
+            // 
+            // quantityDataGridViewTextBoxColumn1
+            // 
+            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Antal";
+            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
+            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.quantityDataGridViewTextBoxColumn1.Width = 56;
+            // 
+            // authorDataGridViewTextBoxColumn
+            // 
+            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
+            this.authorDataGridViewTextBoxColumn.HeaderText = "Författare";
+            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
+            this.authorDataGridViewTextBoxColumn.ReadOnly = true;
+            this.authorDataGridViewTextBoxColumn.Width = 77;
+            // 
+            // genreDataGridViewTextBoxColumn
+            // 
+            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
+            this.genreDataGridViewTextBoxColumn.HeaderText = "Genre";
+            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
+            this.genreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.genreDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // formatDataGridViewTextBoxColumn
+            // 
+            this.formatDataGridViewTextBoxColumn.DataPropertyName = "Format";
+            this.formatDataGridViewTextBoxColumn.HeaderText = "Format";
+            this.formatDataGridViewTextBoxColumn.Name = "formatDataGridViewTextBoxColumn";
+            this.formatDataGridViewTextBoxColumn.ReadOnly = true;
+            this.formatDataGridViewTextBoxColumn.Width = 64;
+            // 
+            // languageDataGridViewTextBoxColumn
+            // 
+            this.languageDataGridViewTextBoxColumn.DataPropertyName = "Language";
+            this.languageDataGridViewTextBoxColumn.HeaderText = "Språk";
+            this.languageDataGridViewTextBoxColumn.Name = "languageDataGridViewTextBoxColumn";
+            this.languageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.languageDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // platformDataGridViewTextBoxColumn
+            // 
+            this.platformDataGridViewTextBoxColumn.DataPropertyName = "Platform";
+            this.platformDataGridViewTextBoxColumn.HeaderText = "Plattform";
+            this.platformDataGridViewTextBoxColumn.Name = "platformDataGridViewTextBoxColumn";
+            this.platformDataGridViewTextBoxColumn.ReadOnly = true;
+            this.platformDataGridViewTextBoxColumn.Width = 73;
+            // 
+            // playtimeDataGridViewTextBoxColumn
+            // 
+            this.playtimeDataGridViewTextBoxColumn.DataPropertyName = "Playtime";
+            this.playtimeDataGridViewTextBoxColumn.HeaderText = "Speltid";
+            this.playtimeDataGridViewTextBoxColumn.Name = "playtimeDataGridViewTextBoxColumn";
+            this.playtimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.playtimeDataGridViewTextBoxColumn.Width = 64;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(Laboration_4.Product);
+            // 
             // itemNumberErrorProviderAdd
             // 
             this.itemNumberErrorProviderAdd.ContainerControl = this;
@@ -254,7 +446,6 @@ namespace Laboration_4
             this.Controls.Add(this.mainSplitContainer);
             this.Name = "ManageCheckoutControl";
             this.Size = new System.Drawing.Size(620, 386);
-            this.Load += new System.EventHandler(this.ManageCheckoutControl_Load);
             this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
@@ -266,7 +457,9 @@ namespace Laboration_4
             ((System.ComponentModel.ISupportInitialize)(this.MenuSplitContainer)).EndInit();
             this.MenuSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.basketDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkoutDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNumberErrorProviderAdd)).EndInit();
             this.ResumeLayout(false);
 
@@ -288,5 +481,24 @@ namespace Laboration_4
         private System.Windows.Forms.Button buttonAddCheckout;
         private System.Windows.Forms.DataGridView basketDataGridView;
         private System.Windows.Forms.ErrorProvider itemNumberErrorProviderAdd;
+        private System.Windows.Forms.BindingSource saleInfoBindingSource;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemNumberDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn formatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn platformDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playtimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
     }
 }

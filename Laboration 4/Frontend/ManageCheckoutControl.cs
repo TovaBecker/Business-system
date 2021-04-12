@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Printing;
+using Microsoft.Reporting.WinForms;
 
 namespace Laboration_4
 {
@@ -23,10 +22,6 @@ namespace Laboration_4
 
         //Declare a instance a Product class varible for svaing selected item
         Product _selectedItem;
-
-        //Declare a instance for printing receipt
-        private Font receiptFont;
-        private StreamReader receiptToPrint;
 
         public ManageCheckoutControl(Control control, BindingSource inventoryBindingSource, BindingSource basketBindingSource)
         {
@@ -159,9 +154,9 @@ namespace Laboration_4
                 //Buy items in the basket grid
                 if (_control.Purchase())
                 {
-                    //Print the receipt for the buy to the user
-                    printReceipt();
-
+                    //Open receipt in default window for printing
+                    System.Diagnostics.Process.Start(@"..\..\Receipt\Receipt.pdf");
+                    
                 }
             }
 
@@ -257,98 +252,6 @@ namespace Laboration_4
 
             //Focus on input textbox
             itemNumberSearchextBox.Focus();
-        }
-
-        private void printReceipt()
-        {
-            try
-            {
-                //Find and get file that is going to be converted to PDF
-                receiptToPrint = new StreamReader(@"..\..\Receipt\Receipt.htm");
-                try
-                {
-                    //Set print front propertis
-                    receiptFont = new Font("Arial", 12);
-
-                    //Create an instace for printing document
-                    PrintDocument receipt = new PrintDocument();
-
-                    //Get Pages that is to be convertet to PDF
-                    receipt.PrintPage += new PrintPageEventHandler(this.receipt_PrintPage);
-
-                    //Print the result
-                    receipt.Print();
-                }
-                finally
-                {
-                    //Close the printing method
-                    receiptToPrint.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                //Show error message for user
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void receipt_PrintPage(object sender, PrintPageEventArgs ev)
-        {
-            //Set print propertis
-            float linesPerPage = 0;
-            float yPos = 0;
-            int count = 0;
-            float leftMargin = ev.MarginBounds.Left;
-            float topMargin = ev.MarginBounds.Top;
-            string line = null;
-
-            //Calculate the number of lines per page
-            linesPerPage = ev.MarginBounds.Height /
-               receiptFont.GetHeight(ev.Graphics);
-
-            //Print each line of the file
-            while (count < linesPerPage &&
-               ((line = receiptToPrint.ReadLine()) != null))
-            {
-                yPos = topMargin + (count *
-                   receiptFont.GetHeight(ev.Graphics));
-                ev.Graphics.DrawString(line, receiptFont, Brushes.Black,
-                   leftMargin, yPos, new StringFormat());
-                count++;
-            }
-
-            //If more lines exist then print another page
-            if (line != null)
-                ev.HasMorePages = true;
-            else
-                ev.HasMorePages = false;
-        }
-
-        private void ManageCheckoutControl_Load(object sender, EventArgs e)
-        {
-
-            //Set columns head in checkout grid
-            checkoutDataGrid.Columns["Type"].HeaderText = "Typ";
-            checkoutDataGrid.Columns["ItemNumber"].HeaderText = "Artikelnummer";
-            checkoutDataGrid.Columns["Name"].HeaderText = "Namn";
-            checkoutDataGrid.Columns["Price"].HeaderText = "Pris";
-            checkoutDataGrid.Columns["Quantity"].HeaderText = "Antal";
-            checkoutDataGrid.Columns["Author"].HeaderText = "Författare";
-            checkoutDataGrid.Columns["Genre"].HeaderText = "Genre";
-            checkoutDataGrid.Columns["Format"].HeaderText = "Format";
-            checkoutDataGrid.Columns["Language"].HeaderText = "Språk";
-            checkoutDataGrid.Columns["Platform"].HeaderText = "Plattform";
-            checkoutDataGrid.Columns["Playtime"].HeaderText = "Speltid";
-
-            //Set columns head in basket grid
-            basketDataGridView.Columns["Type"].HeaderText = "Typ";
-            basketDataGridView.Columns["ItemNumber"].HeaderText = "Artikelnummer";
-            basketDataGridView.Columns["Name"].HeaderText = "Namn";
-            basketDataGridView.Columns["Price"].HeaderText = "Pris";
-            basketDataGridView.Columns["Quantity"].HeaderText = "Antal";
-            basketDataGridView.Columns["Date"].Visible = false;
-            basketDataGridView.Columns["SaleID"].Visible = false;
-            basketDataGridView.Columns["Status"].Visible = false;
         }
     }
 }

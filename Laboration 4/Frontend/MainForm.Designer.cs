@@ -98,6 +98,7 @@
             this.Name = "MainForm";
             this.Text = "Affärssystemet Mia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTab.ResumeLayout(false);
             this.ResumeLayout(false);
