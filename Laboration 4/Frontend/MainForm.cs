@@ -88,8 +88,7 @@ namespace Laboration_4
             //Save data in files when form is closing
             _control.Save();
         }
-
-        private void MainForm_FormClosing(object sender, FormClosedEventArgs e)
+        private void MainForm_FormClosed(object sender, FormClosingEventArgs e)
         {
             //Save data in files when form is closing
             _control.Save();

@@ -104,6 +104,7 @@ namespace Laboration_4
             return false;
         }
 
+        //Code inspierd from https://stackoverflow.com/questions/5843537/filtering-datagridview-without-changing-datasource
         internal void ProductSearch(string type, int itemNumber, string name, double price, int quantity, string author, string genre, string format, string language, string platform, int playtime)
         {
             //Declare and initialize filtered list

@@ -54,7 +54,7 @@ namespace Laboration_4
             if (returnRadioButton.Checked == true)
             {
                 //Check if itemNrTextBox has a value
-                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr))
+                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr) && 0 <= outNr)
                 {
                     //Add prodcut to basket
                     succesAdd = _control.AddToBasketReturn(outNr);
@@ -79,8 +79,8 @@ namespace Laboration_4
                     MessageBox.Show(
                                     "Det gick inte att lägga till försäljningen.\n" +
                                     "Försäljnings ID är borttaget.\n" +
-                                    "Försäljnings ID måste anges i siffror",
-                                    "Försäljnings ID borttagen",
+                                    "Försäljnings ID måste anges i ett positivt heltal.",
+                                    "Försäljnings ID borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
@@ -88,7 +88,7 @@ namespace Laboration_4
             else
             {
                 //Check if itemNrTextBox has a value
-                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr))
+                if (itemNumberSearchextBox.Text != "" && true == int.TryParse(itemNumberSearchextBox.Text, out outNr) && 0 <= outNr)
                 {
                     //Add prodcut to basket
                     succesAdd = _control.AddToBasketBuy(outNr);
@@ -113,8 +113,8 @@ namespace Laboration_4
                     MessageBox.Show(
                                     "Det gick inte att lägga till artikel.\n" +
                                     "Artikelnummer är borttaget.\n" +
-                                    "Artikelnummer måste anges i siffror",
-                                    "Artikelnummer borttagen",
+                                    "Artikelnummer måste anges i ett positivt heltal.",
+                                    "Artikelnummer borttagen.",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }

@@ -86,7 +86,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.44662cm</Top>
-            <Left>7.59037cm</Left>
+            <Left>6.84188cm</Left>
             <Height>0.70583cm</Height>
             <Width>2.63229cm</Width>
             <Style>
@@ -117,9 +117,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>1.16099cm</Top>
-            <Left>12.01648cm</Left>
+            <Left>10.82586cm</Left>
             <Height>0.6cm</Height>
-            <Width>5.77201cm</Width>
+            <Width>5.16349cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -141,7 +141,7 @@
                   <Width>1.64336cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>7.6056cm</Width>
+                  <Width>6.41498cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.76274cm</Width>
@@ -150,7 +150,7 @@
                   <Width>1.44461cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.56468cm</Width>
+                  <Width>1.95614cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -411,11 +411,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Type.Value</Value>
-                                  <Style />
-                                </TextRun>
-                                <TextRun>
-                                  <Value>, </Value>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style />
                                 </TextRun>
                                 <TextRun>
@@ -560,7 +556,7 @@
             <Top>1.90183cm</Top>
             <Left>0.3175cm</Left>
             <Height>1.2cm</Height>
-            <Width>17.47099cm</Width>
+            <Width>15.67184cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -585,8 +581,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.27821cm</Top>
-            <Left>13.77921cm</Left>
+            <Top>3.27822cm</Top>
+            <Left>11.144cm</Left>
             <Height>0.6cm</Height>
             <Width>1.4446cm</Width>
             <ZIndex>3</ZIndex>
@@ -617,10 +613,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox36</rd:DefaultName>
-            <Top>3.27821cm</Top>
-            <Left>15.22381cm</Left>
+            <Top>3.27822cm</Top>
+            <Left>12.72971cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.56468cm</Width>
+            <Width>3.18906cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -639,23 +635,18 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Välkommen åter</Value>
-                    <Style>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
+                    <Value>Lämna gärna en recension på hemsidan!</Value>
+                    <Style />
                   </TextRun>
                 </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
+                <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.8624cm</Top>
-            <Left>6.65852cm</Left>
-            <Height>0.70583cm</Height>
-            <Width>4.90771cm</Width>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>6.69078cm</Top>
+            <Left>4.8387cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.63864cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -674,10 +665,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Lämna gärna recension på hemsidan</Value>
+                    <Value>Välkommen åter!</Value>
                     <Style>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -687,10 +678,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.98018cm</Top>
-            <Left>4.7006cm</Left>
+            <Top>7.71412cm</Top>
+            <Left>5.99498cm</Left>
             <Height>0.70583cm</Height>
-            <Width>8.85cm</Width>
+            <Width>4.32608cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -706,7 +697,7 @@
         <Height>3.51042in</Height>
         <Style />
       </Body>
-      <Width>7.09177in</Width>
+      <Width>6.4251in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

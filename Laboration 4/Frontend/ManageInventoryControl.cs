@@ -48,7 +48,7 @@ namespace Laboration_4
             int outQuantity = 0;
             int outPlaytime = 0;
 
-            if (nameTextBox.Text != "" && typeComboBox.SelectedItem != "")
+            if (nameTextBox.Text != "" && typeComboBox.SelectedItem == "Bok" || typeComboBox.SelectedItem == "Spel" || typeComboBox.SelectedItem == "DVD")
             {
 
                 //Check if itemNrTextBox has a value
@@ -109,8 +109,6 @@ namespace Laboration_4
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                 }
-
-
                 //Add new product
                 Product NewProduct = fetchProduct();
 
@@ -136,7 +134,7 @@ namespace Laboration_4
             {
                 //Show message that tells user prodoct is added
                 MessageBox.Show(
-                                "Du behöver lägga in namn och välja typ för att lägga til en ny artikel",
+                                "Du behöver lägga in namn och välja typ för att skapa en ny artikel.",
                                 "Info",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -816,35 +814,52 @@ namespace Laboration_4
                     if (product != null)
                     {
                         //Check if data has changed 
-                        if (itemNrTextBox.Text == "" || product.ItemNumber != int.Parse(itemNrTextBox.Text))
+                        if (itemNrTextBox.Text == "" || product.ItemNumber != int.Parse(itemNrTextBox.Text) && 0 <= int.Parse(itemNrTextBox.Text))
                         {
-                            //Remove the error if price is a int
+                            //Remove the error if itemnumber is a int
                             itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
+                        }
+                        else if( product.ItemNumber == int.Parse(itemNrTextBox.Text))
+                            {
+                            //Remove the error if itemnumber is the same
+                            itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
+                        }
+                        else
+                        {
+                            throw new Exception();
                         }
                         //Go through data and set buttons 
                         dataChanged();
-
                     }
                 }
                 else
                 {
                     //Check if data has changed 
-                    if (itemNrTextBox.Text != "")
+                    if (itemNrTextBox.Text != "" && 0 <= int.Parse(itemNrTextBox.Text))
                     {
                         //Convert itemnumber textbox text to a int
                         int _itemNumber = int.Parse(itemNrTextBox.Text);
 
-                        //Remove the error if price is a int
+                        //Remove the error if itemnumber is a int
                         itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
 
                         //Go through data and set buttons 
                         dataChanged();
                     }
+                    else if(int.Parse(itemNrTextBox.Text) < 0)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        //Remove the error if itemnumber is a int
+                        itemNumberErrorProvider.SetError(this.itemNrTextBox, String.Empty);
+                    }
                 }
             }
             catch
             {
-                // Set the error if price is not a int
+                // Set the error if itemnumber is not a int
                 itemNumberErrorProvider.SetError(this.itemNrTextBox, $"Artikelnummer är endast siffror emellan 0 - {int.MaxValue}.");
             }
         }
@@ -882,7 +897,7 @@ namespace Laboration_4
                     if (product != null)
                     {
                         //Check if data has changed 
-                        if (priceTextBox.Text == "" || product.Price != double.Parse(priceTextBox.Text))
+                        if (priceTextBox.Text == "" || product.Price != double.Parse(priceTextBox.Text) && 0 <= double.Parse(priceTextBox.Text))
                         {
                             //Remove the error if price is a double
                             priceErrorProvider.SetError(this.priceTextBox, String.Empty);
@@ -890,12 +905,21 @@ namespace Laboration_4
                             //Go through data and set buttons 
                             dataChanged();
                         }
+                        else if (product.Price == double.Parse(priceTextBox.Text))
+                        {
+                            //Remove the error if price is the same
+                            priceErrorProvider.SetError(this.priceTextBox, String.Empty);
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
                     }
                 }
                 else
                 {
                     //Check if data has changed 
-                    if (priceTextBox.Text != "")
+                    if (priceTextBox.Text != "" && 0 <= double.Parse(priceTextBox.Text))
                     {
                         //Convert price textbox text to a double
                         double _price = double.Parse(priceTextBox.Text);
@@ -905,6 +929,15 @@ namespace Laboration_4
 
                         //Go through data and set buttons 
                         dataChanged();
+                    }
+                    else if (int.Parse(priceTextBox.Text) < 0)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        //Remove the error if price is a int
+                        priceErrorProvider.SetError(this.priceTextBox, String.Empty);
                     }
                 }
             }
@@ -928,7 +961,7 @@ namespace Laboration_4
                     if (product != null)
                     {
                         //Check if data has changed 
-                        if (quantityTextBox.Text == "" || product.Quantity != int.Parse(quantityTextBox.Text))
+                        if (quantityTextBox.Text == "" || product.Quantity != int.Parse(quantityTextBox.Text) && 0 <= int.Parse(quantityTextBox.Text))
                         {
                             //Remove the error if quantity is a int
                             quantityErrorProvider.SetError(this.quantityTextBox, String.Empty);
@@ -936,13 +969,21 @@ namespace Laboration_4
                             //Go through data and set buttons 
                             dataChanged();
                         }
-
+                        else if (product.Quantity == int.Parse(quantityTextBox.Text))
+                        {
+                            //Remove the error if quantity is the same
+                            quantityErrorProvider.SetError(this.quantityTextBox, String.Empty);
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
                     }
                 }
                 else
                 {
                     //Check if data has changed 
-                    if (quantityTextBox.Text != "")
+                    if (quantityTextBox.Text != "" && 0 <= int.Parse(quantityTextBox.Text))
                     {
                         //Convert quantity textbox text to a int
                         int _quantity = int.Parse(quantityTextBox.Text);
@@ -953,7 +994,15 @@ namespace Laboration_4
                         //Go through data and set buttons 
                         dataChanged();
                     }
-
+                    else if (int.Parse(quantityTextBox.Text) < 0)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        //Remove the error if quantity is a int
+                        quantityErrorProvider.SetError(this.quantityTextBox, String.Empty);
+                    }
                 }
             }
             catch
@@ -964,7 +1013,7 @@ namespace Laboration_4
         }
 
         private void data1TextBox_TextChanged(object sender, EventArgs e)
-        {
+       {
             //Check that a row is selected in grid or return with null
             if (0 < inventoryDataGrid.SelectedRows.Count)
             {
@@ -1002,13 +1051,22 @@ namespace Laboration_4
                             try
                             {
                                 //Check if data has changed 
-                                if (data1TextBox.Text == "" || product.Playtime != int.Parse(data1TextBox.Text))
+                                if (data1TextBox.Text == "" || product.Playtime != int.Parse(data1TextBox.Text) && 0 <= int.Parse(data1TextBox.Text))
                                 {
                                     //Remove the error if playtime is a int
                                     playtimeErrorProvider.SetError(this.data1TextBox, String.Empty);
 
                                     //Go through data and set buttons 
                                     dataChanged();
+                                }
+                                else if (product.Playtime == int.Parse(data1TextBox.Text))
+                                {
+                                    //Remove the error if playtime is the same
+                                    playtimeErrorProvider.SetError(this.data1TextBox, String.Empty);
+                                }
+                                else
+                                {
+                                    throw new Exception();
                                 }
 
                             }
@@ -1024,12 +1082,17 @@ namespace Laboration_4
                     }
                 }
             }
+            else if (typeComboBox.SelectedItem == "Bok" || typeComboBox.SelectedItem == "Spel")
+            {
+                //Remove the error for playtime
+                playtimeErrorProvider.SetError(this.data1TextBox, String.Empty);
+            }
             else if (typeComboBox.SelectedItem == "DVD")
             {
                 try
-                {
+                { 
                     //Check if data has changed 
-                    if (data1TextBox.Text != "")
+                    if (data1TextBox.Text != "" && 0 <= int.Parse(data1TextBox.Text))
                     {
                         //Convert playtime textbox text to a int
                         int _playtime = int.Parse(data1TextBox.Text);
@@ -1040,12 +1103,15 @@ namespace Laboration_4
                         //Go through data and set buttons 
                         dataChanged();
                     }
+                    else if (int.Parse(data1TextBox.Text) < 0)
+                    {
+                        throw new Exception();
+                    }
                     else
                     {
-                        //Remove the error for playtime
-                        playtimeErrorProvider.SetError(this.data1TextBox, String.Empty);
+                        //Remove the error if price is a int
+                        itemNumberErrorProvider.SetError(this.data1TextBox, String.Empty);
                     }
-
                 }
                 catch
                 {

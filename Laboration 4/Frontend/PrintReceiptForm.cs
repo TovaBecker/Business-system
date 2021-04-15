@@ -31,7 +31,7 @@ namespace Laboration_4
             //Set total
              _total = total;
         }
-
+        //Code from https://foxlearn.com/articles/print-receipt-using-report-viewer-in-csharp-111.html
         private void PrintReceiptForm_Load(object sender, EventArgs e)
         {
             //Set data source to receipt report

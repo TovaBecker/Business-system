@@ -43,6 +43,7 @@
             this.MainTab.Controls.Add(this.deliveryTab);
             this.MainTab.Controls.Add(this.StatisticsTab);
             this.MainTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainTab.Location = new System.Drawing.Point(0, 0);
             this.MainTab.Name = "MainTab";
             this.MainTab.SelectedIndex = 0;
@@ -51,10 +52,10 @@
             // 
             // CheckoutTab
             // 
-            this.CheckoutTab.Location = new System.Drawing.Point(4, 22);
+            this.CheckoutTab.Location = new System.Drawing.Point(4, 29);
             this.CheckoutTab.Name = "CheckoutTab";
             this.CheckoutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CheckoutTab.Size = new System.Drawing.Size(792, 395);
+            this.CheckoutTab.Size = new System.Drawing.Size(792, 388);
             this.CheckoutTab.TabIndex = 0;
             this.CheckoutTab.Text = "Kassa";
             this.CheckoutTab.UseVisualStyleBackColor = true;
@@ -76,7 +77,7 @@
             this.deliveryTab.Padding = new System.Windows.Forms.Padding(3);
             this.deliveryTab.Size = new System.Drawing.Size(792, 395);
             this.deliveryTab.TabIndex = 3;
-            this.deliveryTab.Text = "leverans";
+            this.deliveryTab.Text = "Leverans";
             this.deliveryTab.UseVisualStyleBackColor = true;
             // 
             // StatisticsTab
@@ -98,7 +99,6 @@
             this.Name = "MainForm";
             this.Text = "Affärssystemet Mia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTab.ResumeLayout(false);
             this.ResumeLayout(false);

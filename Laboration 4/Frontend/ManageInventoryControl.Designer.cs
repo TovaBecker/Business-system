@@ -105,9 +105,9 @@ namespace Laboration_4
             // infoTableLayoutPanel
             // 
             this.infoTableLayoutPanel.ColumnCount = 5;
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.infoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.infoTableLayoutPanel.Controls.Add(this.buttonSearch, 4, 4);
@@ -159,9 +159,9 @@ namespace Laboration_4
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.typeLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.typeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.typeLabel.Location = new System.Drawing.Point(3, 108);
+            this.typeLabel.Location = new System.Drawing.Point(82, 108);
             this.typeLabel.Name = "typeLabel";
             this.typeLabel.Size = new System.Drawing.Size(35, 28);
             this.typeLabel.TabIndex = 21;
@@ -170,20 +170,20 @@ namespace Laboration_4
             // itemNrLabel
             // 
             this.itemNrLabel.AutoSize = true;
-            this.itemNrLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.itemNrLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.itemNrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.itemNrLabel.Location = new System.Drawing.Point(3, 0);
+            this.itemNrLabel.Location = new System.Drawing.Point(6, 0);
             this.itemNrLabel.Name = "itemNrLabel";
-            this.itemNrLabel.Size = new System.Drawing.Size(96, 27);
+            this.itemNrLabel.Size = new System.Drawing.Size(111, 27);
             this.itemNrLabel.TabIndex = 0;
             this.itemNrLabel.Text = "Artikelnummer";
             // 
             // namLabel
             // 
             this.namLabel.AutoSize = true;
-            this.namLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.namLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.namLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.namLabel.Location = new System.Drawing.Point(3, 27);
+            this.namLabel.Location = new System.Drawing.Point(68, 27);
             this.namLabel.Name = "namLabel";
             this.namLabel.Size = new System.Drawing.Size(49, 27);
             this.namLabel.TabIndex = 1;
@@ -192,9 +192,9 @@ namespace Laboration_4
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
-            this.priceLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.priceLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceLabel.Location = new System.Drawing.Point(3, 54);
+            this.priceLabel.Location = new System.Drawing.Point(81, 54);
             this.priceLabel.Name = "priceLabel";
             this.priceLabel.Size = new System.Drawing.Size(36, 27);
             this.priceLabel.TabIndex = 2;
@@ -203,9 +203,9 @@ namespace Laboration_4
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.quantityLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(3, 81);
+            this.quantityLabel.Location = new System.Drawing.Point(72, 81);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(45, 27);
             this.quantityLabel.TabIndex = 3;
@@ -214,45 +214,45 @@ namespace Laboration_4
             // itemNrTextBox
             // 
             this.itemNrTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemNrTextBox.Location = new System.Drawing.Point(113, 3);
+            this.itemNrTextBox.Location = new System.Drawing.Point(123, 3);
             this.itemNrTextBox.Name = "itemNrTextBox";
-            this.itemNrTextBox.Size = new System.Drawing.Size(151, 20);
+            this.itemNrTextBox.Size = new System.Drawing.Size(141, 20);
             this.itemNrTextBox.TabIndex = 1;
             this.itemNrTextBox.TextChanged += new System.EventHandler(this.itemNrTextBox_TextChanged);
             // 
             // nameTextBox
             // 
             this.nameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nameTextBox.Location = new System.Drawing.Point(113, 30);
+            this.nameTextBox.Location = new System.Drawing.Point(123, 30);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(151, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(141, 20);
             this.nameTextBox.TabIndex = 2;
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // priceTextBox
             // 
             this.priceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceTextBox.Location = new System.Drawing.Point(113, 57);
+            this.priceTextBox.Location = new System.Drawing.Point(123, 57);
             this.priceTextBox.Name = "priceTextBox";
-            this.priceTextBox.Size = new System.Drawing.Size(151, 20);
+            this.priceTextBox.Size = new System.Drawing.Size(141, 20);
             this.priceTextBox.TabIndex = 3;
             this.priceTextBox.TextChanged += new System.EventHandler(this.priceTextBox_TextChanged);
             // 
             // quantityTextBox
             // 
             this.quantityTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.quantityTextBox.Location = new System.Drawing.Point(113, 84);
+            this.quantityTextBox.Location = new System.Drawing.Point(123, 84);
             this.quantityTextBox.Name = "quantityTextBox";
-            this.quantityTextBox.Size = new System.Drawing.Size(151, 20);
+            this.quantityTextBox.Size = new System.Drawing.Size(141, 20);
             this.quantityTextBox.TabIndex = 4;
             this.quantityTextBox.TextChanged += new System.EventHandler(this.quantityTextBox_TextChanged);
             // 
             // data1TextBox
             // 
             this.data1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.data1TextBox.Location = new System.Drawing.Point(380, 3);
+            this.data1TextBox.Location = new System.Drawing.Point(390, 3);
             this.data1TextBox.Name = "data1TextBox";
-            this.data1TextBox.Size = new System.Drawing.Size(151, 20);
+            this.data1TextBox.Size = new System.Drawing.Size(141, 20);
             this.data1TextBox.TabIndex = 11;
             this.data1TextBox.Visible = false;
             this.data1TextBox.TextChanged += new System.EventHandler(this.data1TextBox_TextChanged);
@@ -260,9 +260,9 @@ namespace Laboration_4
             // data2TextBox
             // 
             this.data2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.data2TextBox.Location = new System.Drawing.Point(380, 30);
+            this.data2TextBox.Location = new System.Drawing.Point(390, 30);
             this.data2TextBox.Name = "data2TextBox";
-            this.data2TextBox.Size = new System.Drawing.Size(151, 20);
+            this.data2TextBox.Size = new System.Drawing.Size(141, 20);
             this.data2TextBox.TabIndex = 12;
             this.data2TextBox.Visible = false;
             this.data2TextBox.TextChanged += new System.EventHandler(this.data2TextBox_TextChanged);
@@ -270,9 +270,9 @@ namespace Laboration_4
             // data3TextBox
             // 
             this.data3TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.data3TextBox.Location = new System.Drawing.Point(380, 57);
+            this.data3TextBox.Location = new System.Drawing.Point(390, 57);
             this.data3TextBox.Name = "data3TextBox";
-            this.data3TextBox.Size = new System.Drawing.Size(151, 20);
+            this.data3TextBox.Size = new System.Drawing.Size(141, 20);
             this.data3TextBox.TabIndex = 13;
             this.data3TextBox.Visible = false;
             this.data3TextBox.TextChanged += new System.EventHandler(this.data3TextBox_TextChanged);
@@ -280,9 +280,9 @@ namespace Laboration_4
             // data4TextBox
             // 
             this.data4TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.data4TextBox.Location = new System.Drawing.Point(380, 84);
+            this.data4TextBox.Location = new System.Drawing.Point(390, 84);
             this.data4TextBox.Name = "data4TextBox";
-            this.data4TextBox.Size = new System.Drawing.Size(151, 20);
+            this.data4TextBox.Size = new System.Drawing.Size(141, 20);
             this.data4TextBox.TabIndex = 14;
             this.data4TextBox.Visible = false;
             this.data4TextBox.TextChanged += new System.EventHandler(this.data4TextBox_TextChanged);
@@ -323,9 +323,9 @@ namespace Laboration_4
             // data1Label
             // 
             this.data1Label.AutoSize = true;
-            this.data1Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this.data1Label.Dock = System.Windows.Forms.DockStyle.Right;
             this.data1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data1Label.Location = new System.Drawing.Point(270, 0);
+            this.data1Label.Location = new System.Drawing.Point(333, 0);
             this.data1Label.Name = "data1Label";
             this.data1Label.Size = new System.Drawing.Size(51, 27);
             this.data1Label.TabIndex = 16;
@@ -335,9 +335,9 @@ namespace Laboration_4
             // data2Label
             // 
             this.data2Label.AutoSize = true;
-            this.data2Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this.data2Label.Dock = System.Windows.Forms.DockStyle.Right;
             this.data2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data2Label.Location = new System.Drawing.Point(270, 27);
+            this.data2Label.Location = new System.Drawing.Point(333, 27);
             this.data2Label.Name = "data2Label";
             this.data2Label.Size = new System.Drawing.Size(51, 27);
             this.data2Label.TabIndex = 17;
@@ -347,9 +347,9 @@ namespace Laboration_4
             // data3Label
             // 
             this.data3Label.AutoSize = true;
-            this.data3Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this.data3Label.Dock = System.Windows.Forms.DockStyle.Right;
             this.data3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data3Label.Location = new System.Drawing.Point(270, 54);
+            this.data3Label.Location = new System.Drawing.Point(333, 54);
             this.data3Label.Name = "data3Label";
             this.data3Label.Size = new System.Drawing.Size(51, 27);
             this.data3Label.TabIndex = 18;
@@ -359,9 +359,9 @@ namespace Laboration_4
             // data4Label
             // 
             this.data4Label.AutoSize = true;
-            this.data4Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this.data4Label.Dock = System.Windows.Forms.DockStyle.Right;
             this.data4Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data4Label.Location = new System.Drawing.Point(270, 81);
+            this.data4Label.Location = new System.Drawing.Point(333, 81);
             this.data4Label.Name = "data4Label";
             this.data4Label.Size = new System.Drawing.Size(51, 27);
             this.data4Label.TabIndex = 19;
@@ -387,9 +387,9 @@ namespace Laboration_4
             "Bok",
             "Spel",
             "DVD"});
-            this.typeComboBox.Location = new System.Drawing.Point(113, 111);
+            this.typeComboBox.Location = new System.Drawing.Point(123, 111);
             this.typeComboBox.Name = "typeComboBox";
-            this.typeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.typeComboBox.Size = new System.Drawing.Size(141, 21);
             this.typeComboBox.TabIndex = 5;
             this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
             // 

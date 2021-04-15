@@ -12,5 +12,4 @@ namespace Laboration_4
         Bought,
         Repuchased
     }
-
 }

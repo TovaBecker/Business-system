@@ -133,13 +133,13 @@ namespace Laboration_4
 
         public BindingSource LoadSaleHistory()
         {
-            //Conect to inventory class and execute method
+            //Conect to selling class and execute method
             return _selling.SaleHistoryLoad();
         }
 
         public BindingSource LoadBasket()
         {
-            //Conect to inventory class and execute method
+            //Conect to selling class and execute method
             return _selling.BasketLoad();
         }
 

@@ -58,7 +58,12 @@ namespace Laboration_4
                             int _quantity = int.Parse(row[1]);
 
                             //Add product
-                            if (_control.Delivery(_itemnumer, _quantity) == false)
+                            if ( _quantity <= 0)
+                            {
+                                //Throw error for saving line and add to _errorQuantity '
+                                throw new Exception("Inte rätt värden");
+                            }
+                            else if(_control.Delivery(_itemnumer, _quantity) == false)
                             {
                                 //Throw error for saving line and add to _errorQuantity '
                                 throw new Exception("Inte rätt värden");
@@ -104,7 +109,7 @@ namespace Laboration_4
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
                                     $"Det gick inte att uppdatera {_errorQuantity} rad.\n" +
-                                    "Artikelnummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Artikelnummer och antal måste anges i positiva heltal med komma emellan.\n" +
                                     "Kontrollera raden som visas i fönstret.",
                                     "Kontrollera inmatning",
                                     MessageBoxButtons.OK,
@@ -115,7 +120,7 @@ namespace Laboration_4
                     //Show message that tells user itemnumber is removed
                     MessageBox.Show(
                                     $"Det gick inte att uppdatera {_errorQuantity} rader.\n" +
-                                    "Artikelnummer och antal måste anges i siffror med komma emellan.\n" +
+                                    "Artikelnummer och antal måste anges i positiva heltal med komma emellan.\n" +
                                     "Kontrollera raderna som visas i fönstret.",
                                     "Kontrollera inmatning",
                                     MessageBoxButtons.OK,

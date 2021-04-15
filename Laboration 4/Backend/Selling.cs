@@ -22,18 +22,18 @@ namespace Laboration_4
         private Inventory _inventory;
 
         //Declare an instance int variabl
-        int saleId = 1;
+        private int saleId = 1;
 
         public Selling(Inventory inventory)
         {
             //Create binding list and binding source for inventory
             _basketList = new BindingList<SaleInfo>();
             _basketBindingSource = new BindingSource(_basketList, null);
-            _inventory = inventory;
             _saleInfoList = new BindingList<SaleInfo>();
             _saleInfoBindingSource = new BindingSource(_saleInfoList, null);
             _topTenList = new BindingList<TopTen>();
             _topTenBindingSource = new BindingSource(_topTenList, null);
+            _inventory = inventory;
 
 
         }
@@ -79,18 +79,21 @@ namespace Laboration_4
             }
             else
             {
-                if (product.Quantity > 0)
+                if (product != null)
                 {
-                    //Create saleInfo object
-                    SaleInfo saleInfo = new SaleInfo(product.Type, itemNumber, product.Name, product.Price, 1, product.Price, DateTime.Now, GetSaleId(), Status.InBasket);
+                    if (product.Quantity > 0)
+                    {
+                        //Create saleInfo object
+                        SaleInfo saleInfo = new SaleInfo(product.Type, itemNumber, product.Name, product.Price, 1, product.Price, DateTime.Now, GetSaleId(), Status.InBasket);
 
-                    //Add saleInfo object to basket list
-                    _basketList.Add(saleInfo);
-                }
-                else
-                {
-                    //If product do mot exist in stock return false
-                    return false;
+                        //Add saleInfo object to basket list
+                        _basketList.Add(saleInfo);
+                    }
+                    else
+                    {
+                        //If product do mot exist in stock return false
+                        return false;
+                    }
                 }
             }
             //If product was added succesful return true
