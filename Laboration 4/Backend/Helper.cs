@@ -25,21 +25,32 @@ namespace Laboration_4.Backend
             }
             else
             {
-                try
+                var tryTenTimes = 0;
+                while(tryTenTimes < 10)
                 {
-                    //Check if file is availibel for the program
-                    using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+                    try
                     {
-                        //Close the program
-                        stream.Close();
+                        //Check if file is availibel for the program
+                        using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+                        {
+                            //Close the program
+                            stream.Close();
+                        }
                     }
+                    catch (IOException)
+                    {
+                        tryTenTimes++;
+                        if(tryTenTimes == 10)
+                        {
+                            //Thor a error to show for the user that the file is not availible
+                            throw new Exception("Filen är inte tillgänglig.\n" +
+                                "Programmet kommer avslutas.");
+                        }
+                        
+                    }
+                    tryTenTimes = 10;
                 }
-                catch (IOException)
-                {
-                    //Thor a error to show for the user that the file is not availible
-                    throw new Exception("Filen är inte tillgänglig.\n" +
-                        "Programmet kommer avslutas.");
-                }
+                
             }
             return true;
         }

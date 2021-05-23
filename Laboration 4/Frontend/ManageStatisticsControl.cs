@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Laboration_4.Backend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,8 @@ namespace Laboration_4
 {
     public partial class ManageStatisticsControl : UserControl
     {
-        private Control _control;
-        public ManageStatisticsControl(Control control)
+        private IControl _control;
+        public ManageStatisticsControl(IControl control)
         {
             InitializeComponent();
 

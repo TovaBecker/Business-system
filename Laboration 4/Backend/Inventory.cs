@@ -15,8 +15,8 @@ namespace Laboration_4
         static int itemNumberID = 1;
 
         //Data sourses for the progam
-        BindingList<Product> _inventoryList;
-        BindingSource _inventoryBindingSource;
+        static BindingList<Product> _inventoryList;
+        static BindingSource _inventoryBindingSource;
 
         public Inventory()
         {
@@ -232,6 +232,9 @@ namespace Laboration_4
                 return _inventoryBindingSource;
             }
 
+            _inventoryList = new BindingList<Product>();
+
+
             //Start upp reding from CVS file
             using (var reader = new StreamReader(@"..\..\Database\inventory.csv"))
             {
@@ -250,6 +253,9 @@ namespace Laboration_4
                     }
                 }
             }
+
+            _inventoryBindingSource.DataSource = _inventoryList;
+
             return _inventoryBindingSource;
         }
 

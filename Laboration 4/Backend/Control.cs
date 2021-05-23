@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Laboration_4
+namespace Laboration_4.Backend
 {
-    public class Control
+    public class Control : IControl
     {
         private Inventory _inventory;
-        private Product _product;
         private Selling _selling;
+        private FileSystemWatcher _watcher;
 
         static void Main()
         {
@@ -19,14 +20,16 @@ namespace Laboration_4
             Application.Run(new MainForm());
         }
 
-        public Control()
+        public Control(FileSystemWatcher watcher)
         {
             //Create an inctance of inventory
             _inventory = new Inventory();
 
             //Create the lists used by the system
-            _product = new Product(_inventory);
             _selling = new Selling(_inventory);
+
+            _watcher = watcher;
+
         }
 
         public Control(Inventory inventory)
@@ -38,7 +41,9 @@ namespace Laboration_4
         public bool Purchase()
         {
             //Conect to selling class and execute method
-            return _selling.BuyItemsInBasket();
+            var result = _selling.BuyItemsInBasket();
+            Save();
+            return result;
         }
 
         public void ClearBasket()
@@ -64,26 +69,22 @@ namespace Laboration_4
             _selling.RemoveFromBasket(saleInfo);
         }
 
-
-        internal int GetValidID(string itemNumber)
-        {
-            //Conect to inventory class and execute method and send itemNumber
-            return _inventory.SetItemID(itemNumber);
-        }
-
         public void Return()
         {
             //Conect to selling class and execute method
             _selling.ReturnItemsInBasket();
+            Save();
         }
 
         public bool Delivery(int itemNumber, int quantity)
         {
             //Conect to inventory class and execute method and send itemNumber, quantity
-            return _inventory.DeviveryQuantityAdd(itemNumber, quantity);
+            var result = _inventory.DeviveryQuantityAdd(itemNumber, quantity);
+            Save();
+            return result;
         }
 
-        internal Product Search(int itemNumber)
+        public Product Search(int itemNumber)
         {
             //Conect to inventory class and execute method and send itemNumber
             return _inventory.ProductIDSearch(itemNumber);
@@ -104,19 +105,24 @@ namespace Laboration_4
         public Product NewProduct(Product newProduct)
         {
             //Conect to inventory class and execute method and send product
-            return _inventory.ProductAdd(newProduct);
+            var result = _inventory.ProductAdd(newProduct);
+            Save();
+            return result;
         }
 
         public void UpdateProduct(Product updateProduct)
         {
-            //Conect to inventory class and execute method and send updateProduct
+            //Conect to inventory class and execute method and send updateProduct            
             _inventory.ProductUppdate(updateProduct);
+            Save();
         }
 
         public bool RemoveProduct(int itemNumber)
         {
             //Conect to inventory class and execute method and send itemNumber
-            return _inventory.ProductDelete(itemNumber);
+            var result = _inventory.ProductDelete(itemNumber);
+            Save();
+            return result;
         }
 
         public int FindID()
@@ -146,9 +152,11 @@ namespace Laboration_4
 
         public void Save()
         {
+            _watcher.EnableRaisingEvents = false;
             //Conect to inventory and selling class and execute methods for saving data files
             _inventory.InventorySave();
-            _selling.SaleHistorySave();
+           _selling.SaleHistorySave();
+            _watcher.EnableRaisingEvents = true;
         }
 
         public BindingSource GetTopTen(DateTime from, DateTime to)
@@ -161,7 +169,7 @@ namespace Laboration_4
         {
             //Conect to selling class and execute method
             return _selling.GetTotalSale(from, to);
-        }
+        }        
 
     }
 }

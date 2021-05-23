@@ -127,7 +127,10 @@ namespace Laboration_4
             get => _author;
             set
             {
-                _author = value;
+                if (string.IsNullOrEmpty(value))
+                    _author = "No author";
+                else
+                    _author = value;
             }
         }
 
@@ -136,7 +139,10 @@ namespace Laboration_4
             get => _genre;
             set
             {
-                _genre = value;
+                if (string.IsNullOrEmpty(value))
+                    _genre = "No genre";
+                else
+                    _genre = value;
             }
         }
 
@@ -145,7 +151,10 @@ namespace Laboration_4
             get => _format;
             set
             {
-                _format = value;
+                if (string.IsNullOrEmpty(value))
+                    _format = "No format";
+                else
+                    _format = value;
             }
         }
 
@@ -154,7 +163,10 @@ namespace Laboration_4
             get => _language;
             set
             {
-                _language = value;
+                if (string.IsNullOrEmpty(value))
+                    _language = "No language";
+                else
+                    _language = value;
             }
         }
 
@@ -163,7 +175,10 @@ namespace Laboration_4
             get => _platform;
             set
             {
-                _platform = value;
+                if (string.IsNullOrEmpty(value))
+                    _platform = "No platform";
+                else
+                    _platform = value;
 
             }
         }

@@ -52,6 +52,9 @@ namespace Laboration_4
 
         public bool AddToBasketBuy(int itemNumber)
         {
+            //Relode database
+            _inventory.InventoryLoad();
+
             //Find product
             Product product = _inventory.ProductIDSearch(itemNumber);
 
@@ -153,24 +156,34 @@ namespace Laboration_4
             //Go thougt basket and add buy
             foreach (var item in _basketList)
             {
-                //Add sum to total
-                _total += item.Price * item.Quantity;
+                //Find product
+                Product product = _inventory.ProductIDSearch(item.ItemNumber);
 
-                //Set product status to bought
-                item.Status = Status.Bought;
+                if (product.Quantity >= item.Quantity)
+                {
+                    //Add sum to total
+                    _total += item.Price * item.Quantity;
 
-                //Add product to saleInfo list
-                _saleInfoList.Add(item);
+                    //Set product status to bought
+                    item.Status = Status.Bought;
 
-                //Remove the bought quantity from stock
-                _inventory.ReduceStock(item.ItemNumber, item.Quantity);
+                    //Add product to saleInfo list
+                    _saleInfoList.Add(item);
+
+                    //Remove the bought quantity from stock
+                    _inventory.ReduceStock(item.ItemNumber, item.Quantity);
+                    
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             //Print the receipt for the buy to the user
             using (PrintReceiptForm print = new PrintReceiptForm(_basketList, Convert.ToString(_total)))
             {
                 print.ShowDialog();
-
             };
 
             //Clear basket

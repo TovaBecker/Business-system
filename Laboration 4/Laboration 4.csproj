@@ -68,6 +68,7 @@
     <Compile Include="Backend\Control.cs" />
     <Compile Include="Backend\Basket.cs" />
     <Compile Include="Backend\Helper.cs" />
+    <Compile Include="Backend\IControl.cs" />
     <Compile Include="Backend\Status.cs" />
     <Compile Include="Backend\TopTen.cs" />
     <Compile Include="Frontend\PrintReceiptForm.cs">

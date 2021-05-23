@@ -64,8 +64,12 @@ namespace Laboration_4
         //Code from https://www.c-sharpcorner.com/UploadFile/013102/save-report-rdlc-as-pdf-at-run-time-in-C-Sharp/
         public void SavePDF(ReportViewer viewer, string savePath)
         {
+            var deviceInfo = @"<DeviceInfo>
+                    <EmbedFonts>None</EmbedFonts>
+                   </DeviceInfo>";
+
             //Convert file to PDF
-            byte[] Bytes = viewer.LocalReport.Render(format: "PDF", deviceInfo: "");
+            byte[] Bytes = viewer.LocalReport.Render(format: "PDF", deviceInfo: deviceInfo);
 
             //Save file in send location
             using (FileStream stream = new FileStream(savePath, FileMode.Create))

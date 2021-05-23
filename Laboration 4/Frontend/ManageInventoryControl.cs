@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Laboration_4.Backend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace Laboration_4
     public partial class ManageInventoryControl : UserControl
     {
         //Declare an instance a Contol class varible for conecting inventory to Control class
-        Control _control;
+        IControl _control;
 
         //Declare an instance a BindingSource class varible for saving a bindingSource varible.
         BindingSource _inventoryBindingSource;
@@ -23,7 +24,7 @@ namespace Laboration_4
 
         internal Product NewProduct { get; private set; }
 
-        public ManageInventoryControl(Control control, BindingSource inventoryBindingSource)
+        public ManageInventoryControl(IControl control, BindingSource inventoryBindingSource)
         {
             InitializeComponent();
 

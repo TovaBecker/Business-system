@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
+using Laboration_4.Backend;
 
 namespace Laboration_4
 {
     public partial class ManageCheckoutControl : UserControl
     {
         //Declare a instance a Contol class varible for conecting inventory to Control class
-        Control _control;
+        IControl _control;
 
         //Declare a instance a BindingSource class varible for saving a bindingSource varible.
         BindingSource _inventoryBindingSource;
@@ -23,7 +24,7 @@ namespace Laboration_4
         //Declare a instance a Product class varible for svaing selected item
         Product _selectedItem;
 
-        public ManageCheckoutControl(Control control, BindingSource inventoryBindingSource, BindingSource basketBindingSource)
+        public ManageCheckoutControl(IControl control, BindingSource inventoryBindingSource, BindingSource basketBindingSource)
         {
             InitializeComponent();
 
@@ -151,12 +152,23 @@ namespace Laboration_4
             }
             else
             {
-                //Buy items in the basket grid
-                if (_control.Purchase())
+                //Add prodcut to basket
+                bool succesAdd = _control.Purchase();
+
+                if (succesAdd == false)
+                {
+                    //Show message that tells user itemnumber is removed
+                    MessageBox.Show(
+                                    "Det gick inte att köpa artikel i varukorgen.\n" +
+                                    "Artikel är slut på lagret.",
+                                    "Inte i lager",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+                else
                 {
                     //Open receipt in default window for printing
                     System.Diagnostics.Process.Start(@"..\..\Receipt\Receipt.pdf");
-                    
                 }
             }
 

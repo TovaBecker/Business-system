@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Laboration_4.Backend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,9 @@ namespace Laboration_4
     public partial class ManageDeliveryControl : UserControl
     {
         //Declare an instance a Contol class varible for conecting inventory to Control class
-        Control _control;
+        IControl _control;
 
-        public ManageDeliveryControl(Control control)
+        public ManageDeliveryControl(IControl control)
         {
             InitializeComponent();
 

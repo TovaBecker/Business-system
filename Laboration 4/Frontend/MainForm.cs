@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Laboration_4.Backend;
 
 namespace Laboration_4
 {
@@ -16,38 +18,31 @@ namespace Laboration_4
         BindingSource _inventoryBindingSource;
         BindingSource _saleHistoryBindingSource;
         BindingSource _basketBindingSource;
-        Control _control = new Control();
+        IControl _control;
+        private static FileSystemWatcher _watcher;
 
         public MainForm()
         {
-            InitializeComponent();
+            InitializeComponent();         
 
-        }
-
-        public BindingSource inventoryBindingSource()
-        {
-            //Conect ManageInventoryControl to Contol class and get binding source
-            _inventoryBindingSource = _control.LoadInventory();
-
-            return _inventoryBindingSource;
-        }
-
-        public BindingSource basketBindingSource()
-        {
-            //Conect ManageInventoryControl to Contol class and get binding source
-            _basketBindingSource = _control.LoadBasket();
-
-            return _basketBindingSource;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
             {
+                _watcher = new FileSystemWatcher(@"..\..\Database", "inventory.csv");
+                _watcher.Changed += Watcher_Changed;
+                _watcher.EnableRaisingEvents = true;
+
+                _control = new Backend.Control(_watcher);
+
                 //Loade the binding source in system
                 _inventoryBindingSource = _control.LoadInventory();
                 _saleHistoryBindingSource = _control.LoadSaleHistory();
                 _basketBindingSource = _control.LoadBasket();
+
+                
             }
             catch (Exception error)
             {
@@ -93,5 +88,14 @@ namespace Laboration_4
             //Save data in files when form is closing
             _control.Save();
         }
+
+        public void Watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            System.Threading.Thread.Sleep(2000);
+
+            this.Invoke(new Action(() => _control.LoadInventory()));
+
+        }
+
     }
 }
